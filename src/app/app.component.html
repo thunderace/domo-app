@@ -1,0 +1,108 @@
+
+<nav class="navbar navbar-inverse navbar-toggleable-md  bg-primary">
+  <a class="navbar-brand" href="#">ngDomo</a>
+<!-- 
+  <div  id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/webcams">Webcams</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/mesures">Mesures</a>
+      </li>
+    </ul>
+  </div>
+ -->  
+</nav>
+
+<!--
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+</div>
+-->
+
+<!--
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>One fine body&hellip;</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+-->
+
+<br/>
+<div class="container">
+  <div *ngFor="let component1 of config.configWeb.components;">
+    <app-domo-template [component]=component1></app-domo-template>
+  </div>
+</div>
+
+<br/>
+<div class="container">
+  <p>
+    <ngb-alert type="success" [dismissible]="false">
+    {{debug}}|{{messageService.message}}
+    </ngb-alert>
+  </p>
+</div>
+
+<app-mqtt></app-mqtt>
+<!--
+<div class="container">
+  <p>
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+      <ngb-panel title="Mqtt">
+        <ng-template ngbPanelContent>
+          Mqtt messages
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </p>
+</div>
+--> 
+<!-- 
+  <div class="row">
+    <div class="card col-lg-4 col-sm-6 col-xs-12" *ngFor="let dino of dinosaurs; index as dinoIndex;">
+      <div class="card-block">        
+        <h4 class="card-title" >{{dinoIndex+1}}. {{dino.name}}</h4>        
+        <div class="card-text">
+          <div class="row">
+            <div class="col-lg-4 col-xs-12 col-sm-6 ">
+              Height: {{dino.height}} mt
+            </div>
+            <div class="col-lg-4  col-xs-12 col-sm-6">
+              Weight: {{dino.weight}} lb
+            </div>
+            <div class="col-lg-4  col-xs-12 col-sm-6">
+              Length: {{dino.length}} ft
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div *ngIf="dino.weight < 100; then bird else large"></div>
+            <ng-template #bird> <strong>Very light</strong></ng-template>
+            <ng-template #large> <div *ngIf="dino.weight<10000; else extraLarge"><strong>Large. Higher than an average person</strong></div></ng-template>
+            <ng-template #extraLarge> <strong>Extremely large</strong></ng-template>
+          </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+
+
+ 

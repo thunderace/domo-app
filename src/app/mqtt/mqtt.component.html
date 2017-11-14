@@ -1,0 +1,24 @@
+<div class="container">
+<p>
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel title="Mqtt">
+      <ng-template ngbPanelContent>
+        <button type="button" class="btn btn-secondary btn-cmd" (click)="refresh()">
+          Rafraichir <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+        
+        <div class="divTabMqtt">
+          <table class="tabMqtt">
+            <tr *ngFor="let mqttMessage of mqttMessages | slice:0:50">
+              <td>
+                <div class="mqttDateTopic">{{mqttMessage.date | date:"dd/MM HH:mm:ss"}} | {{mqttMessage.topic}}</div>
+                <div class="mqttPayload" (click)="execMqttMessage(mqttMessage)">{{mqttMessage.payload}}</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>  
+</p>
+</div>

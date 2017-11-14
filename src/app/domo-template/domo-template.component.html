@@ -1,0 +1,33 @@
+<ngb-tabset *ngIf="component.type=='tabset'">
+  <ngb-tab *ngFor="let componentTab of component.tabs;" title="{{componentTab.label}}" >
+    <ng-template ngbTabContent>
+      <br/>
+      <span *ngFor="let component1 of componentTab.components;">
+        <app-domo-template [component]=component1></app-domo-template>
+      </span>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+
+<button *ngIf="component.type=='dropdownMenu' || component.type=='command' || component.type=='cmdToggle'" type="button" class="btn btn-secondary btn-cmd" (click)="clickButton(content, component)">
+  <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
+  {{component.label}}
+  <i *ngIf="component.type=='dropdownMenu'" class="fa fa-ellipsis-h" aria-hidden="true"></i>
+</button>
+
+<span *ngIf="component.type=='doubleCommand'">
+  <button type="button" class="btn btn-secondary btn-cmd-double" (click)="clickButton(content, component.components[0])">
+    <i *ngIf="component.components[0].glyphicon" [ngClass]="'fa fa-'+component.components[0].glyphicon" aria-hidden="true"></i>
+    {{component.components[0].label}}
+  </button>  
+  <span class="btn-cmd-double-center">
+    <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
+    {{component.label}}
+  </span>
+  <button type="button" class="btn btn-secondary btn-cmd-double" (click)="clickButton(content, component.components[1])">
+    <i *ngIf="component.components[1].glyphicon" [ngClass]="'fa fa-'+component.components[1].glyphicon" aria-hidden="true"></i>
+    {{component.components[1].label}}
+  </button>  
+</span>
+
+<span *ngIf="component.break==true || component.type=='separator'"><br/></span>

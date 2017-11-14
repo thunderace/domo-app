@@ -1,0 +1,17 @@
+.tabMqtt td {
+  padding-left:8;
+}
+.divTabMqtt {
+  height:20em;
+  min-width:200px; 
+  overflow-x:auto; 
+  overflow-y:scroll; 
+  background-color:#fff;
+}
+.mqttDateTopic {
+  color:#990000; 
+  font-size:0.8em;
+}
+.mqttPayload {
+  cursor:pointer;
+}
