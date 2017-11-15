@@ -26,23 +26,6 @@
 </div>
 -->
 
-<!--
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>One fine body&hellip;</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-  </div>
-</ng-template>
--->
-
 <br/>
 <div class="container">
   <div *ngFor="let component1 of config.configWeb.components;">
@@ -54,25 +37,19 @@
 <div class="container">
   <p>
     <ngb-alert type="success" [dismissible]="false">
-    {{debug}}|{{messageService.message}}
+      {{messageService.message}}
     </ngb-alert>
   </p>
 </div>
 
-<app-mqtt></app-mqtt>
 <!--
-<div class="container">
-  <p>
-    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-      <ngb-panel title="Mqtt">
-        <ng-template ngbPanelContent>
-          Mqtt messages
-        </ng-template>
-      </ngb-panel>
-    </ngb-accordion>
-  </p>
-</div>
---> 
+<button type="button" class="btn btn-secondary btn-cmd" (click)="refresh()">
+  Rafraichir <i class="fa fa-refresh" aria-hidden="true"></i>
+</button>
+-->
+
+<app-mqtt></app-mqtt>
+
 <!-- 
   <div class="row">
     <div class="card col-lg-4 col-sm-6 col-xs-12" *ngFor="let dino of dinosaurs; index as dinoIndex;">

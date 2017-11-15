@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MqttService } from '../mqtt.service';
 import { MqttMessage } from '../mqttMessage';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-mqtt',
@@ -9,25 +10,42 @@ import { MqttMessage } from '../mqttMessage';
 })
 export class MqttComponent implements OnInit {
 
-  mqttMessages: MqttMessage[];
+//  mqttMessages$: Observable<MqttMessage[]>;
+//  mqttMessages: Observable<MqttMessage[]>;
+//  mqttMessages: MqttMessage[];
 
   constructor(
-    private mqttService:MqttService
-  ) { }
+    private mqttService: MqttService
+  ) {}
 
   ngOnInit() {
-    this.getMqttMessages();
+//    this.getMqttMessages();
+    this.mqttService.refresh();
   }
 
-  getMqttMessages(): void {
-    this.mqttService.getMqttMessages().subscribe(mqttMessages => this.mqttMessages = mqttMessages);
+  getMqttMessages() {
+//    this.mqttService.getMqttMessages().subscribe(mqttMessages => this.mqttMessages = mqttMessages);
+//    this.mqttService.mqttMessages.subscribe(mqttMessages => this.mqttMessages = mqttMessages);
+    
+//    this.mqttMessages$ = this.mqttService.getMqttMessages();
+//    this.mqttMessages$ = this.mqttService.getMqttMessages();
+//    this.mqttMessages = this.mqttService.mqttMessages;
+//    this.mqttMessages$ = this.mqttService.mqttMessages;
+//    this.mqttService.getMqttMessages().subscribe(mqttMessages => this.mqttMessages = mqttMessages);
+//    return this.mqttMessages;
   }
   
-  execMqttMessage(mqttMessage: MqttMessage) {
-    this.mqttService.execMqttMessage(mqttMessage);
-  }
+  // execMqttMessage(mqttMessage: MqttMessage) {
+    // this.mqttService.execMqttMessage(mqttMessage);
+  // }
   
   refresh() {
-    this.mqttService.getMqttMessages();
+    // this.mqttService.refresh();
+//    this.mqttService.getMqttMessages().subscribe(mqttMessages => this.mqttMessages = mqttMessages);
+    //this.mqttMessages = this.mqttService.getMqttMessages();
+    //this.mqttMessages$ = this.mqttService.getMqttMessages();
+    //this.mqttService.getMqttMessages();
+    //this.getMqttMessages();
   }
+  
 }

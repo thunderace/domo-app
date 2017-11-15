@@ -9,6 +9,7 @@ import { MessageService } from '../message.service';
   templateUrl: './domo-template.component.html',
   styleUrls: ['./domo-template.component.css']
 })
+
 export class DomoTemplateComponent implements OnInit {
   @Input() component;
   
@@ -26,13 +27,10 @@ export class DomoTemplateComponent implements OnInit {
       const modalRef = this.modalService.open(DomoModalComponent);
       modalRef.componentInstance.component = component;
       modalRef.result.then((result) => {
-//        this.debug = "Modal "+component.id;
       }, (reason) => {
       });
     } else {
-//      this.messageService.message = "Exec "+component.label;
       this.domoService.execComponentCommand(component);
-//        this.debug = "Click "+component.id;
     }
   }  
 }
