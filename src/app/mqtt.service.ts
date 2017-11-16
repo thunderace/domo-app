@@ -38,7 +38,8 @@ export class MqttService {
 */ 
  
   refresh() {
-    this.getMqttMessages();
+//    this.getMqttMessages();
+    setTimeout(()=> { this.getMqttMessages();} , 1000);    
   }  
   
   execMqttMessage(mqttMessage: MqttMessage) {

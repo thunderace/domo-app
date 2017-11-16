@@ -1,7 +1,5 @@
-export default {
-"config":
 {
-"version":"configdomo.json 04/09/2017 10:30",
+"version":"configdomo.json 16/11/2017 14:30",
 "configWeb": {
   "bottomMenus": [
     { "glyphicon":"glyphicon-home", 
@@ -135,7 +133,7 @@ export default {
         {"type":"command", "label": "Salon 4", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"toggle.salon.4"}, "status": {"url":"http://82.66.49.29:8888/api/status?id=salon.4", "key":"salon.4"}, "break":true},
         {"type":"command", "label": "5 On", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"salon.5.on"}},
         {"type":"command", "label": "5 Off", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"salon.5.off"}},
-        {"type":"command", "label": "Salon 5 On/Off", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"toggle.salon.5"}, "status": {"url":"http://82.66.49.29:8888/api/status?id=salon.5", "key":"salon.5"}, "break":true}
+        {"type":"command", "label": "Salon 5", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"toggle.salon.5"}, "status": {"url":"http://82.66.49.29:8888/api/status?id=salon.5", "key":"salon.5"}, "break":true}
       ]},
 
       {"type":"tab", "id":"tabSalon2", "label": "Salon 2", "components": [
@@ -504,5 +502,4 @@ export default {
   {"id":"hdmi.xbox", "alias":"hdmi.5"},
   {"id":"sl", "alias":"salon"}
 ]
-}
 }

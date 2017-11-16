@@ -1,5 +1,5 @@
-<span *ngFor="let component of components;">
-  <ngb-tabset *ngIf="component.type=='tabset'" (tabChange)="beforeChange($event)" #t="ngbTabset" [(activeId)]="selectedTab" >
+<span *ngFor="let component of components">
+  <ngb-tabset *ngIf="component.type=='tabset'" (tabChange)="beforeChange($event)" [(activeId)]="selectedTab" >
     <ngb-tab *ngFor="let componentTab of component.tabs;" title="{{componentTab.label}}" id="{{componentTab.id}}">
       <ng-template ngbTabContent>
         <br/>
@@ -10,7 +10,8 @@
 
   <button *ngIf="component.type=='dropdownMenu' || component.type=='command' || component.type=='cmdToggle'" type="button" class="btn btn-secondary btn-cmd" (click)="clickButton(content, component)">
     <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
-    {{component.label}}
+    <!-- <span *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</span> {{component.label}} -->
+    <div *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</div>{{component.label}}
     <i *ngIf="component.type=='dropdownMenu'" class="fa fa-ellipsis-h" aria-hidden="true"></i>
   </button>
 
@@ -21,7 +22,8 @@
     </button>  
     <span class="btn-cmd-double-center">
       <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
-      {{component.label}}
+      <!-- <span *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</span> {{component.label}} -->
+      <div *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</div>{{component.label}}
     </span>
     <button type="button" class="btn btn-secondary btn-cmd-double" (click)="clickButton(content, component.components[1])">
       <i *ngIf="component.components[1].glyphicon" [ngClass]="'fa fa-'+component.components[1].glyphicon" aria-hidden="true"></i>

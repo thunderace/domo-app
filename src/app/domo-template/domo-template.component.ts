@@ -22,6 +22,7 @@ export class DomoTemplateComponent implements OnInit {
     ) {}
 
   ngOnInit() {
+    console.log("ngOnInit");
     let selectedComponentTab = localStorage.getItem('selectedComponentTab');
     if (selectedComponentTab != undefined) {
       this.selectedTab = selectedComponentTab;
@@ -40,9 +41,21 @@ export class DomoTemplateComponent implements OnInit {
     }
   }  
   
-  public beforeChange($event: NgbTabChangeEvent) {
+  beforeChange($event: NgbTabChangeEvent) {
     this.messageService.message = "Save selectedComponentTab="+$event.nextId;
     localStorage.setItem('selectedComponentTab', $event.nextId);
-  };  
-
+  }
+  
+  calcStyle(component) {
+    let style = {"background-color":"#eee"};
+    if (component && component.status && component.status.key) {
+      let status = this.domoService.getStatus(component.status.key);
+      if (status == 0) {
+        style = {"background-color":"#f00"};
+      } else if (status == 1) {
+        style = {"background-color":"green"};
+      }
+    }
+    return style;
+  }
 }

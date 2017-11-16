@@ -12,9 +12,6 @@ import { MqttService } from './mqtt.service';
 })
 
 export class AppComponent implements OnInit {
-  title = 'Domo';
-  config;
-
   constructor(
     private modalService: NgbModal, 
     private domoService: DomoService,
@@ -23,9 +20,5 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(){
-    this.config = this.domoService.getConfig();
-    // this.http.get('http://82.66.49.29:8888/api/res/configNodeDomo.json').subscribe(res => {
-    // this.config = res.json();
-    // });
   }
 }

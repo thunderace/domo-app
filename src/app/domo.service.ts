@@ -6,16 +6,29 @@ import dataset from './data';
 
 @Injectable()
 export class DomoService {
-  config = dataset.config;
-   
+  //config = dataset.config;
+  
+  config = {
+    "version":"...",
+    "configWeb": {}
+  };
+  
   constructor(
     private messageService: MessageService,
     private mqttService:MqttService,
     private http: HttpClient
-  ) { }
+  ) {
+    this.getConfig();
+    this.updateStatuses();
+  }
 
-  getConfig(): object {
-    return this.config;
+  getConfig() {
+    this.http.get<any>('assets/config.json')
+      .subscribe(config => {
+        console.log(config);
+        this.config = config;
+      }
+    );     
   }
   
   execComponentCommand(component): void {
@@ -30,14 +43,39 @@ export class DomoService {
       this.messageService.message = "Exec command "+command.topic+"|"+command.payload;
       if (command.type == 'cmdMqtt') {
         this.mqttService.execMqttMessage(command);
+        this.updateStatusesDelayed();
       }
     }
   }
   
-  mapStatus = new Map();
-  listStatus = [];
   apiUrl = 'http://82.66.49.29:8888/api';
+  statuses=[];
+
+//  mapStatus = new Map();
+//  listStatus = [];
   
+  updateStatuses() {
+    this.http.get<any[]>(this.apiUrl+'/statuses')
+      .subscribe(statuses => {
+        this.statuses = statuses;
+      }
+    );   
+  }
+
+  updateStatusesDelayed() {
+    setTimeout(()=> { this.updateStatuses();} , 1000);    
+  }
+
+  getStatus(key) {
+    for(let status of this.statuses) {
+      if (status[0] == key) {
+        return status[1];
+      }
+    }
+    return null;
+  }
+  
+/*  
   setStatus(key, value) {
     let listCpnt = this.mapStatus.get(key);
     if (listCpnt != undefined) {
@@ -48,16 +86,25 @@ export class DomoService {
     }
   }
   
-  updateCpntStatusInMapStatus() {
-    this.http.get<any[]>(this.apiUrl+'/statuses')
-      .subscribe(statuses => {
-        for (let s of statuses) {
-          this.setStatus(s[0], s[1]);
-        }        
+  initCpntStatus(cpnt) {
+    if (cpnt!=null && cpnt!=undefined && cpnt.status!=undefined) {
+      console.log("initCpntStatus "+cpnt.status.key);
+      if (cpnt.status.key != undefined) {
+        if (this.mapStatus.get(cpnt.status.key) == undefined) {
+          this.mapStatus.set(cpnt.status.key, []); 
+        }
+        this.mapStatus.get(cpnt.status.key).push(cpnt);
+       
+        for(let c in this.mapStatus.get(cpnt.status.key)) {
+          console.log(">"+c);
+        }
+      } else {
+        this.listStatus.push(cpnt);
       }
-    );   
+      this.updateCpntStatus(cpnt);
+    }
   }
-  
+*/  
 }
 
 /*

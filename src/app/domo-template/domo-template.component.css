@@ -7,3 +7,11 @@
 .btn-cmd-double-center {
   width:36px;
 }
+
+.btn-cmd-status {
+  width:6px;
+  height:6px;
+  margin: 0px 4px 0px -4px;
+  display: inline;
+  font-size: 1em;
+}

@@ -28,7 +28,7 @@
 
 <br/>
 <div class="container">
-  <app-domo-template [components]=config.configWeb.components></app-domo-template>
+  <app-domo-template [components]=domoService.config.configWeb.components></app-domo-template>
 </div>
 
 <br/>
@@ -40,11 +40,6 @@
   </p>
 </div>
 
-<button type="button" class="btn btn-secondary btn-cmd" (click)="domoService.updateCpntStatusInMapStatus()">
-  Statuts
-</button>
-
-
 <!--
 <button type="button" class="btn btn-secondary btn-cmd" (click)="refresh()">
   Rafraichir <i class="fa fa-refresh" aria-hidden="true"></i>
@@ -52,6 +47,11 @@
 -->
 
 <app-mqtt></app-mqtt>
+
+<div class="container">
+{{domoService.config.version}}
+</div>
+
 
 <!-- 
   <div class="row">
