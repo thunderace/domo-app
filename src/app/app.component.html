@@ -28,9 +28,7 @@
 
 <br/>
 <div class="container">
-  <div *ngFor="let component1 of config.configWeb.components;">
-    <app-domo-template [component]=component1></app-domo-template>
-  </div>
+  <app-domo-template [components]=config.configWeb.components></app-domo-template>
 </div>
 
 <br/>
@@ -41,6 +39,11 @@
     </ngb-alert>
   </p>
 </div>
+
+<button type="button" class="btn btn-secondary btn-cmd" (click)="domoService.updateCpntStatusInMapStatus()">
+  Statuts
+</button>
+
 
 <!--
 <button type="button" class="btn btn-secondary btn-cmd" (click)="refresh()">

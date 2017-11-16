@@ -5,9 +5,7 @@
   </button>
 </div>
 <div class="modal-body">
-  <span *ngFor="let component1 of component.components;">
-    <app-domo-template [component]=component1></app-domo-template>
-  </span>
+  <app-domo-template [components]=component.components></app-domo-template>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

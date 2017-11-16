@@ -28,8 +28,4 @@ export class AppComponent implements OnInit {
     // this.config = res.json();
     // });
   }
-  
-  refresh() {
-    this.mqttService.refresh();
-  }
 }

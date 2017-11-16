@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class MqttService {
   mqttUrl: string = 'http://82.66.49.29:1880/mqtt';
-  nodeUrl = 'http://82.66.49.29:8888/api';
+  apiUrl = 'http://82.66.49.29:8888/api';
   
   //mqttMessages: Observable<MqttMessage[]>;
   mqttMessages: MqttMessage[];
@@ -24,14 +24,14 @@ export class MqttService {
   }
 
   getMqttMessages(): void {
-    const url = this.nodeUrl+'/mqtts';
+    const url = this.apiUrl+'/mqtts';
     this.messageService.message = "MqttService.getMqttMessages1 get mqtt "+url;
     this.http.get<MqttMessage[]>(url).subscribe(mqttMessages => this.mqttMessages = mqttMessages);
   }
   
 /*  
   getMqttMessages(): Observable<MqttMessage[]> {
-    const url = this.nodeUrl+'/mqtts';
+    const url = this.apiUrl+'/mqtts';
     this.messageService.message = "MqttService.getMqttMessages get mqtt "+url;
     return this.http.get<MqttMessage[]>(url);
   }

@@ -19,10 +19,10 @@ export class MqttComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-//    this.getMqttMessages();
     this.mqttService.refresh();
+//    this.getMqttMessages();
   }
-
+/*
   getMqttMessages() {
 //    this.mqttService.getMqttMessages().subscribe(mqttMessages => this.mqttMessages = mqttMessages);
 //    this.mqttService.mqttMessages.subscribe(mqttMessages => this.mqttMessages = mqttMessages);
@@ -47,5 +47,5 @@ export class MqttComponent implements OnInit {
     //this.mqttService.getMqttMessages();
     //this.getMqttMessages();
   }
-  
+*/  
 }

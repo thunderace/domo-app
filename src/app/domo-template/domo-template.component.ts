@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DomoModalComponent } from '../domo-modal/domo-modal.component';
 import { DomoService } from '../domo.service';
 import { MessageService } from '../message.service';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-domo-template',
@@ -11,7 +12,8 @@ import { MessageService } from '../message.service';
 })
 
 export class DomoTemplateComponent implements OnInit {
-  @Input() component;
+  @Input() components;
+  selectedTab;
   
   constructor(
     private modalService: NgbModal, 
@@ -20,6 +22,10 @@ export class DomoTemplateComponent implements OnInit {
     ) {}
 
   ngOnInit() {
+    let selectedComponentTab = localStorage.getItem('selectedComponentTab');
+    if (selectedComponentTab != undefined) {
+      this.selectedTab = selectedComponentTab;
+    }
   }
 
   clickButton(content, component) {
@@ -33,4 +39,10 @@ export class DomoTemplateComponent implements OnInit {
       this.domoService.execComponentCommand(component);
     }
   }  
+  
+  public beforeChange($event: NgbTabChangeEvent) {
+    this.messageService.message = "Save selectedComponentTab="+$event.nextId;
+    localStorage.setItem('selectedComponentTab', $event.nextId);
+  };  
+
 }

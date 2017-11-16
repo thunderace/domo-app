@@ -33,6 +33,31 @@ export class DomoService {
       }
     }
   }
+  
+  mapStatus = new Map();
+  listStatus = [];
+  apiUrl = 'http://82.66.49.29:8888/api';
+  
+  setStatus(key, value) {
+    let listCpnt = this.mapStatus.get(key);
+    if (listCpnt != undefined) {
+      for(let cpnt of listCpnt) {
+        console.log("cpnt "+key+" state="+value);
+        cpnt.state = value;
+      }
+    }
+  }
+  
+  updateCpntStatusInMapStatus() {
+    this.http.get<any[]>(this.apiUrl+'/statuses')
+      .subscribe(statuses => {
+        for (let s of statuses) {
+          this.setStatus(s[0], s[1]);
+        }        
+      }
+    );   
+  }
+  
 }
 
 /*
