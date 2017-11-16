@@ -6,7 +6,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule }    from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { MyComponentComponent } from './my-component/my-component.component';
 import { DomoModalComponent } from './domo-modal/domo-modal.component';
 import { DomoTemplateComponent } from './domo-template/domo-template.component';
 import { DomoService } from './domo.service';
@@ -24,7 +23,6 @@ import { MqttComponent } from './mqtt/mqtt.component';
   ],
   declarations: [
     AppComponent,
-    MyComponentComponent,
     DomoModalComponent,
     DomoTemplateComponent,
     MqttComponent
