@@ -5,6 +5,7 @@ import { MessageService } from '../message.service';
 import { MqttService } from '../mqtt.service';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-measure-page',
@@ -41,17 +42,20 @@ export class MeasurePageComponent implements OnInit {
     console.log($event);
   }
   
-  refreshEDF() {
+  refreshEDF(duree) {
+    var t1 = Date.now();
+    this.dureeEDF = duree;
     this.infoEDF = "Chargement des données...";
     console.log(this.dureeEDF);
     this.domoService.getEDF(this.dureeEDF)
       .subscribe(data => {
         // { time, PAPP }
         console.log(data);
-        this.infoEDF = "Données chargées.";
+        var dt2 = (Date.now()-t1)/1000;
+        
+        var dt3 = (Date.now()-t1)/1000;
+        this.infoEDF = "Données chargées en "+dt2+"s";
       }
     );
   }
-  
-  
 }
