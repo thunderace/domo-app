@@ -42,7 +42,6 @@ export class DomoTemplateComponent implements OnInit {
   }  
   
   beforeChange($event: NgbTabChangeEvent) {
-    this.messageService.message = "Save selectedComponentTab="+$event.nextId;
     localStorage.setItem('selectedComponentTab', $event.nextId);
   }
   

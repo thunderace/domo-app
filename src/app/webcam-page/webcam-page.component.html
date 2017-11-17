@@ -1,0 +1,7 @@
+<!-- <p>webcam-page works!</p> -->
+<!-- <img class="imgWebcam" src="{{webcam.source}}" ng-click="rafraichirWebcams()" [style]="styleImg320ou640()" /> -->
+<div *ngFor="let webcam of domoService.config.configWeb.webcams">
+<!-- <div *ngFor="let webcam of webcams"> -->
+  <!-- <img class="imgWebcam" src="{{webcam.source}}" (click)="refreshWebcams(webcam)"/> -->
+  <img class="imgWebcam" [src]="getWebcamUrl(webcam)" (click)="refreshWebcam(webcam)"/>
+</div>

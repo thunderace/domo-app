@@ -10,7 +10,6 @@
 
   <button *ngIf="component.type=='dropdownMenu' || component.type=='command' || component.type=='cmdToggle'" type="button" class="btn btn-secondary btn-cmd" (click)="clickButton(content, component)">
     <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
-    <!-- <span *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</span> {{component.label}} -->
     <div *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</div>{{component.label}}
     <i *ngIf="component.type=='dropdownMenu'" class="fa fa-ellipsis-h" aria-hidden="true"></i>
   </button>
@@ -22,7 +21,6 @@
     </button>  
     <span class="btn-cmd-double-center">
       <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
-      <!-- <span *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</span> {{component.label}} -->
       <div *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</div>{{component.label}}
     </span>
     <button type="button" class="btn btn-secondary btn-cmd-double" (click)="clickButton(content, component.components[1])">
@@ -32,5 +30,4 @@
   </span>
 
   <span *ngIf="component.break==true || component.type=='separator'"><br/></span>
-
 </span>

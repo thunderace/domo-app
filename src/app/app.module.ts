@@ -12,6 +12,9 @@ import { DomoService } from './domo.service';
 import { MessageService } from './message.service';
 import { MqttService } from './mqtt.service';
 import { MqttComponent } from './mqtt/mqtt.component';
+import { CommandPageComponent } from './command-page/command-page.component';
+import { WebcamPageComponent } from './webcam-page/webcam-page.component';
+import { MeasurePageComponent } from './measure-page/measure-page.component';
 
 @NgModule({
   imports: [
@@ -25,7 +28,10 @@ import { MqttComponent } from './mqtt/mqtt.component';
     AppComponent,
     DomoModalComponent,
     DomoTemplateComponent,
-    MqttComponent
+    MqttComponent,
+    CommandPageComponent,
+    WebcamPageComponent,
+    MeasurePageComponent
   ],
   entryComponents: [DomoModalComponent],
   providers: [DomoService, MessageService, MqttService],

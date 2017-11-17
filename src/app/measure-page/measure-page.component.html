@@ -1,0 +1,44 @@
+
+<!-- <ngb-tabset (tabChange)="beforeChange($event)" [(activeId)]="selectedTab" > -->
+  <!-- <ngb-tab title="EDF" id="edf"> -->
+    <!-- <ng-template ngbTabContent> -->
+      <!-- <br/> -->
+      <div>
+        <h4>{{titleEDF}}</h4>
+        <span>{{statsEDF}}</span><br>
+        <span>{{dureeEDF}}</span><br>
+        <span>{{infoEDF}}</span><br>
+        <span>{{infoClickEDF}}</span>
+      </div>
+
+      <div class="btn-group" ngbRadioGroup name="radioBasic" [(ngModel)]="dureeEDF">
+        <label ngbButtonLabel class="btn-primary" (click)="refreshEDF()">
+          <input ngbButton type="radio" [value]="24">24h
+        </label>
+        <label ngbButtonLabel class="btn-primary" (click)="refreshEDF()">
+          <input ngbButton type="radio" [value]="48">48h
+        </label>
+        <label ngbButtonLabel class="btn-primary" (click)="refreshEDF()">
+          <input ngbButton type="radio" [value]="168">7j
+        </label>
+        <label ngbButtonLabel class="btn-primary" (click)="refreshEDF()">
+          <input ngbButton type="radio" [value]="720">30j
+        </label>
+      </div>
+      
+      <div>
+        <button (click)="refreshEDF()">Afficher</button>
+      </div>
+<!--      
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab title="Température" id="temperature">
+    <ng-template ngbTabContent>
+      <br/>
+      Température
+    </ng-template>
+  </ngb-tab>
+
+</ngb-tabset>
+-->

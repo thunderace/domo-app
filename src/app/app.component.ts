@@ -12,6 +12,9 @@ import { MqttService } from './mqtt.service';
 })
 
 export class AppComponent implements OnInit {
+  
+  selectedPage = "command-page";
+  
   constructor(
     private modalService: NgbModal, 
     private domoService: DomoService,

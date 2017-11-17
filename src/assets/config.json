@@ -203,9 +203,8 @@
           {"type":"separator"},
           {"type":"command", "label": "OTA", "confirmation": true, "command": {"type":"cmdMqtt", "topic":"home/domo/sonoff02/OTA", "payload":"http://raffault.free.fr/ESPIR.ino.bin"}}
         ], "break":true},
-        
+        {"type":"separator"},
         {"type":"command", "label": "Version", "command": {"type":"cmdMqtt", "topic":"home/domo/sonoff01/cmd", "payload":"version"}},
-       
         {"type":"command", "label": "SonOff01",
           "command": {"type":"cmdMqtt", "topic":"home/domo/sonoff01/cmd", "payload":"toggle"},
           "status": {"url":"http://82.66.49.29:8888/api/status?id=sonoff01"},
@@ -213,6 +212,27 @@
         }
       ]}
     ]}
-  ]
-}
+  ],
+  "webcams": [
+    {
+      "source": "http://82.66.49.29:8200/image.jpg?user=admin&password=tetris"
+    },
+    
+    {
+      "source": "http://draffault.fr:8032/webcams/cam1/webcam.jpg"
+    },
+    {
+      "source": "http://draffault.fr:8033/webcams/cam3/webcam.jpg"
+    },
+    {
+      "source": "http://images.webcams.travel/original/1251207864-MÃ¯Â¿Â½tÃ¯Â¿Â½o-Plage-de-Pontaillac-Pontaillac.jpg"
+    },
+    {
+      "source": "http://images.webcams.travel/original/1365341784-MÃ¯Â¿Â½tÃ¯Â¿Â½o-Plage-de-la-Grande-Conche-Royan.jpg"
+    },
+    {
+      "source": "http://images.webcams.travel/original/1346943550-MÃ¯Â¿Â½tÃ¯Â¿Â½o-Port-de-Royan-Live-HD-Royan.jpg"
+    }
+  ]  
+ }
 }
