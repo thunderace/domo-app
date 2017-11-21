@@ -1,9 +1,13 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
-import { HttpModule }    from '@angular/http';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule }    from '@angular/common/http';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppComponent } from './app.component';
 import { DomoModalComponent } from './domo-modal/domo-modal.component';
@@ -19,10 +23,14 @@ import { MeasurePageComponent } from './measure-page/measure-page.component';
 @NgModule({
   imports: [
     BrowserModule,
+//    BrowserAnimationsModule,
+    NoopAnimationsModule,
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgbCollapseModule,
+    NgxChartsModule
   ],
   declarations: [
     AppComponent,

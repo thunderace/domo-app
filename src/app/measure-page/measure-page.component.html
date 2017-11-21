@@ -29,7 +29,34 @@
       <div>
         <button (click)="refreshEDF()">Afficher</button>
       </div>
+      
 <!--      
+      <p>chart</p>
+-->      
+      <div>
+      <p>
+      <ngx-charts-line-chart
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="multi"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [autoScale]="autoScale"
+        [tooltipDisabled]="tooltipDisabled"
+        (select)="onSelect($event)">
+      </ngx-charts-line-chart>
+      </p>
+      </div>
+      <br/>
+      
+<!--      
+      <p>End of chart</p>1
     </ng-template>
   </ngb-tab>
 
