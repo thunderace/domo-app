@@ -45,4 +45,5 @@ import { MeasurePageComponent } from './measure-page/measure-page.component';
   providers: [DomoService, MessageService, MqttService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

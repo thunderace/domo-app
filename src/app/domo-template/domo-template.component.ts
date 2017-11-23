@@ -22,7 +22,6 @@ export class DomoTemplateComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    console.log("ngOnInit");
     let selectedComponentTab = localStorage.getItem('selectedComponentTab');
     if (selectedComponentTab != undefined) {
       this.selectedTab = selectedComponentTab;

@@ -6,22 +6,22 @@
       <div>
         <h4>{{titleEDF}}</h4>
         <span>{{statsEDF}}</span><br>
-        <span>{{dureeEDF}}</span><br>
+        <!-- <span>{{dureeEDF}}</span><br> -->
         <span>{{infoEDF}}</span><br>
-        <span>{{infoClickEDF}}</span>
+        <!-- <span>{{infoClickEDF}}</span> -->
       </div>
 
       <div class="btn-group" ngbRadioGroup name="radioBasic" [(ngModel)]="dureeEDF">
-        <label ngbButtonLabel class="btn-primary" (click)="refreshEDF(24)">
+        <label ngbButtonLabel class="btn-default" (click)="refreshEDF(24)">
           <input ngbButton type="radio" [value]="24">24h
         </label>
-        <label ngbButtonLabel class="btn-primary" (click)="refreshEDF(48)">
+        <label ngbButtonLabel class="btn-default" (click)="refreshEDF(48)">
           <input ngbButton type="radio" [value]="48">48h
         </label>
-        <label ngbButtonLabel class="btn-primary" (click)="refreshEDF(168)">
+        <label ngbButtonLabel class="btn-default" (click)="refreshEDF(168)">
           <input ngbButton type="radio" [value]="168">7j
         </label>
-        <label ngbButtonLabel class="btn-primary" (click)="refreshEDF(720)">
+        <label ngbButtonLabel class="btn-default" (click)="refreshEDF(720)">
           <input ngbButton type="radio" [value]="720">30j
         </label>
       </div>
@@ -49,8 +49,35 @@
         [yAxisLabel]="yAxisLabel"
         [autoScale]="autoScale"
         [tooltipDisabled]="tooltipDisabled"
-        (select)="onSelect($event)">
+        [timeline]="timeline"
+        [yScaleMin]="yScaleMin"
+        [yScaleMax]="yScaleMax"
+        [xAxisTickFormatting]="xAxisTickFormatting"
+        (select)="onSelect($event)"
+        >
       </ngx-charts-line-chart>
+      
+        <!-- [xAxisTickFormatting]="xAxisTickFormatting.bind(this)" -->
+      
+<!--      
+      <ngx-charts-line-chart
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="multi"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [autoScale]="autoScale"
+        [tooltipDisabled]="tooltipDisabled"
+        (select)="onSelect($event)"
+        >
+      </ngx-charts-line-chart>
+-->      
       </p>
       </div>
       <br/>

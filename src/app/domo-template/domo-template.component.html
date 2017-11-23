@@ -7,7 +7,7 @@
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-
+  
   <button *ngIf="component.type=='dropdownMenu' || component.type=='command' || component.type=='cmdToggle'" type="button" class="btn btn-default btn-cmd" (click)="clickButton(content, component)">
     <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
     <div *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</div>{{component.label}}

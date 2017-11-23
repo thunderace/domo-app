@@ -23,5 +23,14 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(){
+    let selectedPage = localStorage.getItem('selectedPage');
+    if (selectedPage != undefined) {
+      this.selectedPage = selectedPage;
+    }
+  }
+  
+  selectPage(page) {
+    this.selectedPage = page;
+    localStorage.setItem('selectedPage', page);
   }
 }
