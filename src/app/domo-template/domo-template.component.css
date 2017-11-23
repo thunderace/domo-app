@@ -1,18 +1,21 @@
 .btn-cmd {
-  width:90px;
-  font-size:0.9em;
+  width: 90px;
+  font-size: 0.9em;
+ /* padding : 2px;*/
+  margin : 2px;
 }
 .btn-cmd-double {
-  width:80px;
-  font-size:0.9em;
+  width: 78px;
+  font-size: 0.9em;
+  margin : 2px;
 }
 .btn-cmd-double-center {
-  width:36px;
+  width: 36px;
 }
 
 .btn-cmd-status {
-  width:6px;
-  height:6px;
+  width :6px;
+  height: 6px;
   margin: 0px 4px 0px -4px;
   display: inline;
   font-size: 1em;
