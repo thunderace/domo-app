@@ -36,6 +36,9 @@ export class DomoTemplateComponent implements OnInit {
       }, (reason) => {
       });
     } else {
+      if (component.confirmation) {
+        //if (confirm("Confirmer ?") == false) { return; }
+      }
       this.domoService.execComponentCommand(component);
     }
   }  
