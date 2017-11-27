@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule }   from '@angular/forms';
+
 import { DomoModalComponent } from '../domo-modal/domo-modal.component';
 import { DomoService } from '../domo.service';
 import { MessageService } from '../message.service';
-import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { MqttService } from '../mqtt.service';
 
 @Component({
   selector: 'app-domo-template',
@@ -15,10 +18,15 @@ export class DomoTemplateComponent implements OnInit {
   @Input() components;
   selectedTab;
   
+  mqttFormMessage = { "topic": "home/domo/sonoff01/cmd", "payload": "version" };
+  formTopics = ["home/domo/nodedomo/cmd", "home/domo/espIR01/cmd", "home/domo/espIR02/cmd", "home/domo/sonoff01/cmd", "home/domo/sonoff02/cmd"];
+  formPayloads = ["version", "toggle", "irsend marantz C0D", "irsend nec FF000033"];
+  
   constructor(
     private modalService: NgbModal, 
     private domoService: DomoService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private mqttService: MqttService
     ) {}
 
   ngOnInit() {

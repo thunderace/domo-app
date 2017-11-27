@@ -36,6 +36,7 @@ export class MqttService {
   execMqttMessage(mqttMessage: MqttMessage) {
     const url = this.mqttUrl+'?topic='+mqttMessage.topic+'&payload='+mqttMessage.payload;
     this.messageService.message = "http exec mqtt "+url;
+    console.log("http exec mqtt "+url);
     this.http.get(url).subscribe(res => {
       this.messageService.message = res.toString();
       this.refresh();

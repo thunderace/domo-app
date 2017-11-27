@@ -248,7 +248,10 @@
           "command": {"type":"cmdMqtt", "topic":"home/domo/sonoff01/cmd", "payload":"toggle"},
           "status": {"url":"http://82.66.49.29:8888/api/status?id=sonoff01"},
           "break":true
-        }
+        },
+        {"type":"mqttForm"},
+        {"type":"separator"},
+        {"type":"separator"}
       ]}
     ]}
   ],
