@@ -29,16 +29,7 @@ export class MqttService {
     this.http.get<MqttMessage[]>(url).subscribe(mqttMessages => this.mqttMessages = mqttMessages);
   }
   
-/*  
-  getMqttMessages(): Observable<MqttMessage[]> {
-    const url = this.apiUrl+'/mqtts';
-    this.messageService.message = "MqttService.getMqttMessages get mqtt "+url;
-    return this.http.get<MqttMessage[]>(url);
-  }
-*/ 
- 
   refresh() {
-//    this.getMqttMessages();
     setTimeout(()=> { this.getMqttMessages();} , 1000);    
   }  
   

@@ -10,42 +10,20 @@ import { Observable } from 'rxjs/Observable';
 })
 export class MqttComponent implements OnInit {
 
-//  mqttMessages$: Observable<MqttMessage[]>;
-//  mqttMessages: Observable<MqttMessage[]>;
-//  mqttMessages: MqttMessage[];
-
   constructor(
     private mqttService: MqttService
   ) {}
 
   ngOnInit() {
     this.mqttService.refresh();
-//    this.getMqttMessages();
-  }
-/*
-  getMqttMessages() {
-//    this.mqttService.getMqttMessages().subscribe(mqttMessages => this.mqttMessages = mqttMessages);
-//    this.mqttService.mqttMessages.subscribe(mqttMessages => this.mqttMessages = mqttMessages);
-    
-//    this.mqttMessages$ = this.mqttService.getMqttMessages();
-//    this.mqttMessages$ = this.mqttService.getMqttMessages();
-//    this.mqttMessages = this.mqttService.mqttMessages;
-//    this.mqttMessages$ = this.mqttService.mqttMessages;
-//    this.mqttService.getMqttMessages().subscribe(mqttMessages => this.mqttMessages = mqttMessages);
-//    return this.mqttMessages;
   }
   
-  // execMqttMessage(mqttMessage: MqttMessage) {
-    // this.mqttService.execMqttMessage(mqttMessage);
-  // }
-  
-  refresh() {
-    // this.mqttService.refresh();
-//    this.mqttService.getMqttMessages().subscribe(mqttMessages => this.mqttMessages = mqttMessages);
-    //this.mqttMessages = this.mqttService.getMqttMessages();
-    //this.mqttMessages$ = this.mqttService.getMqttMessages();
-    //this.mqttService.getMqttMessages();
-    //this.getMqttMessages();
+  calcMqttPayload(mqttMessage) {
+    if (mqttMessage.topic.indexOf("home/domo/log/")>=0) {
+      let payload = JSON.parse(mqttMessage.payload);
+      var msg: String = payload.msg
+      return "("+msg+")";
+    }
+    return mqttMessage.payload;
   }
-*/  
 }

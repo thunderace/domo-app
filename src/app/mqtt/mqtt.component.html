@@ -1,27 +1,16 @@
 <p>
   <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
     <ngb-panel title="Mqtt">
-<!--
-    <ngb-panel >
-      <ng-template ngbPanelTitle> 
-        <span>&#9733; <b>Mqtt</b> title &#9733;</span>
-        <a (click)="mqttService.refresh()" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-        <button type="button" class="btn btn-secondary btn-cmd" (click)="mqttService.refresh()">
-          Rafraichir <i class="fa fa-refresh" aria-hidden="true"></i>
-        </button>
-      </ng-template>
--->      
       <ng-template ngbPanelContent>
         <div>
            <a (click)="mqttService.refresh()" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
         </div>
-        
         <div class="divTabMqtt">
           <table class="tabMqtt">
             <tr *ngFor="let mqttMessage of mqttService.mqttMessages | slice:0:50">
               <td>
                 <div class="mqttDateTopic">{{mqttMessage.date | date:"dd/MM HH:mm:ss"}} | {{mqttMessage.topic}}</div>
-                <div class="mqttPayload" (click)="mqttService.execMqttMessage(mqttMessage)">{{mqttMessage.payload}}</div>
+                <div class="mqttPayload" (click)="mqttService.execMqttMessage(mqttMessage)">{{calcMqttPayload(mqttMessage)}}</div>
               </td>
             </tr>
           </table>
