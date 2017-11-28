@@ -29,60 +29,39 @@
     </button>  
   </span>
   
-  
   <div *ngIf="component.type=='mqttForm'"><br/>
-
-    <!-- <div class="row"> -->
-      <!-- <div class="col-lg-6"> -->
+    <div class="row">
+      <div class="col-lg-6">
         <div class="input-group">
           <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-default" id="dropdownBasic1" ngbDropdownToggle >Topic</button>
+            <button class="btn btn-outline-default btn-combo-mqtt" id="dropdownBasic1" ngbDropdownToggle >Topic</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <button *ngFor="let topic of formTopics" class="dropdown-item" (click)="mqttFormMessage.topic=topic">{{topic}}</button>
             </div>
           </div>
           <input type="text" class="form-control" aria-label="Mqtt topic" [(ngModel)]="mqttFormMessage.topic">
-          <!-- [(ngModel)]="mqttFromMessageTopic" -->
         </div>
-      <!-- </div> -->
-      
-      <!-- <div class="col-lg-6"> -->
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-lg-6">
         <div class="input-group">
           <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-default" id="dropdownBasic2" ngbDropdownToggle>Payload</button>
+            <button class="btn btn-outline-default btn-combo-mqtt" id="dropdownBasic2" ngbDropdownToggle>Payload</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
               <button *ngFor="let payload of formPayloads" class="dropdown-item" (click)="mqttFormMessage.payload=payload">{{payload}}</button>
             </div>
           </div>        
-          <!--
-          <div class="input-group-btn">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Payload
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="#">version</a>
-              <a class="dropdown-item" href="#">toggle</a>
-            </div>
-          </div>
-          -->
           <input type="text" class="form-control" aria-label="Mqtt Payload" [(ngModel)]="mqttFormMessage.payload">
           <span class="input-group-btn">
             <button class="btn btn-secondary" type="button" (click)="mqttService.execMqttMessage(mqttFormMessage)">Envoyer</button>
           </span>
-          <!--
-          <label class="btn-primary" ngbButtonLabel>
-            <input type="checkbox" ngbButton>Go
-          </label>  
-          -->
-          
         </div>
-      <!-- </div> -->
-      
-    <!-- </div> -->
-  
-     
+      </div>
+    </div>
   </div>
-  
 
+  <div *ngIf="component.type=='title'">{{component.label}}</div>
   <span *ngIf="component.break==true || component.type=='separator'"><br/></span>
 </span>
