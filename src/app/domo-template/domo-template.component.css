@@ -29,3 +29,7 @@
   display: inline;
   font-size: 1em;
 }
+
+.domo-title {
+  font-weight: bold;
+}
