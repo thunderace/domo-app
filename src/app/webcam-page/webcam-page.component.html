@@ -1,7 +1,35 @@
-<!-- <p>webcam-page works!</p> -->
-<!-- <img class="imgWebcam" src="{{webcam.source}}" ng-click="rafraichirWebcams()" [style]="styleImg320ou640()" /> -->
-<div *ngFor="let webcam of domoService.config.configWeb.webcams">
-<!-- <div *ngFor="let webcam of webcams"> -->
-  <!-- <img class="imgWebcam" src="{{webcam.source}}" (click)="refreshWebcams(webcam)"/> -->
-  <img class="imgWebcam" [src]="getWebcamUrl(webcam)" (click)="refreshWebcam(webcam)"/>
-</div>
+<ngb-tabset (tabChange)="beforeChange($event)" [(activeId)]="selectedTab" >
+  <ngb-tab title="Live" id="live">
+    <ng-template ngbTabContent>
+      <br/>
+
+      <div class="btn-group" ngbRadioGroup name="radioBasic" [(ngModel)]="webcamSize">
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="1"> S
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="2"> M
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="3"> L
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="4"> XL
+        </label>
+      </div>
+      <!-- <hr> -->
+      <div *ngFor="let webcam of domoService.config.configWeb.webcams">
+        <img [ngClass]="{'imgWebcam-320':webcamSize==1,'imgWebcam-640':webcamSize==2,'imgWebcam-800':webcamSize==3,'imgWebcam-1024':webcamSize==4}" [src]="getWebcamUrl(webcam)" (click)="refreshWebcam(webcam)"/>
+        <!-- <img [ngClass]="'imgWebcam-320'" [src]="getWebcamUrl(webcam)" (click)="refreshWebcam(webcam)"/> -->
+        <!-- <img [ngClass]="{1:'imgWebcam-320',2:'imgWebcam-640',3:'imgWebcam-800'}[webcamSize]" [src]="getWebcamUrl(webcam)" (click)="refreshWebcam(webcam)"/> -->
+        <!-- <img class="imgWebcam" [src]="getWebcamUrl(webcam)" (click)="refreshWebcam(webcam)"/> -->
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Replay" id="replay">
+    <ng-template ngbTabContent>
+      <br/>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+

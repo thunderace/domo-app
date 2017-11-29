@@ -10,6 +10,9 @@ import { MqttService } from '../mqtt.service';
   styleUrls: ['./webcam-page.component.css']
 })
 export class WebcamPageComponent implements OnInit {
+  selectedTab = "live";
+  webcamSize = 1;
+  
   constructor(
     private modalService: NgbModal, 
     private domoService: DomoService,
