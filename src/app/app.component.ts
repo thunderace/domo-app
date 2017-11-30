@@ -14,6 +14,7 @@ import { MqttService } from './mqtt.service';
 export class AppComponent implements OnInit {
   
   selectedPage = "command-page";
+  isNavbarCollapsed = true;
   
   constructor(
     private modalService: NgbModal, 
@@ -32,5 +33,6 @@ export class AppComponent implements OnInit {
   selectPage(page) {
     this.selectedPage = page;
     localStorage.setItem('selectedPage', page);
+    this.isNavbarCollapsed = true;
   }
 }

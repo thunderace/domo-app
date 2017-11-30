@@ -1,20 +1,23 @@
 <span *ngFor="let component of components">
   <ngb-tabset *ngIf="component.type=='tabset'" (tabChange)="beforeChange($event)" [(activeId)]="selectedTab" >
-    <ngb-tab *ngFor="let componentTab of component.tabs;" title="{{componentTab.label}}" id="{{componentTab.id}}">
+    <ngb-tab class="nav-tabs" *ngFor="let componentTab of component.tabs;" title="{{componentTab.label}}" id="{{componentTab.id}}">
       <ng-template ngbTabContent>
-        <br/>
-        <app-domo-template [components]=componentTab.components></app-domo-template>
+        <div class="content"> 
+          <!-- <br/> -->
+          <app-domo-template [components]=componentTab.components></app-domo-template>
+        </div>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-  
-  <button *ngIf="component.type=='dropdownMenu' || component.type=='command' || component.type=='cmdToggle'" type="button" class="btn btn-default btn-cmd" (click)="clickButton(content, component)">
+  <button *ngIf="component.type=='dropdownMenu' || component.type=='command' || component.type=='cmdToggle'" type="button" 
+      [ngClass]="{'btn btn-default btn-cmd': true, 'btn-cmd-drop': component.type=='dropdownMenu'}"
+      (click)="clickButton(content, component)">
     <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
     <div *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</div>{{component.label}}
-    <i *ngIf="component.type=='dropdownMenu'" class="fa fa-ellipsis-h" aria-hidden="true"></i>
+    <!-- <i *ngIf="component.type=='dropdownMenu'" class="fa fa-caret-down" aria-hidden="true"></i> -->
+    <!-- <i *ngIf="component.type=='dropdownMenu'" class="fa fa-ellipsis-h" aria-hidden="true"></i> -->
   </button>
-
-  <span *ngIf="component.type=='doubleCommand'">
+  <div *ngIf="component.type=='doubleCommand'" class="btn-cmd-double-container">
     <button type="button" class="btn btn-default btn-cmd-double" (click)="clickButton(content, component.components[0])">
       <i *ngIf="component.components[0].glyphicon" [ngClass]="'fa fa-'+component.components[0].glyphicon" aria-hidden="true"></i>
       {{component.components[0].label}}
@@ -27,8 +30,7 @@
       <i *ngIf="component.components[1].glyphicon" [ngClass]="'fa fa-'+component.components[1].glyphicon" aria-hidden="true"></i>
       {{component.components[1].label}}
     </button>  
-  </span>
-  
+  </div>
   <div *ngIf="component.type=='mqttForm'"><br/>
     <div class="row">
       <div class="col-lg-6">
@@ -61,7 +63,6 @@
       </div>
     </div>
   </div>
-
   <div *ngIf="component.type=='title'" class="domo-title">{{component.label}}</div>
   <span *ngIf="component.break==true || component.type=='separator'"><br/></span>
 </span>

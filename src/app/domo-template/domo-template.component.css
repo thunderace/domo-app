@@ -1,35 +1,60 @@
+.content {
+  margin: 5px;
+}
+
 .btn-combo-mqtt {
   width: 120px;
 }
 
 .btn-cmd {
-  width: 90px;
+  width: 82px;
   font-size: 0.9em;
- /* padding : 2px;*/
-  margin : 2px;
+  margin: 2px 0px 2px 0px;
+  background-color: #ddd;
+  color: #8d99ae;  
+  font-weight: bold;
 }
+
+.btn-cmd-drop {
+  background-color: #8d99ae;
+  color:#eeeeee;
+}
+
+.btn-cmd-double-container {
+  background-color: #eee;
+  display: inline;
+  width: 166px;
+}
+
 .btn-cmd-double {
-  width: 78px;
+  width: 68px;
   font-size: 0.9em;
-  margin : 2px;
+  margin: 2px;
+  background-color: #ddd;
+  color: #8d99ae;  
+  font-weight: bold;
 }
+
 .btn-cmd-double-center {
   width: 36px;
+  height: 40px;
 }
 
 .btn-cmd-status {
   width: 6px;
   height: 6px;
-/*
-  min-width: 6px;
-  min-height: 6px;
-  margin: 5px;
-*/
   margin: 0px 4px 0px -4px;
   display: inline;
   font-size: 1em;
 }
 
 .domo-title {
+  color: #8d99ae;
   font-weight: bold;
+  margin-left: 2px;
+}
+
+.nav-tabs {
+  color: #8d99ae;
+  background-color: #f00;
 }

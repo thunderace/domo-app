@@ -239,7 +239,7 @@
         {"type":"dropdownMenu", "id":"dropArd1", "label": "Ard1", "components": [
           {"type":"command", "label": "Version", "command": {"type":"cmdMqtt", "topic":"home/domo/ard1/cmd", "payload":"version"}}
         ]},
-        {"type":"dropdownMenu", "id":"dropSonOff01", "label": "SonOff01", "components": [
+        {"type":"dropdownMenu", "id":"dropSonOff01", "label": "SO01", "components": [
           {"type":"command", "label": "Version", "command": {"type":"cmdMqtt", "topic":"home/domo/sonoff01/cmd", "payload":"version"}},
           {"type":"command", "label": "Toggle",
             "command": {"type":"cmdMqtt", "topic":"home/domo/sonoff01/cmd", "payload":"toggle"},
@@ -249,7 +249,7 @@
           {"type":"separator"},
           {"type":"command", "label": "OTA", "confirmation": true, "command": {"type":"cmdMqtt", "topic":"home/domo/sonoff01/OTA", "payload":"http://raffault.free.fr/ESPIR.ino.bin"}}
         ]},
-        {"type":"dropdownMenu", "id":"dropSonOff02", "label": "SonOff02", "components": [
+        {"type":"dropdownMenu", "id":"dropSonOff02", "label": "SO02", "components": [
           {"type":"command", "label": "Version", "command": {"type":"cmdMqtt", "topic":"home/domo/sonoff02/cmd", "payload":"version"}},
           {"type":"command", "label": "Toggle", "command": {"type":"cmdMqtt", "topic":"home/domo/sonoff02/cmd", "payload":"toggle"}, "break":true},
           {"type":"separator"},

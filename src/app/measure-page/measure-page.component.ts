@@ -42,7 +42,7 @@ export class MeasurePageComponent implements OnInit {
   autoScale = true;
   showXAxis = true;
   showYAxis = true;
-  gradient = false;
+  gradient  = false;
   showLegend = true;
   showXAxisLabel = true;
   xAxisLabel = 'Jour/Heure';
@@ -62,7 +62,6 @@ export class MeasurePageComponent implements OnInit {
   }
   
   ngOnInit() {
-    //console.log("measure ngOnInit");
     this.refreshEDF(24);
   }
 
@@ -76,11 +75,15 @@ export class MeasurePageComponent implements OnInit {
   }
   
   xAxisTickFormatting(value) {
-    return value.substring(11, 16);
-    // if (this.dureeEDF == "24" || this.dureeEDF == "48") {
-     // return value.substring(11, 16);
+    return value.substring(8, 11)+"/"+value.substring(5, 7)+" "+value.substring(11, 16);
+    
+    // let minutes = parseInt(value.substring(14, 16));
+    // if (minutes <= 25) { 
+      // //console.log(">>"+value.substring(0, 16));
+      // //return value.substring(0, 15)+"0"; 
+      // return value.substring(0, 14)+"00"; 
     // }
-    // return value.substring(0, 11);
+    // return null;
   }
   
   refreshEDF(duree) {
@@ -99,7 +102,13 @@ export class MeasurePageComponent implements OnInit {
         {
           "name": "EDF",
           "series": []
-        }/*,
+        }
+        ,
+        {
+          "name": "Par heure",
+          "series": []
+        }
+/*      ,
         {
           "name": "Min",
           "series": []
@@ -115,17 +124,41 @@ export class MeasurePageComponent implements OnInit {
         ];
         let tMin = null, tMax, vMin, vMax;
         let vCumul, nv = 0;
+        let timeHour, hour, vHour, nHour = 0;
 //        let vCumul, nv: number = 0;
         for(let v of data) {
-          tMin = v.time;
           let papp:number = parseInt(v.PAPP);
+          tMin = v.time;
+          let tmph = v.time.substring(11, 13);
+          if (tmph != hour) {
+            if (vHour) {
+              // Average per hour
+              tmpData[1].series.unshift({"name": timeHour, "value": Math.round(vHour/nHour)});
+            }
+            hour = tmph;
+            timeHour = tMin;
+            vHour = papp;
+            nHour = 1;
+          } else {
+            vHour += papp;
+            nHour++;
+          }
           if (!tMax) { tMax = v.time; vMin = papp; vMax = papp; }
           if (papp > vMax) { vMax = papp; }
           if (papp < vMin) { vMin = papp; }
-          tmpData[0].series.unshift({"name": v.time, "value": papp});
+          if (parseInt(this.dureeEDF)<720) {
+            // Each value
+            tmpData[0].series.unshift({"name": v.time, "value": papp});
+          }
           nv++;
           vCumul+=papp;
         }
+        if (nHour>0) {
+          // Average per hour
+          tmpData[1].series.unshift({"name": timeHour, "value": Math.round(vHour/nHour)});
+          tmpData[1].series.unshift({"name": tMin, "value": Math.round(vHour/nHour)});
+        }
+        
         let vAverage = 0;
         //if (nv>0) { vAverage = Math.round(vCumul/nv); }
         vAverage = (vMin+vMax)/2;
@@ -141,7 +174,8 @@ export class MeasurePageComponent implements OnInit {
         this.multi = tmpData;
         
         var dt3 = (Date.now()-t1)/1000;
-        this.infoEDF = "Données chargées en "+dt2+"s et affichées en "+dt3+"s";
+        //this.infoEDF = "Données chargées en "+dt2+"s et affichées en "+dt3+"s";
+        this.infoEDF = "("+dt3+"s)";
         this.statsEDF = "Consommation entre le "+tMin+" et le "+tMax+" Min="+vMin+" kWh "+" Moy="+vCumul+" kWh "+" Max="+vMax+" kWh ";
       }
     );
