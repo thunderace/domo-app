@@ -1,9 +1,16 @@
+.btn-domo {
+	background-color:#8d99ae;
+  color:#ffffff;  
+}
+
 .content {
   margin: 5px;
 }
 
 .btn-combo-mqtt {
-  width: 120px;
+  width: 100px;
+  background-color: #8d99ae;
+  color:#eeeeee;  
 }
 
 .btn-cmd {

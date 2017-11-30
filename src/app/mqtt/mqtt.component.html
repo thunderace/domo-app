@@ -1,3 +1,21 @@
+<div>
+  <a (click)="mqttCallapsed=!mqttCallapsed">&nbsp;Mqtt&nbsp;</a>
+  <a (click)="mqttService.refresh()" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+</div>
+<div [hidden]="mqttCallapsed">
+  <div class="divTabMqtt">
+    <table class="tabMqtt">
+      <tr *ngFor="let mqttMessage of mqttService.mqttMessages | slice:0:50">
+        <td>
+          <div class="mqttDateTopic">{{mqttMessage.date | date:"dd/MM HH:mm:ss"}} | {{mqttMessage.topic}}</div>
+          <div class="mqttPayload" (click)="mqttService.execMqttMessage(mqttMessage)">{{calcMqttPayload(mqttMessage)}}</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!--
 <p>
   <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
     <ngb-panel title="Mqtt">
@@ -19,3 +37,4 @@
     </ngb-panel>
   </ngb-accordion>  
 </p>
+-->
