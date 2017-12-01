@@ -6,8 +6,8 @@ import { MqttService } from '../mqtt.service';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-measure-page',
@@ -91,11 +91,9 @@ export class MeasurePageComponent implements OnInit {
     var t1 = Date.now();
     this.dureeEDF = duree;
     this.infoEDF = "Chargement des données...";
-//    console.log(this.dureeEDF);
     this.domoService.getEDF(this.dureeEDF)
       .subscribe(data => {
         // { time, PAPP }
-//        console.log(data);
         var dt2 = (Date.now()-t1)/1000;
         this.infoEDF = "Données chargées en "+dt2+"s";
         
@@ -175,7 +173,6 @@ export class MeasurePageComponent implements OnInit {
         this.multi = tmpData;
         
         var dt3 = (Date.now()-t1)/1000;
-        //this.infoEDF = "Données chargées en "+dt2+"s et affichées en "+dt3+"s";
         this.infoEDF = "Données chargées en "+dt3+"s";
         this.statsEDF = "Consommation entre le "+tMin+" et le "+tMax;
         this.vMinEDF = vMin;
@@ -185,7 +182,6 @@ export class MeasurePageComponent implements OnInit {
     );
   }
   
-  // ngx-charts
   onSelect(event) {
     console.log(event);
   }  

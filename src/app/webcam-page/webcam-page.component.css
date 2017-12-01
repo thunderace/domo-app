@@ -3,9 +3,12 @@
   color: #ffffff;  
 }
 
+.divWebcam {
+  display: inline;
+}
+
 .imgWebcam {
-  width: 320px;
-  height: 200px;
+  margin: 2px 0px 2px 0px;
 }
 
 .imgWebcam-320 {
