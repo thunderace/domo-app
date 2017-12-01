@@ -1,5 +1,5 @@
 <div>
-  <a (click)="mqttCallapsed=!mqttCallapsed">&nbsp;Mqtt&nbsp;</a>
+  <a (click)="toggleMqtt()">&nbsp;Mqtt&nbsp;</a>
   <a (click)="mqttService.refresh()" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
 </div>
 <div [hidden]="mqttCallapsed">

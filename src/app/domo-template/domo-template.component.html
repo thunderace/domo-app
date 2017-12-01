@@ -2,35 +2,71 @@
   <ngb-tabset *ngIf="component.type=='tabset'" (tabChange)="beforeChange($event)" [(activeId)]="selectedTab" >
     <ngb-tab class="nav-tabs" *ngFor="let componentTab of component.tabs;" title="{{componentTab.label}}" id="{{componentTab.id}}">
       <ng-template ngbTabContent>
-        <div class="content"> 
-          <!-- <br/> -->
+        <div class="container"> 
+          <br/>
           <app-domo-template [components]=componentTab.components></app-domo-template>
         </div>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-  <button *ngIf="component.type=='dropdownMenu' || component.type=='command' || component.type=='cmdToggle'" type="button" 
+  
+  <div *ngIf="component.type=='dropdownMenu'" 
       [ngClass]="{'btn btn-default btn-cmd': true, 'btn-cmd-drop': component.type=='dropdownMenu'}"
       (click)="clickButton(content, component)">
+    <div>
+      <i *ngIf="component.glyphicon" [ngClass]="'cmd-glyph fa fa-'+component.glyphicon" aria-hidden="true"></i>
+    </div>
+    <div>
+      {{component.label}}
+    </div>
+  </div>
+  
+   <!-- <button *ngIf="component.type=='dropdownMenu' || component.type=='command' || component.type=='cmdToggle'" type="button"  -->
+  <button *ngIf="component.type=='command' || component.type=='cmdToggle'" type="button" 
+      [ngClass]="{'btn btn-default btn-cmd': true, 'btn-cmd-drop': component.type=='dropdownMenu'}"
+      (click)="clickButton(content, component)">
+    <i *ngIf="component.status" [ngClass]="'fa fa-stop btn-cmd-status-icon'" [ngStyle]="calcStyle(component)" aria-hidden="true"></i>
     <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
-    <div *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</div>{{component.label}}
-    <!-- <i *ngIf="component.type=='dropdownMenu'" class="fa fa-caret-down" aria-hidden="true"></i> -->
-    <!-- <i *ngIf="component.type=='dropdownMenu'" class="fa fa-ellipsis-h" aria-hidden="true"></i> -->
+    {{component.label}}
   </button>
+
   <div *ngIf="component.type=='doubleCommand'" class="btn-cmd-double-container">
-    <button type="button" class="btn btn-default btn-cmd-double" (click)="clickButton(content, component.components[0])">
+    <div class="btn-cmd-double-container-2">
+      <!-- <div>On</div> -->
+      <button type="button" class="btn btn-default btn-cmd btn-cmd-double" (click)="clickButton(content, component.components[0])">
+        <i *ngIf="component.components[0].glyphicon" [ngClass]="'fa fa-'+component.components[0].glyphicon" aria-hidden="true"></i>
+        {{component.components[0].label}}
+      </button>       
+      
+      <div class="btn-cmd-double-center">
+        {{component.label}}<br/>
+        <i *ngIf="component.status" [ngClass]="'fa fa-stop btn-cmd-status-icon'" [ngStyle]="calcStyle(component)" aria-hidden="true"></i>
+      </div>
+      
+      <button type="button" class="btn btn-default btn-cmd btn-cmd-double" (click)="clickButton(content, component.components[1])">
+        <i *ngIf="component.components[1].glyphicon" [ngClass]="'fa fa-'+component.components[1].glyphicon" aria-hidden="true"></i>
+        {{component.components[1].label}}
+      </button>        
+      <!-- <div>Off</div> -->
+    </div>
+  </div>
+  
+<!-- 
+  <span *ngIf="component.type=='doubleCommand'" class="btn-cmd-double-container">
+    <div type="button" class="btn btn-default btn-cmd-double" (click)="clickButton(content, component.components[0])">
       <i *ngIf="component.components[0].glyphicon" [ngClass]="'fa fa-'+component.components[0].glyphicon" aria-hidden="true"></i>
       {{component.components[0].label}}
-    </button>  
-    <span class="btn-cmd-double-center">
-      <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
-      <div *ngIf="component.status" [ngStyle]="calcStyle(component)" class="btn-cmd-status">&nbsp;</div>{{component.label}}
-    </span>
-    <button type="button" class="btn btn-default btn-cmd-double" (click)="clickButton(content, component.components[1])">
+    </div>  
+    <div class="btn-cmd-double-center">
+      <i *ngIf="component.status" [ngClass]="'fa fa-stop btn-cmd-status-icon'" [ngStyle]="calcStyle(component)" aria-hidden="true"></i>
+      {{component.label}}
+    </div>
+    <div type="button" class="btn btn-default btn-cmd-double" (click)="clickButton(content, component.components[1])">
       <i *ngIf="component.components[1].glyphicon" [ngClass]="'fa fa-'+component.components[1].glyphicon" aria-hidden="true"></i>
       {{component.components[1].label}}
-    </button>  
-  </div>
+    </div>  
+  </span>
+-->
   <div *ngIf="component.type=='mqttForm'"><br/>
     <div class="row">
       <div class="col-lg-6">

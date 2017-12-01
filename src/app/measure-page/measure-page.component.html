@@ -7,48 +7,48 @@
       <div>
         <h4>{{titleEDF}}</h4>
         <span>{{statsEDF}}</span><br>
+        <span>Min={{vMinEDF}}kWh</span><span> Moy={{vMoyEDF}}kWh</span><span> Min={{vMaxEDF}}kWh</span><br>
         <span>{{infoEDF}}</span><br>
       </div>
-
+      <br/>
       <div class="btn-group" ngbRadioGroup name="radioBasic" [(ngModel)]="dureeEDF">
-        <label ngbButtonLabel class="btn-default btn-domo" (click)="refreshEDF(24)">
+        <label ngbButtonLabel class="btn-primary btn-domo" (click)="refreshEDF(24)">
           <input ngbButton type="radio" [value]="24">24h
         </label>
-        <label ngbButtonLabel class="btn-default btn-domo" (click)="refreshEDF(48)">
+        <label ngbButtonLabel class="btn-primary btn-domo" (click)="refreshEDF(48)">
           <input ngbButton type="radio" [value]="48">48h
         </label>
-        <label ngbButtonLabel class="btn-default btn-domo" (click)="refreshEDF(168)">
+        <label ngbButtonLabel class="btn-primary btn-domo" (click)="refreshEDF(168)">
           <input ngbButton type="radio" [value]="168">7j
         </label>
-        <label ngbButtonLabel class="btn-default btn-domo" (click)="refreshEDF(720)">
+        <label ngbButtonLabel class="btn-primary btn-domo" (click)="refreshEDF(720)">
           <input ngbButton type="radio" [value]="720">30j
         </label>
       </div>
-
       <div>
-      <p>
-        <ngx-charts-line-chart
-          [view]="view"
-          [scheme]="colorScheme"
-          [results]="multi"
-          [gradient]="gradient"
-          [xAxis]="showXAxis"
-          [yAxis]="showYAxis"
-          [legend]="showLegend"
-          [showXAxisLabel]="showXAxisLabel"
-          [showYAxisLabel]="showYAxisLabel"
-          [xAxisLabel]="xAxisLabel"
-          [yAxisLabel]="yAxisLabel"
-          [autoScale]="autoScale"
-          [tooltipDisabled]="tooltipDisabled"
-          [timeline]="timeline"
-          [yScaleMin]="yScaleMin"
-          [yScaleMax]="yScaleMax"
-          [xAxisTickFormatting]="xAxisTickFormatting"
-          (select)="onSelect($event)"
-          >
-        </ngx-charts-line-chart>
-      </p>
+        <p>
+          <ngx-charts-line-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="multi"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [autoScale]="autoScale"
+            [tooltipDisabled]="tooltipDisabled"
+            [timeline]="timeline"
+            [yScaleMin]="yScaleMin"
+            [yScaleMax]="yScaleMax"
+            [xAxisTickFormatting]="xAxisTickFormatting"
+            (select)="onSelect($event)"
+            >
+          </ngx-charts-line-chart>
+        </p>
       </div>
       <br/>
       <hr/>

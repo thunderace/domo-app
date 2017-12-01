@@ -5,7 +5,11 @@
   </button>
 </div>
 <div class="modal-body">
-  <app-domo-template [components]=component.components></app-domo-template>
+  <div class="content">
+    <div style="align:center">
+      <app-domo-template [components]=component.components></app-domo-template>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" (click)="activeModal.close('Close click')">Close</button>

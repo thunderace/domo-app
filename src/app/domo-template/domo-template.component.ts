@@ -56,6 +56,19 @@ export class DomoTemplateComponent implements OnInit {
   }
   
   calcStyle(component) {
+    let style = {"color":"#eee"};
+    if (component && component.status && component.status.key) {
+      let status = this.domoService.getStatus(component.status.key);
+      if (status == 0) {
+        style = {"color":"#d90429"};
+      } else if (status == 1) {
+        style = {"color":"#6ea24f"};
+      }
+    }
+    return style;
+  }  
+/*  
+  calcStyle(component) {
     let style = {"background-color":"#eee"};
     if (component && component.status && component.status.key) {
       let status = this.domoService.getStatus(component.status.key);
@@ -67,4 +80,5 @@ export class DomoTemplateComponent implements OnInit {
     }
     return style;
   }
+*/  
 }

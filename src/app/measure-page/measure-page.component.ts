@@ -17,13 +17,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 export class MeasurePageComponent implements OnInit {
 
   model = 1;
-
   dureeEDF = "24";
-
   titleEDF = "Consommation EDF";
   statsEDF = "xx KWh";
   infoEDF = "...";
   infoClickEDF = "xx ms";
+  vMinEDF = 0;
+  vMaxEDF = 0;
+  vMoyEDF = 0;
 
   // ngx-charts
   multi = [{
@@ -175,8 +176,11 @@ export class MeasurePageComponent implements OnInit {
         
         var dt3 = (Date.now()-t1)/1000;
         //this.infoEDF = "Données chargées en "+dt2+"s et affichées en "+dt3+"s";
-        this.infoEDF = "("+dt3+"s)";
-        this.statsEDF = "Consommation entre le "+tMin+" et le "+tMax+" Min="+vMin+" kWh "+" Moy="+vCumul+" kWh "+" Max="+vMax+" kWh ";
+        this.infoEDF = "Données chargées en "+dt3+"s";
+        this.statsEDF = "Consommation entre le "+tMin+" et le "+tMax;
+        this.vMinEDF = vMin;
+        this.vMaxEDF = vMax;
+        this.vMoyEDF = vAverage;
       }
     );
   }

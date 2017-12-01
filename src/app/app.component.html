@@ -1,5 +1,3 @@
-
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-custom">
   <!-- <a class="navbar-brand" href="#"><i class="fa fa-home" aria-hidden="true"></i> ngDomo</a> -->
   <span >
@@ -8,7 +6,8 @@
       ngDomo </a>
     <span>
       <a class="navbar-brand" href="#" (click)="selectPage('command-page')">
-          <i class="fa fa-lightbulb-o" aria-hidden="true"></i>  
+          <!-- <i class="fa fa-lightbulb-o" aria-hidden="true"></i>   -->
+          <i class="fa fa-home" aria-hidden="true"></i>  
       </a>
       <a class="navbar-brand" href="#" (click)="selectPage('webcam-page')">
         <i class="fa fa-camera" aria-hidden="true"></i>  
@@ -76,7 +75,6 @@
 </nav>
 -->
 
-<!-- <br/> -->
 <!-- <div class="container"> -->
   <app-command-page [hidden]="selectedPage != 'command-page'"></app-command-page>
   <app-webcam-page [hidden]="selectedPage != 'webcam-page'"></app-webcam-page>
@@ -86,39 +84,19 @@
 <!-- 
 <br/>
 <div class="container">
-  <app-domo-template [components]=domoService.config.configWeb.components></app-domo-template>
-</div>
-
-<br/>
-<div class="container">
   <p>
     <ngb-alert type="success" [dismissible]="false">
       {{messageService.message}}
     </ngb-alert>
   </p>
 </div>
-
-<app-mqtt></app-mqtt>
 -->
-<!-- <hr/> -->
+<!--
 <div>
-&nbsp;{{domoService.config.version}}
-</div>
-
-<!--
-<button type="button" class="btn btn-secondary btn-cmd" (click)="refresh()">
-  Rafraichir <i class="fa fa-refresh" aria-hidden="true"></i>
-</button>
--->
-
-
-<!--
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
+  &nbsp;{{domoService.config.version}}
 </div>
 -->
+
 <!-- 
   <div class="row">
     <div class="card col-lg-4 col-sm-6 col-xs-12" *ngFor="let dino of dinosaurs; index as dinoIndex;">

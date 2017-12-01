@@ -1,67 +1,67 @@
 .btn-domo {
 	background-color:#8d99ae;
-  color:#ffffff;  
+  color: #ffffff;  
 }
 
 .content {
   margin: 5px;
 }
 
+.cmd-glyph {
+  font-size: 2em;
+}
+
 .btn-combo-mqtt {
   width: 100px;
   background-color: #8d99ae;
-  color:#eeeeee;  
+  color: #eeeeee;  
 }
 
 .btn-cmd {
   width: 82px;
-  font-size: 0.9em;
-  margin: 2px 0px 2px 0px;
+  height: 50px;
+  margin: 2px -1px 2px 0px;
+  padding-left: 6px;
   background-color: #ddd;
-  color: #8d99ae;  
   font-weight: bold;
+  color: #8d99ae;
 }
 
 .btn-cmd-drop {
+  height: 70px;
   background-color: #8d99ae;
-  color:#eeeeee;
+  color: #eeeeee;
 }
 
 .btn-cmd-double-container {
-  background-color: #eee;
-  display: inline;
-  width: 166px;
-}
-
-.btn-cmd-double {
-  width: 68px;
-  font-size: 0.9em;
-  margin: 2px;
+  display: inline-block;
   background-color: #ddd;
-  color: #8d99ae;  
-  font-weight: bold;
+  margin: 2px 0px 2px 0px;
 }
-
+.btn-cmd-double-container-2 {
+  display: grid;
+  grid: 166px / auto 66px auto;
+  /* grid: 166px / 66px 36px 66px; */
+  height: 50px;
+}
+.btn-cmd-double {
+  width: 50px;
+  margin: 0px;
+}
 .btn-cmd-double-center {
-  width: 36px;
-  height: 40px;
+  height: 50px;
+  vertical-align: middle;
+  text-align: center;
+  padding-top: 14px;
+  line-height: 0.8em;
 }
-
-.btn-cmd-status {
-  width: 6px;
-  height: 6px;
-  margin: 0px 4px 0px -4px;
-  display: inline;
-  font-size: 1em;
+.btn-cmd-status-icon {
+  font-size: 0.4em;
 }
 
 .domo-title {
-  color: #8d99ae;
   font-weight: bold;
   margin-left: 2px;
 }
 
-.nav-tabs {
-  color: #8d99ae;
-  background-color: #f00;
-}
+
