@@ -10,8 +10,9 @@ export class DomoService {
   
   config = {
     "version":"...",
-    "configWeb": {}
+    "configWeb": { "components": [] }
   };
+  
   apiUrl = 'http://82.66.49.29:8888/api';
   djsUrl = "http://82.66.49.29:8032/domojs/api/index.php";
   statuses = [];

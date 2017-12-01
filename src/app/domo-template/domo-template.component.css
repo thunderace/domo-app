@@ -37,6 +37,7 @@
   display: inline-block;
   background-color: #ddd;
   margin: 2px 0px 2px 0px;
+  border-radius: .25rem;
 }
 .btn-cmd-double-container-2 {
   display: grid;
@@ -54,6 +55,7 @@
   text-align: center;
   padding-top: 14px;
   line-height: 0.8em;
+  font-weight: bold;  
 }
 .btn-cmd-status-icon {
   font-size: 0.4em;

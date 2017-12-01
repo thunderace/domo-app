@@ -1,9 +1,9 @@
 
 .navbar-custom {
-	background-color:#8d99ae;
-  color:#ffffff;
-  border-radius:0;
-  font-size: 1.3em;
+	background-color: #8d99ae;
+  color: #ffffff;
+  border-radius: 0;
+  font-size: 1.2em;
 }
   
 .navbar-custom .navbar-nav > li > a {
@@ -12,7 +12,7 @@
 
 .navbar-custom .navbar-nav > .active > a {
   color: #ffffff;
-	background-color:transparent;
+	background-color: transparent;
 }
       
 .navbar-custom .navbar-nav > li > a:hover,
@@ -26,15 +26,15 @@
      
 .navbar-custom .navbar-brand {
   color:#eeeeee;
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 .navbar-custom .navbar-toggle {
-  background-color:#eeeeee;
+  background-color: #eeeeee;
 }
 
 .navbar-custom .icon-bar {
-  background-color:#8d99ae;
+  background-color: #8d99ae;
 }
 
 .navbar-custom .navbar-toggler {

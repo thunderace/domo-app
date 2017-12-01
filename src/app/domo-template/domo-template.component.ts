@@ -15,7 +15,7 @@ import { MqttService } from '../mqtt.service';
 })
 
 export class DomoTemplateComponent implements OnInit {
-  @Input() components;
+  @Input() components: any[];
   selectedTab;
   
   mqttFormMessage = { "topic": "home/domo/sonoff01/cmd", "payload": "version" };

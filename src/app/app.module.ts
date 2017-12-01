@@ -41,7 +41,7 @@ import { MeasurePageComponent } from './measure-page/measure-page.component';
     WebcamPageComponent,
     MeasurePageComponent
   ],
-  entryComponents: [DomoModalComponent],
+  entryComponents: [DomoModalComponent, DomoTemplateComponent],
   providers: [DomoService, MessageService, MqttService],
   bootstrap: [AppComponent]
 })

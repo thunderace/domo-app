@@ -11,15 +11,15 @@ import { MqttMessage } from '../mqttMessage';
 })
 export class MqttComponent implements OnInit {
 
-  mqttCallapsed;
+  mqttCallapsed = true;
 
   constructor(
-    private mqttService: MqttService
+    public mqttService: MqttService
   ) {}
 
   ngOnInit() {
-    let mqttCallapsed = localStorage.getItem('mqttCallapsed');
-    if (mqttCallapsed) {
+    let mqttCallapsed = JSON.parse(localStorage.getItem('mqttCallapsed'));
+    if (mqttCallapsed != undefined) {
       this.mqttCallapsed = mqttCallapsed;
     } else {
       this.setMqtt(this.mqttCallapsed);
@@ -32,7 +32,7 @@ export class MqttComponent implements OnInit {
   }
   setMqtt(value) {
     this.mqttCallapsed = value;
-    localStorage.setItem('mqttCallapsed', this.mqttCallapsed);
+    localStorage.setItem('mqttCallapsed', JSON.stringify(this.mqttCallapsed));
   }
   
   calcMqttPayload(mqttMessage) {

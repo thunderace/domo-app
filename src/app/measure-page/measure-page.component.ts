@@ -52,7 +52,7 @@ export class MeasurePageComponent implements OnInit {
   tooltipDisabled = false;
   timeline = true;
   yScaleMin = "0";
-  //yScaleMax = "3000";
+  yScaleMax = "8000";
  
   constructor(
     private modalService: NgbModal, 
