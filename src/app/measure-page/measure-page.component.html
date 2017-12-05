@@ -1,11 +1,7 @@
 <div class="content">      
   <div>
     <h4>{{titleEDF}}</h4>
-    <span>{{statsEDF}}</span><br>
-    <span>Min={{vMinEDF}}kWh</span><span> Moy={{vMoyEDF}}kWh</span><span> Min={{vMaxEDF}}kWh</span><br>
-    <span>{{infoEDF}}</span><br>
   </div>
-  <br/>
   <div class="btn-group" ngbRadioGroup name="radioBasic" [(ngModel)]="dureeEDF">
     <label ngbButtonLabel class="btn-primary btn-domo" (click)="refreshEDF(24)">
       <input ngbButton type="radio" [value]="24">24h
@@ -21,10 +17,28 @@
     </label>
   </div>
   <div>
-    <p>
-      <ngx-charts-line-chart
-        [view]="view"
+    <span>{{statsEDF}}</span>
+    <br/>
+    <span>{{infoLoadingEDF}}</span>
+    <br/>
+    <h5>
+      <span class="badge badge-success">Min={{vMinEDF}}kWh</span>
+      <span class="badge badge-info"> Moy={{vMoyEDF}}kWh</span>
+      <span class="badge badge-danger"> Max={{vMaxEDF}}kWh</span>
+    </h5>
+    <br/>
+
+<!--    
+    <div style="diplay: inline; background-color:#eee" (window:resize)="onResizeDiv(this, $event)">
+      [{{innerWidth}},{{innerHeight}}]
+    </div>
+-->    
+    <!-- <div style="width:90%;"> -->
+    <div>
+        <!--  -->
+      <ngx-charts-line-chart (window:resize)="onResizeDiv($event)"
         [scheme]="colorScheme"
+        [view]="view"
         [results]="multi"
         [gradient]="gradient"
         [xAxis]="showXAxis"
@@ -44,8 +58,8 @@
       </ngx-charts-line-chart>
       
         <!-- [yScaleMax]="yScaleMax" -->
-      
-    </p>
+    </div>
+    <!-- </p> -->
   </div>
   <br/>
   <hr/>

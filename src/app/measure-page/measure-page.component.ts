@@ -7,6 +7,8 @@ import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HostListener } from '@angular/core';
+// import {Platform} from 'ionic-angular';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
@@ -19,9 +21,9 @@ export class MeasurePageComponent implements OnInit {
   model = 1;
   dureeEDF = "24";
   titleEDF = "Consommation EDF";
-  statsEDF = "xx KWh";
-  infoEDF = "...";
-  infoClickEDF = "xx ms";
+  statsEDF = "";
+  infoLoadingEDF = "";
+  infoClickEDF = "";
   vMinEDF = 0;
   vMaxEDF = 0;
   vMoyEDF = 0;
@@ -44,7 +46,7 @@ export class MeasurePageComponent implements OnInit {
   showXAxis = true;
   showYAxis = true;
   gradient  = false;
-  showLegend = true;
+  showLegend = false;
   showXAxisLabel = true;
   xAxisLabel = 'Jour/Heure';
   showYAxisLabel = true;
@@ -53,7 +55,10 @@ export class MeasurePageComponent implements OnInit {
   timeline = true;
   yScaleMin = "0";
   yScaleMax = "8000";
- 
+
+  innerWidth;
+  innerHeight;
+  
   constructor(
     private modalService: NgbModal, 
     private domoService: DomoService,
@@ -64,11 +69,37 @@ export class MeasurePageComponent implements OnInit {
   
   ngOnInit() {
     this.refreshEDF(24);
+    
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
+    this.calcGraphView();
   }
 
   beforeChange($event: NgbTabChangeEvent) {
 //    this.messageService.message = "Save selectedComponentTab="+$event.nextId;
 //    localStorage.setItem('selectedComponentTab', $event.nextId);
+  }
+  
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event) {
+    // this.calcGraphView();
+  // }
+  
+  onResizeDiv(event) {
+//    this.innerWidth = window.innerWidth;
+    this.innerWidth = event.target.innerWidth;
+    this.innerHeight = window.innerHeight;
+    console.log(event.target.innerWidth);
+    this.calcGraphView();
+  }
+      
+  calcGraphView() {
+    this.innerHeight = window.innerHeight;
+    console.log(window.innerWidth+" "+window.innerHeight);
+    let width = Math.round(this.innerWidth*0.9);
+    let height = Math.round(this.innerWidth/2.3);
+    if (height<400) { height = 400; }
+    this.view = [width, height];    
   }
   
   setDureeEDF($event) {
@@ -90,12 +121,12 @@ export class MeasurePageComponent implements OnInit {
   refreshEDF(duree) {
     var t1 = Date.now();
     this.dureeEDF = duree;
-    this.infoEDF = "Chargement des données...";
+    this.infoLoadingEDF = "Chargement des données...";
     this.domoService.getEDF(this.dureeEDF)
       .subscribe(data => {
         // { time, PAPP }
         var dt2 = (Date.now()-t1)/1000;
-        this.infoEDF = "Données chargées en "+dt2+"s";
+        this.infoLoadingEDF = "Données chargées en "+dt2+"s";
         
         let tmpData = [
         {
@@ -173,7 +204,7 @@ export class MeasurePageComponent implements OnInit {
         this.multi = tmpData;
         
         var dt3 = (Date.now()-t1)/1000;
-        this.infoEDF = "Données chargées en "+dt3+"s";
+        this.infoLoadingEDF = "Données chargées en "+dt3+"s";
         this.statsEDF = "Consommation entre le "+tMin+" et le "+tMax;
         this.vMinEDF = vMin;
         this.vMaxEDF = vMax;
