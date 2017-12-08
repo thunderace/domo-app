@@ -29,17 +29,22 @@
       <ul class="navbar-nav">
         <li class="nav-item" [ngClass]="{active:selectedPage=='command-page'}">
           <a class="nav-link" href="#" (click)="selectPage('command-page')">
-            <i class="fa fa-lightbulb-o" aria-hidden="true"></i> Commandes
+            <i class="fa fa-lightbulb-o fa-menu" aria-hidden="true"></i> Commandes
           </a>
         </li>
         <li class="nav-item" [ngClass]="{active:selectedPage=='webcam-page'}">
           <a class="nav-link" href="#" (click)="selectPage('webcam-page')">
-            <i class="fa fa-camera" aria-hidden="true"></i> Webcams
+            <i class="fa fa-camera fa-menu" aria-hidden="true"></i> Webcams
           </a>
         </li>
         <li class="nav-item" [ngClass]="{active:selectedPage=='measure-page'}">
           <a class="nav-link" href="#" (click)="selectPage('measure-page')">
-            <i class="fa fa-line-chart" aria-hidden="true"></i> Mesures
+            <i class="fa fa-line-chart fa-menu" aria-hidden="true"></i> Mesures
+          </a>
+        </li>
+        <li class="nav-item" [ngClass]="{active:selectedPage=='config-page'}">
+          <a class="nav-link" href="#" (click)="selectPage('config-page')">
+            <i class="fa fa-cog fa-menu" aria-hidden="true"></i> Configuration
           </a>
         </li>
       </ul>
@@ -82,6 +87,7 @@
   <app-command-page [hidden]="selectedPage != 'command-page'"></app-command-page>
   <app-webcam-page [hidden]="selectedPage != 'webcam-page'"></app-webcam-page>
   <app-measure-page [hidden]="selectedPage != 'measure-page'"></app-measure-page>
+  <app-config-page [hidden]="selectedPage != 'config-page'"></app-config-page>
 <!-- </div> -->
 
 <!-- 

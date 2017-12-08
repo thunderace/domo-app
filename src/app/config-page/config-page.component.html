@@ -1,0 +1,103 @@
+<ngb-tabset [(activeId)]="selectedTab" >
+  
+  <ngb-tab title="Triggers" id="tabTriggers">
+    <ng-template ngbTabContent>
+      <div class="container">
+        <br/>
+        Triggers !
+        
+        <table class="tabTriggers">
+          <tr *ngFor="let trigger of domoService.config.configWeb.bottomMenus">
+            <td>
+              {{trigger.label}}
+            </td>
+          </tr>
+        </table>        
+        <br/>
+        
+        <ngb-tabset [(activeId)]="selectedTabFrmTriggers" >
+          <ngb-tab title="Event" id="frmTriggerEvent">
+            <ng-template ngbTabContent>
+              <br/>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-group">
+                    <div ngbDropdown class="d-inline-block">
+                      <button class="btn btn-outline-default btn-combo-mqtt" id="dropdownBasic1" ngbDropdownToggle >Topic</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button *ngFor="let topic of formTopics" class="dropdown-item" (click)="mqttFormMessage.topic=topic">{{topic}}</button>
+                      </div>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Mqtt topic" [(ngModel)]="mqttFormMessage.topic">
+                  </div>
+                </div>
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-group">
+                    <div ngbDropdown class="d-inline-block">
+                      <button class="btn btn-outline-default btn-combo-mqtt" id="dropdownBasic2" ngbDropdownToggle>Payload</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                        <button *ngFor="let payload of formPayloads" class="dropdown-item" (click)="mqttFormMessage.payload=payload">{{payload}}</button>
+                      </div>
+                    </div>        
+                    <input type="text" class="form-control" aria-label="Mqtt Payload" [(ngModel)]="mqttFormMessage.payload">
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary btn-domo" type="button" (click)="mqttService.execMqttMessage(mqttFormMessage)"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Command" id="frmTriggerCommand">
+            <ng-template ngbTabContent>
+              <br/>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-group">
+                    <div ngbDropdown class="d-inline-block">
+                      <button class="btn btn-outline-default btn-combo-mqtt" id="dropdownBasic1" ngbDropdownToggle >Topic</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button *ngFor="let topic of formTopics" class="dropdown-item" (click)="mqttFormMessage.topic=topic">{{topic}}</button>
+                      </div>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Mqtt topic" [(ngModel)]="mqttFormMessage.topic">
+                  </div>
+                </div>
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-group">
+                    <div ngbDropdown class="d-inline-block">
+                      <button class="btn btn-outline-default btn-combo-mqtt" id="dropdownBasic2" ngbDropdownToggle>Payload</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                        <button *ngFor="let payload of formPayloads" class="dropdown-item" (click)="mqttFormMessage.payload=payload">{{payload}}</button>
+                      </div>
+                    </div>        
+                    <input type="text" class="form-control" aria-label="Mqtt Payload" [(ngModel)]="mqttFormMessage.payload">
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary btn-domo" type="button" (click)="mqttService.execMqttMessage(mqttFormMessage)"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  
+  <ngb-tab title="Options" id="tabOptions">
+    <ng-template ngbTabContent>
+      <div class="container"> 
+        <br/>
+        Options
+      </div>
+    </ng-template>
+  </ngb-tab>
+  
+</ngb-tabset>

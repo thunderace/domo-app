@@ -10,7 +10,10 @@ export class DomoService {
   
   config = {
     "version":"...",
-    "configWeb": { "components": [] }
+    "configWeb": { 
+      "components": [], 
+      "bottomMenus":[] 
+    }
   };
   
   apiUrl = 'http://82.66.49.29:8888/api';
