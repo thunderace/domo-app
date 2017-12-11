@@ -18,9 +18,9 @@ export class DomoTemplateComponent implements OnInit {
   @Input() components: any[];
   selectedTab;
   
-  mqttFormMessage = { "topic": "home/domo/sonoff01/cmd", "payload": "version" };
+  mqttFormMessage = { "id":"", "date":"", "topic": "home/domo/sonoff01/cmd", "payload": "version" };
   formTopics = ["home/domo/nodedomo/cmd", "home/domo/espIR01/cmd", "home/domo/espIR02/cmd", "home/domo/sonoff01/cmd", "home/domo/sonoff02/cmd", "home/domo/espIR01/event"];
-  formPayloads = ["version", "toggle", "irsend marantz C0D", "irsend nec FF000033", "rxIR proto=4 code=811 (12 bits)"];
+  formPayloads = ["version", "toggle", "mute", "irsend marantz C0D", "irsend nec FF000033", "rxIR proto=4 code=811 (12 bits)"];
   
   constructor(
     private modalService: NgbModal, 
@@ -33,6 +33,14 @@ export class DomoTemplateComponent implements OnInit {
     let selectedComponentTab = localStorage.getItem('selectedComponentTab');
     if (selectedComponentTab != undefined) {
       this.selectedTab = selectedComponentTab;
+    }
+    let formTopics = localStorage.getItem('formTopics');
+    if (formTopics != undefined) {
+      this.formTopics = formTopics.split("§");
+    }
+    let formPayloads = localStorage.getItem('formPayloads');
+    if (formPayloads != undefined) {
+      this.formPayloads = formPayloads.split("§");
     }
   }
 
@@ -66,19 +74,32 @@ export class DomoTemplateComponent implements OnInit {
       }
     }
     return style;
-  }  
-/*  
-  calcStyle(component) {
-    let style = {"background-color":"#eee"};
-    if (component && component.status && component.status.key) {
-      let status = this.domoService.getStatus(component.status.key);
-      if (status == 0) {
-        style = {"background-color":"#f00"};
-      } else if (status == 1) {
-        style = {"background-color":"green"};
+  } 
+
+  sendMqttFromMessage() {
+    var i=0;
+    while(i<this.formTopics.length) {
+      if (this.formTopics[i] == this.mqttFormMessage.topic) {
+        this.formTopics.splice(i, 1);
+      } else {
+        i++;
       }
     }
-    return style;
+    this.formTopics.unshift(this.mqttFormMessage.topic);
+    localStorage.setItem('formTopics', this.formTopics.join("§"));
+    
+    i=0;
+    while(i<this.formPayloads.length) {
+      if (this.formPayloads[i] == this.mqttFormMessage.payload) {
+        this.formPayloads.splice(i, 1);
+      } else {
+        i++;
+      }
+    }
+    this.formPayloads.unshift(this.mqttFormMessage.payload);
+    localStorage.setItem('formPayloads', this.formPayloads.join("§"));
+    
+    this.mqttService.execMqttMessage(this.mqttFormMessage);
   }
-*/  
+ 
 }

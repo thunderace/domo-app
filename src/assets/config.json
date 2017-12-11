@@ -130,16 +130,18 @@
             {"type":"command", "label": "On", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"studio.2.on"}},
             {"type":"command", "label": "Off", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"studio.2.off"}}
           ], "break":true},
-          {"type":"separator"},
           {"type":"title", "label": "Média"},
+          {"type":"doubleCommand", "label": "VP", "glyphicon":"glyphicon-lamp", "status": {"key":"vpstudio"}, "components": [
+            {"type":"command", "label": "On", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"vpstudio.on"}},
+            {"type":"command", "label": "Off", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"vpstudio.off"}}
+          ], "break":true},
           {"type":"doubleCommand", "label": "Ampli", "glyphicon":"glyphicon-lamp", "status": {"key":"studio.3"}, "components": [
             {"type":"command", "label": "On", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"studio.3.on"}},
             {"type":"command", "label": "Off", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"studio.3.off"}}
           ], "break":true},
-          {"type":"doubleCommand", "label": "VP", "glyphicon":"glyphicon-lamp", "status": {"key":"vpstudio"}, "components": [
-            {"type":"command", "label": "On", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"vpstudio.on"}},
-            {"type":"command", "label": "Off", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"vpstudio.off"}}
-          ], "break":true}
+          {"type":"command", "label": "Vol+",  "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"preamp.volp"}},
+          {"type":"command", "label": "Vol-",  "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"preamp.volm"}},
+          {"type":"command", "label": "Mute",  "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"preamp.mute"}}
         ]},
         
         {"type":"dropdownMenu", "id":"dropTVONOFF", "glyphicon":"tv", "label": "TV", "modalLabel": "On/Off", "components": [
@@ -187,9 +189,16 @@
           {"type":"title", "label": "TV"},
           {"type":"command", "label": "TV On", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"tvlg.on"}},
           {"type":"command", "label": "TV Off", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"tvlg.off"}},
-          {"type":"command", "label": "TVLG On", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/tvlg", "payload":"system/turnOn"}},
-          {"type":"command", "label": "TVLG Off", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/tvlg", "payload":"system/turnOff"}, "break":true},
           {"type":"command", "label": "TV Mute", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"tvlg.mute"}, "break":true},
+          {"type":"separator"},
+          {"type":"title", "label": "TV WebOS"},
+          {"type":"command", "label": "TV On", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/tvlg", "payload":"system/turnOn"}},
+          {"type":"command", "label": "TV Off", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/tvlg", "payload":"system/turnOff"}},
+          {"type":"command", "label": "Mute On", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/tvlg", "payload":"mute.on"}},
+          {"type":"command", "label": "Mute Off", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/tvlg", "payload":"mute.off"}, "break":true},
+          {"type":"command", "label": "Hdmi 1", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/tvlg", "payload":"input.hdmi1"}},
+          {"type":"command", "label": "Hdmi 2", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/tvlg", "payload":"input.hdmi2"}},
+          {"type":"command", "label": "Hdmi 3", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/tvlg", "payload":"input.hdmi3"}, "break":true},
           {"type":"separator"},
           {"type":"title", "label": "HDMI"},
           {"type":"command", "label": "1", "command": {"type":"cmdMqtt", "topic":"home/domo/nodedomo/cmd", "payload":"hdmi.1"}},

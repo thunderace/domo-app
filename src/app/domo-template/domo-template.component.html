@@ -91,9 +91,9 @@
               <button *ngFor="let payload of formPayloads" class="dropdown-item" (click)="mqttFormMessage.payload=payload">{{payload}}</button>
             </div>
           </div>        
-          <input type="text" class="form-control" aria-label="Mqtt Payload" [(ngModel)]="mqttFormMessage.payload">
+          <input type="text" class="form-control" aria-label="Mqtt Payload" [(ngModel)]="mqttFormMessage.payload" (keyup.enter)="sendMqttFromMessage()">
           <span class="input-group-btn">
-            <button class="btn btn-primary btn-domo" type="button" (click)="mqttService.execMqttMessage(mqttFormMessage)"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+            <button class="btn btn-primary btn-domo" type="button" (click)="sendMqttFromMessage()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
           </span>
         </div>
       </div>
