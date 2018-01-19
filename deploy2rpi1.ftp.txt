@@ -1,0 +1,9 @@
+open 82.66.49.29 8132
+user pi
+tetris
+pwd
+lcd D:\dev\misc\domo\git\domo-app
+pwd
+quit
+
+

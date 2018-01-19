@@ -51,22 +51,6 @@
     </div>
   </div>
   
-<!-- 
-  <span *ngIf="component.type=='doubleCommand'" class="btn-cmd-double-container">
-    <div type="button" class="btn btn-default btn-cmd-double" (click)="clickButton(content, component.components[0])">
-      <i *ngIf="component.components[0].glyphicon" [ngClass]="'fa fa-'+component.components[0].glyphicon" aria-hidden="true"></i>
-      {{component.components[0].label}}
-    </div>  
-    <div class="btn-cmd-double-center">
-      <i *ngIf="component.status" [ngClass]="'fa fa-stop btn-cmd-status-icon'" [ngStyle]="calcStyle(component)" aria-hidden="true"></i>
-      {{component.label}}
-    </div>
-    <div type="button" class="btn btn-default btn-cmd-double" (click)="clickButton(content, component.components[1])">
-      <i *ngIf="component.components[1].glyphicon" [ngClass]="'fa fa-'+component.components[1].glyphicon" aria-hidden="true"></i>
-      {{component.components[1].label}}
-    </div>  
-  </span>
--->
   <div *ngIf="component.type=='mqttForm'"><br/>
     <div class="row">
       <div class="col-lg-6">
