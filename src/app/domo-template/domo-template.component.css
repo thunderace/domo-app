@@ -25,6 +25,7 @@
   background-color: #ddd;
   font-weight: bold;
   color: #8d99ae;
+  cursor: pointer;  
 }
 
 .btn-cmd-drop {
@@ -33,22 +34,33 @@
   color: #eeeeee;
 }
 
+.btn-cmd-drop-big {
+  width: 90px;
+  height: 90px;
+  background-color: #8d99ae;
+  color: #eeeeee;
+  font-size: 1.4em;
+}
+
 .btn-cmd-double-container {
   display: inline-block;
   background-color: #ddd;
   margin: 2px 0px 2px 0px;
   border-radius: .25rem;
 }
+
 .btn-cmd-double-container-2 {
   display: grid;
   grid: 166px / auto 66px auto;
   /* grid: 166px / 66px 36px 66px; */
   height: 50px;
 }
+
 .btn-cmd-double {
   width: 50px;
   margin: 0px;
 }
+
 .btn-cmd-double-center {
   height: 50px;
   vertical-align: middle;
@@ -57,6 +69,7 @@
   line-height: 0.8em;
   font-weight: bold;  
 }
+
 .btn-cmd-status-icon {
   font-size: 0.4em;
 }

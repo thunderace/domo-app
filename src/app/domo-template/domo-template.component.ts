@@ -45,7 +45,7 @@ export class DomoTemplateComponent implements OnInit {
   }
 
   clickButton(content, component) {
-    if (component.type == "dropdownMenu") {
+    if (component.type == "dropdownMenu" || component.type == "dropdownMenuBig") {
       const modalRef = this.modalService.open(DomoModalComponent);
       modalRef.componentInstance.component = component;
       modalRef.result.then((result) => {

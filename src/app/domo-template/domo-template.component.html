@@ -10,8 +10,8 @@
     </ngb-tab>
   </ngb-tabset>
   
-  <div *ngIf="component.type=='dropdownMenu'" 
-      [ngClass]="{'btn btn-default btn-cmd': true, 'btn-cmd-drop': component.type=='dropdownMenu'}"
+  <div *ngIf="component.type=='dropdownMenu' || component.type=='dropdownMenuBig' " 
+      [ngClass]="{'btn btn-default btn-cmd': true, 'btn-cmd-drop': component.type=='dropdownMenu', 'btn-cmd-drop-big': component.type=='dropdownMenuBig'}"
       (click)="clickButton(content, component)">
     <div>
       <i *ngIf="component.glyphicon" [ngClass]="'cmd-glyph fa fa-'+component.glyphicon" aria-hidden="true"></i>
@@ -32,7 +32,6 @@
 
   <div *ngIf="component.type=='doubleCommand'" class="btn-cmd-double-container">
     <div class="btn-cmd-double-container-2">
-      <!-- <div>On</div> -->
       <button type="button" class="btn btn-default btn-cmd btn-cmd-double" (click)="clickButton(content, component.components[0])">
         <i *ngIf="component.components[0].glyphicon" [ngClass]="'fa fa-'+component.components[0].glyphicon" aria-hidden="true"></i>
         {{component.components[0].label}}
@@ -47,7 +46,6 @@
         <i *ngIf="component.components[1].glyphicon" [ngClass]="'fa fa-'+component.components[1].glyphicon" aria-hidden="true"></i>
         {{component.components[1].label}}
       </button>        
-      <!-- <div>Off</div> -->
     </div>
   </div>
   
