@@ -11,7 +11,11 @@ recopier contenu de /dist dans dans /var/www/node-domo/app/domo
 
 ## generate component
 ng g component new-cmp
-ng g component config-page
+ex: ng g component config-page
+
+## generate service ?
+ng g service [name] generates a service
+ex: ng g service webcam
 
 ## Notes
 - removed from angular-cli.json :

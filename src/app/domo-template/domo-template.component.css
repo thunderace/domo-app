@@ -18,29 +18,42 @@
 }
 
 .btn-cmd {
-  width: 82px;
+  width: 100px;
   height: 50px;
   margin: 2px -1px 2px 0px;
   padding-left: 6px;
   background-color: #ddd;
   font-weight: bold;
   color: #8d99ae;
-  cursor: pointer;  
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 .btn-cmd-drop {
-  height: 70px;
+  height: 100px;
   background-color: #8d99ae;
   color: #eeeeee;
 }
 
 .btn-cmd-drop-big {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
+  background-color: #ffffff;
+  border-color: #dddddd;
+  font-size: 1.4em;
+  padding: 10px;
+}
+
+/*
+.btn-cmd-drop-big {
+  width: 100px;
+  height: 100px;
   background-color: #8d99ae;
   color: #eeeeee;
   font-size: 1.4em;
+  padding: 10px;
 }
+*/
 
 .btn-cmd-double-container {
   display: inline-block;
@@ -52,12 +65,11 @@
 .btn-cmd-double-container-2 {
   display: grid;
   grid: 166px / auto 66px auto;
-  /* grid: 166px / 66px 36px 66px; */
   height: 50px;
 }
 
 .btn-cmd-double {
-  width: 50px;
+  width: 68px;
   margin: 0px;
 }
 
@@ -77,6 +89,29 @@
 .domo-title {
   font-weight: bold;
   margin-left: 2px;
+  font-size: 1.2em;
 }
 
+/* webcam */
+.webcam {
+}
+
+.imgWebcam {
+  width: 310px;
+  height: 220px;
+  background-color: #8d99ae;
+  color: #eeeeee;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.imgWebcam-300 {
+  width: 300px;
+  height: 190px;
+}
+
+.domo-tab {
+  display: inline-block;
+  text-align: center;
+}
 

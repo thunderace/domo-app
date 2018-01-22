@@ -20,7 +20,7 @@
         </div>
         <br/>
         <div *ngFor="let webcam of domoService.config.configWeb.webcams" class="divWebcam">
-          <img [ngClass]="{'imgWebcam': true, 'imgWebcam-320':webcamSize==1,'imgWebcam-640':webcamSize==2,'imgWebcam-800':webcamSize==3,'imgWebcam-1024':webcamSize==4}" [src]="getWebcamUrl(webcam)" (click)="refreshWebcam(webcam)"/>
+          <img [ngClass]="{'imgWebcam': true, 'imgWebcam-320':webcamSize==1,'imgWebcam-640':webcamSize==2,'imgWebcam-800':webcamSize==3,'imgWebcam-1024':webcamSize==4}" [src]="webcamService.getWebcamUrl(webcam)" (click)="webcamService.refreshWebcam(webcam)"/>
           <!-- <img [ngClass]="'imgWebcam-320'" [src]="getWebcamUrl(webcam)" (click)="refreshWebcam(webcam)"/> -->
           <!-- <img [ngClass]="{1:'imgWebcam-320',2:'imgWebcam-640',3:'imgWebcam-800'}[webcamSize]" [src]="getWebcamUrl(webcam)" (click)="refreshWebcam(webcam)"/> -->
           <!-- <img class="imgWebcam" [src]="getWebcamUrl(webcam)" (click)="refreshWebcam(webcam)"/> -->

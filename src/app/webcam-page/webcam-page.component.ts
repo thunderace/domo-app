@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DomoService } from '../domo.service';
 import { MessageService } from '../message.service';
 import { MqttService } from '../mqtt.service';
+import { WebcamService } from '../webcam.service';
 
 @Component({
   selector: 'app-webcam-page',
@@ -17,12 +18,13 @@ export class WebcamPageComponent implements OnInit {
     private modalService: NgbModal, 
     private domoService: DomoService,
     private messageService: MessageService,
-    private mqttService: MqttService
+    private mqttService: MqttService,
+    private webcamService: WebcamService
   ) {}
 
   ngOnInit() {
   }
-
+/*
   refreshWebcam(webcam) {
     webcam.sourceRnd = webcam.source+"?random=" + Math.random();
     console.log(webcam.sourceRnd);
@@ -34,4 +36,5 @@ export class WebcamPageComponent implements OnInit {
     }
     return webcam.sourceRnd;
   }
+*/  
 }

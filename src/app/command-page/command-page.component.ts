@@ -7,7 +7,8 @@ import { DomoService } from '../domo.service';
   styleUrls: ['./command-page.component.css']
 })
 export class CommandPageComponent implements OnInit {
-
+  mode = "tabset";
+  
   constructor(
     public domoService: DomoService
   ) {}

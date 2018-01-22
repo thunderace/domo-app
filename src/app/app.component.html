@@ -1,31 +1,29 @@
 <!-- <nav class="navbar navbar-fixed-top navbar-toggleable-md navbar-light bg-faded navbar-custom"> -->
 
-<nav class="navbar navbar-fixed-top navbar-custom">
-  <!-- <div class="container"> -->
-    <!-- <a class="navbar-brand" href="#"><i class="fa fa-home" aria-hidden="true"></i> ngDomo</a> -->
-    <span >
-      <a class="navbar-brand" href="#" (click)="selectPage('command-page')">
-        <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
-        ngDomo 
-      </a>
 <!--      
-      <span>
-        <a class="navbar-brand" href="#" (click)="selectPage('command-page')">
-            <i class="fa fa-home" aria-hidden="true"></i>  
-        </a>
-        <a class="navbar-brand" href="#" (click)="selectPage('webcam-page')">
-          <i class="fa fa-camera" aria-hidden="true"></i>  
-        </a>
-        <a class="navbar-brand" href="#" (click)="selectPage('measure-page')">
-          <i class="fa fa-line-chart" aria-hidden="true"></i>  
-        </a>
-      </span>
--->      
+<nav class="navbar navbar-fixed-top navbar-custom">
+  <span >
+    <a class="navbar-brand" href="#" (click)="selectPage('command-page')">
+      ngDomo 
+    </a>
+    <span>
+      <a class="navbar-brand" href="#" (click)="selectPage('command-page')">
+          <i class="fa fa-home" aria-hidden="true"></i>  
+      </a>
+      <a class="navbar-brand" href="#" (click)="selectPage('webcam-page')">
+        <i class="fa fa-camera" aria-hidden="true"></i>  
+      </a>
+      <a class="navbar-brand" href="#" (click)="selectPage('measure-page')">
+        <i class="fa fa-line-chart" aria-hidden="true"></i>  
+      </a>
     </span>
+  </span>
+-->      
+    
+<!--    
     <button class="navbar-toggler" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
       aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation"
     >
-      <!-- <span class="navbar-toggler-icon"></span> -->
       <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
     </button>
     <div class="collapse navbar-collapse" [ngbCollapse]="isNavbarCollapsed" id="exCollapsingNavbar2">
@@ -52,8 +50,10 @@
         </li>
       </ul>
     </div>
-  <!-- </div> -->
+-->    
+<!--
 </nav>
+-->
 
 <!--
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -87,25 +87,20 @@
 -->
 
 <!-- <div class="container"> -->
+<div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+  <app-room-page [hidden]="selectedPage != 'room-page'"></app-room-page>
   <app-command-page [hidden]="selectedPage != 'command-page'"></app-command-page>
   <app-webcam-page [hidden]="selectedPage != 'webcam-page'"></app-webcam-page>
   <app-measure-page [hidden]="selectedPage != 'measure-page'"></app-measure-page>
   <app-config-page [hidden]="selectedPage != 'config-page'"></app-config-page>
-  
+</div>  
+
   <div class="bottom-bar">
-    <span>
-      <a href="#" (click)="selectPage('command-page')">
-          <i class="fa fa-home" aria-hidden="true"></i>  
-      </a>
-      <a href="#" (click)="selectPage('webcam-page')">
-        <i class="fa fa-camera" aria-hidden="true"></i>  
-      </a>
-      <a href="#" (click)="selectPage('measure-page')">
-        <i class="fa fa-line-chart" aria-hidden="true"></i>  
-      </a>
-    </span>
+    <div *ngFor="let menu of domoService.config.configWeb.bottomMenus" [ngClass]="{'bottom-bar-menu': true, 'selected': selectedPage==menu.page}" (click)="selectPage(menu.page)">
+      <div><i [ngClass]="'cmd-glyph fa fa-'+menu.icon" aria-hidden="true"></i></div>
+      <div class="bottom-bar-menu-label">{{menu.label}}</div>
+    </div>
   </div>
-  
   
 <!-- </div> -->
 

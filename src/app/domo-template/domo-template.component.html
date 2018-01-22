@@ -1,6 +1,48 @@
+<div *ngIf="mode=='room'">
+  <div *ngFor="let component of components">
+    <div *ngIf="component.type=='tabset'">
+    
+      <div class="container"> 
+<!--      
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-default btn-combo-mqtt" id="dropdownRoom" ngbDropdownToggle >Pièces</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownRoom">
+            <button *ngFor="let componentTab of component.tabs" class="dropdown-item" (click)="selectedTab=componentTab.id">{{componentTab.label}}</button>
+          </div>
+        </div>
+-->      
+        <div *ngFor="let componentTab of component.tabs">
+          <div *ngIf="selectedTab==componentTab.id">
+              <!-- <h2>{{componentTab.label}}</h2> -->
+
+              <div ngbDropdown class="d-inline-block">
+                <!-- <button class="btn btn-outline-default btn-combo-mqtt" id="dropdownRoom" ngbDropdownToggle >{{componentTab.label}}</button> -->
+                <h2 id="dropdownRoom" ngbDropdownToggle >{{componentTab.label}}</h2>
+                <div ngbDropdownMenu aria-labelledby="dropdownRoom">
+                  <button *ngFor="let componentTab1 of component.tabs" class="dropdown-item" (click)="selectedTab=componentTab1.id">{{componentTab1.label}}</button>
+                </div>
+              </div>
+              <br/>
+              <app-domo-template [components]=componentTab.components></app-domo-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <span *ngFor="let component of components">
-  <ngb-tabset *ngIf="component.type=='tabset'" (tabChange)="beforeChange($event)" [(activeId)]="selectedTab" >
-    <ngb-tab class="nav-tabs" *ngFor="let componentTab of component.tabs;" title="{{componentTab.label}}" id="{{componentTab.id}}">
+  <ngb-tabset *ngIf="component.type=='tabset' && mode!='room'" (tabChange)="beforeChange($event)" [(activeId)]="selectedTab" >
+    <ngb-tab class="nav-tabs" *ngFor="let componentTab of component.tabs;" id="{{componentTab.id}}">
+      <ng-template ngbTabTitle>
+        <div class="domo-tab">
+          <div>
+            <i *ngIf="componentTab.glyphicon" [ngClass]="'cmd-glyph fa fa-'+componentTab.glyphicon" aria-hidden="true"></i>
+            <i *ngIf="componentTab.glyphicon==undefined" [ngClass]="'cmd-glyph fa fa-lightbulb-o'" aria-hidden="true"></i>
+          </div>
+          <div>{{componentTab.label}}</div>
+        </div>
+      </ng-template>
       <ng-template ngbTabContent>
         <div class="container"> 
           <br/>
@@ -47,6 +89,10 @@
         {{component.components[1].label}}
       </button>        
     </div>
+  </div>
+  
+  <div *ngIf="component.type=='webcam'" [ngClass]="{'webcam': true}">
+    <img [ngClass]="{'imgWebcam': true, 'imgWebcam-300': true}" [src]="webcamService.getWebcamUrl(component.webcam)" (click)="webcamService.refreshWebcam(component.webcam)"/>
   </div>
   
   <div *ngIf="component.type=='mqttForm'"><br/>

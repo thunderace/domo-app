@@ -7,6 +7,7 @@ import { DomoModalComponent } from '../domo-modal/domo-modal.component';
 import { DomoService } from '../domo.service';
 import { MessageService } from '../message.service';
 import { MqttService } from '../mqtt.service';
+import { WebcamService } from '../webcam.service';
 
 @Component({
   selector: 'app-domo-template',
@@ -15,6 +16,7 @@ import { MqttService } from '../mqtt.service';
 })
 
 export class DomoTemplateComponent implements OnInit {
+  @Input() mode;
   @Input() components: any[];
   selectedTab;
   
@@ -26,8 +28,10 @@ export class DomoTemplateComponent implements OnInit {
     private modalService: NgbModal, 
     private domoService: DomoService,
     private messageService: MessageService,
-    private mqttService: MqttService
-    ) {}
+    private mqttService: MqttService,
+    private webcamService: WebcamService
+    ) {
+    }
 
   ngOnInit() {
     let selectedComponentTab = localStorage.getItem('selectedComponentTab');
@@ -74,8 +78,9 @@ export class DomoTemplateComponent implements OnInit {
       }
     }
     return style;
-  } 
+  }
 
+  // mqtt form
   sendMqttFromMessage() {
     var i=0;
     while(i<this.formTopics.length) {
@@ -101,5 +106,4 @@ export class DomoTemplateComponent implements OnInit {
     
     this.mqttService.execMqttMessage(this.mqttFormMessage);
   }
- 
 }

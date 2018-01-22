@@ -15,23 +15,28 @@ import { DomoTemplateComponent } from './domo-template/domo-template.component';
 import { DomoService } from './domo.service';
 import { MessageService } from './message.service';
 import { MqttService } from './mqtt.service';
+import { WebcamService } from './webcam.service';
+
 import { MqttComponent } from './mqtt/mqtt.component';
 import { CommandPageComponent } from './command-page/command-page.component';
 import { WebcamPageComponent } from './webcam-page/webcam-page.component';
 import { MeasurePageComponent } from './measure-page/measure-page.component';
 import { ConfigPageComponent } from './config-page/config-page.component';
+import { RoomPageComponent } from './room-page/room-page.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     BrowserModule,
-//    BrowserAnimationsModule,
     NoopAnimationsModule,
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
     HttpClientModule,
     NgbCollapseModule,
-    NgxChartsModule
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
@@ -41,10 +46,11 @@ import { ConfigPageComponent } from './config-page/config-page.component';
     CommandPageComponent,
     WebcamPageComponent,
     MeasurePageComponent,
-    ConfigPageComponent
+    ConfigPageComponent,
+    RoomPageComponent
   ],
   entryComponents: [DomoModalComponent, DomoTemplateComponent],
-  providers: [DomoService, MessageService, MqttService],
+  providers: [DomoService, MessageService, MqttService, WebcamService],
   bootstrap: [AppComponent]
 })
 

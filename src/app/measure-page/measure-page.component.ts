@@ -8,7 +8,6 @@ import { NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HostListener } from '@angular/core';
-// import {Platform} from 'ionic-angular';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
