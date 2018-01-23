@@ -1,0 +1,250 @@
+{
+	"info": {
+		"name": "Domo",
+		"_postman_id": "ac889643-0509-950d-cd04-3164fbdebee8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/api/cmd",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/api/lgtv",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "draffault.fr:8888/api/lgtv?cmd=system/turnOff",
+					"host": [
+						"draffault",
+						"fr"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"lgtv"
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "system/turnOff",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/api/statuses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "draffault.fr:8888/api/statuses",
+					"host": [
+						"draffault",
+						"fr"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"statuses"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/api/status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "draffault.fr:8888/api/status?id=salon.1",
+					"host": [
+						"draffault",
+						"fr"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"status"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "salon.1",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/api/res/configNodeDomo.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "draffault.fr:8888/api/res/configNodeDomo.json",
+					"host": [
+						"draffault",
+						"fr"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"res",
+						"configNodeDomo.json"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/domo/assets/config.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "draffault.fr:8888/domo/assets/config.json",
+					"host": [
+						"draffault",
+						"fr"
+					],
+					"port": "8888",
+					"path": [
+						"domo",
+						"assets",
+						"config.json"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/api/configdomo post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "draffault.fr:8888/api/configdomo",
+					"host": [
+						"draffault",
+						"fr"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"configdomo"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/api/mqtts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "draffault.fr:8888/api/mqtts",
+					"host": [
+						"draffault",
+						"fr"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"mqtts"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/api/edf/:duree",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "draffault.fr:8888/api/edf/24",
+					"host": [
+						"draffault",
+						"fr"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"edf",
+						"24"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/api/edf1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "draffault.fr:8888/api/edf1?duree=24&date=2018-01-23 10:00",
+					"host": [
+						"draffault",
+						"fr"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"edf1"
+					],
+					"query": [
+						{
+							"key": "duree",
+							"value": "24",
+							"equals": true
+						},
+						{
+							"key": "date",
+							"value": "2018-01-23 10:00",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
