@@ -1,22 +1,18 @@
 <div *ngIf="mode=='room'">
   <div *ngFor="let component of components">
     <div *ngIf="component.type=='tabset'">
-    
-      <!-- <div class="container">  -->
-      <div> 
-        <div *ngFor="let componentTab of component.tabs">
-          <div *ngIf="selectedTab==componentTab.id">
-              <div ngbDropdown class="d-inline-block">
-                <h3 id="dropdownRoom" ngbDropdownToggle >{{componentTab.label}}</h3>
-                <div ngbDropdownMenu aria-labelledby="dropdownRoom">
-                  <button *ngFor="let componentTab1 of component.tabs" class="dropdown-item" (click)="selecteTab(componentTab1.id)">
-                    <h5>{{componentTab1.label}}</h5>
-                   </button>
-                </div>
+      <div *ngFor="let componentTab of component.tabs">
+        <div *ngIf="selectedTab==componentTab.id">
+            <div ngbDropdown class="d-inline-block">
+              <h3 id="dropdownRoom" ngbDropdownToggle >{{componentTab.label}}</h3>
+              <div ngbDropdownMenu aria-labelledby="dropdownRoom">
+                <button *ngFor="let componentTab1 of component.tabs" class="dropdown-item" (click)="selecteTab(componentTab1.id)">
+                  <h5>{{componentTab1.label}}</h5>
+                 </button>
               </div>
-              <br/>
-              <app-domo-template [components]=componentTab.components></app-domo-template>
-          </div>
+            </div>
+            <br/>
+            <app-domo-template [components]=componentTab.components></app-domo-template>
         </div>
       </div>
     </div>
@@ -56,8 +52,12 @@
     </div>
   </div>
   
+  <div *ngIf="component.type=='componentGroup'">
+    <app-domo-template [components]=domoService.findComponentGroup(component.id).components></app-domo-template>
+  </div>
+  
   <button *ngIf="component.type=='command' || component.type=='cmdToggle'" type="button" 
-      [ngClass]="{'btn btn-default btn-cmd': true, 'btn-cmd-drop': component.type=='dropdownMenu'}"
+      [ngClass]="{'btn btn-default btn-cmd': true}"
       (click)="clickButton(content, component)">
     <i *ngIf="component.status" [ngClass]="'fa fa-stop btn-cmd-status-icon'" [ngStyle]="calcStyle(component)" aria-hidden="true"></i>
     <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
@@ -82,10 +82,6 @@
       </button>        
     </div>
   </div>
-
-  <div *ngIf="component.type=='title'"><h5>{{component.label}}</h5></div>
-
-  <span *ngIf="component.break==true || component.type=='separator'"><br/></span>
 
   <div *ngIf="component.type=='webcam'" [ngClass]="{'webcam': true}">
     <img [ngClass]="{'imgWebcam': true, 'imgWebcam-300': true}" [src]="webcamService.getWebcamUrl(component.webcam)" (click)="webcamService.refreshWebcam(component.webcam)"/>
@@ -123,5 +119,9 @@
       </div>
     </div>
   </div>
+  
+  <div *ngIf="component.type=='title'"><h5>{{component.label}}</h5></div>
+
+  <span *ngIf="component.break==true || component.type=='separator'"><br/></span>
   
 </span>

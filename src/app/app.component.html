@@ -85,6 +85,10 @@
   </div>
 </nav>
 -->
+
+  <div *ngIf="domoService.message!=''" class="topMessage">
+    <span class="badge badge-info"><h6>{{domoService.message}}</h6></span>
+  </div>
   <br>
   <div class="container">
     <div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">

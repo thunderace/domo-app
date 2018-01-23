@@ -6,7 +6,7 @@ import dataset from './data';
 
 @Injectable()
 export class DomoService {
-  //config = dataset.config;
+  message = "";
   
   config = {
     "version":"...",
@@ -50,6 +50,8 @@ export class DomoService {
     if (command != undefined) {
       this.messageService.message = "Exec command "+command.topic+"|"+command.payload;
       if (command.type == 'cmdMqtt') {
+        this.message = "...";
+        setTimeout(()=> { this.message = ""; }, 500); 
         this.mqttService.execMqttMessage(command);
         this.updateStatusesDelayed();
       }
@@ -65,7 +67,7 @@ export class DomoService {
   }
 
   updateStatusesDelayed() {
-    setTimeout(()=> { this.updateStatuses();} , 1000);    
+    setTimeout(()=> { this.updateStatuses(); } , 1000);    
   }
 
   getStatus(key) {
@@ -89,7 +91,6 @@ export class DomoService {
     }
     return null;
   }
-
   
 /*
   mapStatus = new Map();

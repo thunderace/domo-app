@@ -48,6 +48,14 @@
 }
 */
 
+.topMessage {
+  z-index: 10; 
+  position: fixed; 
+  right: 10px; 
+  top: 10px; 
+  text-align: left;
+}
+
 .bottom-bar {
   z-index: 10; 
   position: fixed; 
