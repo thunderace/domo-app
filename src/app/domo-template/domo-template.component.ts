@@ -35,6 +35,9 @@ export class DomoTemplateComponent implements OnInit {
 
   ngOnInit() {
     let selectedComponentTab = localStorage.getItem('selectedComponentTab');
+    if (selectedComponentTab == "tabMaison") { 
+      selectedComponentTab = "tabPrincipal"; 
+    }
     if (selectedComponentTab != undefined) {
       this.selectedTab = selectedComponentTab;
     }
@@ -47,7 +50,16 @@ export class DomoTemplateComponent implements OnInit {
       this.formPayloads = formPayloads.split("§");
     }
   }
-
+  
+  selecteTab(id) {
+    this.selectedTab = id;
+    localStorage.setItem('selectedComponentTab', id);
+  }
+  
+  beforeChange($event: NgbTabChangeEvent) {
+    localStorage.setItem('selectedComponentTab', $event.nextId);
+  }
+  
   clickButton(content, component) {
     if (component.type == "dropdownMenu" || component.type == "dropdownMenuBig") {
       const modalRef = this.modalService.open(DomoModalComponent);
@@ -62,10 +74,6 @@ export class DomoTemplateComponent implements OnInit {
       this.domoService.execComponentCommand(component);
     }
   }  
-  
-  beforeChange($event: NgbTabChangeEvent) {
-    localStorage.setItem('selectedComponentTab', $event.nextId);
-  }
   
   calcStyle(component) {
     let style = {"color":"#eee"};

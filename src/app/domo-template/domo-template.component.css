@@ -40,20 +40,9 @@
   height: 100px;
   background-color: #ffffff;
   border-color: #dddddd;
-  font-size: 1.4em;
+  font-size: 1.2em;
   padding: 10px;
 }
-
-/*
-.btn-cmd-drop-big {
-  width: 100px;
-  height: 100px;
-  background-color: #8d99ae;
-  color: #eeeeee;
-  font-size: 1.4em;
-  padding: 10px;
-}
-*/
 
 .btn-cmd-double-container {
   display: inline-block;

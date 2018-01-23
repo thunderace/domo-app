@@ -11,6 +11,7 @@ export class DomoService {
   config = {
     "version":"...",
     "configWeb": { 
+      "componentGroups": [], 
       "components": [], 
       "bottomMenus":[] 
     }
@@ -79,6 +80,16 @@ export class DomoService {
   getEDF(duree) {
     return this.http.get<any[]>(this.djsUrl+"/edf/"+duree);
   }
+  
+  findComponentGroup(id) {
+    for(let componentGroup of this.config.configWeb.componentGroups) {
+      if (componentGroup.id == id) {
+        return componentGroup;
+      }
+    }
+    return null;
+  }
+
   
 /*
   mapStatus = new Map();

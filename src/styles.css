@@ -8,3 +8,11 @@ a {
   color: #8d99ae;
   text-decoration: none;
 }
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+}
+
+.dropdown-item, .dropdown-item:focus, .dropdown-item:hover {
+    color: #8d99ae;
+}

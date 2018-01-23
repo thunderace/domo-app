@@ -85,15 +85,16 @@
   </div>
 </nav>
 -->
-
-<!-- <div class="container"> -->
-<div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
-  <app-room-page [hidden]="selectedPage != 'room-page'"></app-room-page>
-  <app-command-page [hidden]="selectedPage != 'command-page'"></app-command-page>
-  <app-webcam-page [hidden]="selectedPage != 'webcam-page'"></app-webcam-page>
-  <app-measure-page [hidden]="selectedPage != 'measure-page'"></app-measure-page>
-  <app-config-page [hidden]="selectedPage != 'config-page'"></app-config-page>
-</div>  
+  <br>
+  <div class="container">
+    <div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+      <app-room-page [hidden]="selectedPage != 'room-page'"></app-room-page>
+      <app-command-page [hidden]="selectedPage != 'command-page'"></app-command-page>
+      <app-webcam-page [hidden]="selectedPage != 'webcam-page'"></app-webcam-page>
+      <app-measure-page [hidden]="selectedPage != 'measure-page'"></app-measure-page>
+      <app-config-page [hidden]="selectedPage != 'config-page'"></app-config-page>
+    </div>
+  </div>
 
   <div class="bottom-bar">
     <div *ngFor="let menu of domoService.config.configWeb.bottomMenus" [ngClass]="{'bottom-bar-menu': true, 'selected': selectedPage==menu.page}" (click)="selectPage(menu.page)">

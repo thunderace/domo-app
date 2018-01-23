@@ -1,6 +1,8 @@
 <div>
-  <a (click)="toggleMqtt()">&nbsp;Mqtt&nbsp;</a>
-  <a (click)="mqttService.refresh()" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+  <h5>
+    <a (click)="toggleMqtt()">Mqtt&nbsp;</a>
+    <a (click)="mqttService.refresh()" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+  </h5>
 </div>
 <div [hidden]="mqttCallapsed">
   <div class="divTabMqtt">

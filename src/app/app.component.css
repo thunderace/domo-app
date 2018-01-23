@@ -67,12 +67,12 @@
   padding: 0px 5px 10px 5px;
 }
 
-.bottom-bar-menu-label {
-  font-size: 0.8em;
+.bottom-bar-menu i {
+  font-size: 1.8em;
 }
 
-.bottom-bar-menu i {
-  font-size: 1.9em;
+.bottom-bar-menu-label {
+  font-size: 0.7em;
 }
 
 .selected {
