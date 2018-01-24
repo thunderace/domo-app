@@ -123,6 +123,7 @@ export class DomoService {
         return component;
       }
     }
+    console.log("ERROR: findComponent "+id+" not found");
     return null;
   }
   

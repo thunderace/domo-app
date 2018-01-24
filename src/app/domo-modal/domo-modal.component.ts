@@ -22,8 +22,8 @@ export class DomoModalComponent implements OnInit {
   
   getComponents() {
     var r = this.component.components;
-    if (this.component.componentGroup) {
-      var cg = this.domoService.findComponent(this.component.componentGroup);
+    if (this.component.componentGroupId) {
+      var cg = this.domoService.findComponent(this.component.componentGroupId);
       if (cg != null) {
         r = cg.components;
       }

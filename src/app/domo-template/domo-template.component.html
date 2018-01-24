@@ -1,12 +1,12 @@
 <div *ngIf="mode=='room'">
   <div *ngFor="let component of components">
     <div *ngIf="component.type=='tabset'">
-      <div *ngFor="let componentTab of component.tabs">
+      <div *ngFor="let componentTab of component.components">
         <div *ngIf="selectedTab==componentTab.id">
             <div ngbDropdown class="d-inline-block">
               <h3 id="dropdownRoom" ngbDropdownToggle >{{componentTab.label}}</h3>
               <div ngbDropdownMenu aria-labelledby="dropdownRoom">
-                <button *ngFor="let componentTab1 of component.tabs" class="dropdown-item" (click)="selecteTab(componentTab1.id)">
+                <button *ngFor="let componentTab1 of component.components" class="dropdown-item" (click)="selecteTab(componentTab1.id)">
                   <h4>{{componentTab1.label}}</h4>
                  </button>
               </div>
@@ -20,8 +20,9 @@
 </div>
 
 <span *ngFor="let component of components">
+<!--
   <ngb-tabset *ngIf="component.type=='tabset' && mode!='room'" (tabChange)="beforeChange($event)" [(activeId)]="selectedTab" >
-    <ngb-tab class="nav-tabs" *ngFor="let componentTab of component.tabs;" id="{{componentTab.id}}">
+    <ngb-tab class="nav-tabs" *ngFor="let componentTab of component.components;" id="{{componentTab.id}}">
       <ng-template ngbTabTitle>
         <div class="domo-tab">
           <div>
@@ -39,6 +40,7 @@
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
+-->
   
   <div *ngIf="component.type=='dropdownMenuBig' || component.type=='device' " 
       [ngClass]="{'btn btn-default btn-cmd': true, 'btn-cmd-drop-big': component.type=='dropdownMenuBig' || component.type=='device' }"
@@ -53,7 +55,7 @@
 
   
   <div *ngIf="component.type=='componentGroup'">
-    <app-domo-template [components]=domoService.findComponent(component.id).components></app-domo-template>
+    <app-domo-template [components]=domoService.findComponent(component.componentGroupId).components></app-domo-template>
   </div>
 
   <div *ngIf="component.type=='devices'">
@@ -124,7 +126,7 @@
     </div>
   </div>
   
-  <div *ngIf="component.type=='title'"><h5>{{component.label}}</h5></div>
+  <div *ngIf="component.type=='title'"><h5 class="domo-title">{{component.label}}</h5></div>
 
   <span *ngIf="component.break==true || component.type=='separator'"><br/></span>
   
