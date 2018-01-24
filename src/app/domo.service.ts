@@ -12,7 +12,6 @@ export class DomoService {
     "version":"...",
     "configWeb": { 
       "components": [ {"id":"0", "components": []} ], 
-      "componentGroups": [], 
       "bottomMenus":[] 
     }
   };
@@ -127,6 +126,7 @@ export class DomoService {
     return null;
   }
   
+/*  
   findComponentGroup(id) {
     for(let componentGroup of this.config.configWeb.componentGroups) {
       if (componentGroup.id == id) {
@@ -135,7 +135,7 @@ export class DomoService {
     }
     return null;
   }
-  
+*/
 /*
   mapStatus = new Map();
   listStatus = [];
