@@ -18,6 +18,7 @@ import { WebcamService } from '../webcam.service';
 export class DomoTemplateComponent implements OnInit {
   @Input() mode;
   @Input() components: any[];
+  @Input() devices: any[];
   selectedTab;
   
   mqttFormMessage = { "id":"", "date":"", "topic": "home/domo/sonoff01/cmd", "payload": "version" };
@@ -61,7 +62,7 @@ export class DomoTemplateComponent implements OnInit {
   }
   
   clickButton(content, component) {
-    if (component.type == "dropdownMenu" || component.type == "dropdownMenuBig") {
+    if (component.type == "dropdownMenuBig" || component.type == "device") {
       const modalRef = this.modalService.open(DomoModalComponent);
       modalRef.componentInstance.component = component;
       modalRef.result.then((result) => {

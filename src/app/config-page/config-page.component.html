@@ -1,7 +1,19 @@
 <h3>Config</h3>
 
 <ngb-tabset [(activeId)]="selectedTab" >
-  
+
+  <ngb-tab title="Commandes" id="tabCommands">
+    <ng-template ngbTabContent>
+      <br>
+      <div *ngFor="let device of domoService.configCommands.devices">
+        [{{device.label}}]
+        <div *ngFor="let command of device.commands">
+          &nbsp;{{command.label}}
+        </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+    
   <ngb-tab title="Triggers" id="tabTriggers">
     <ng-template ngbTabContent>
       <div class="container">

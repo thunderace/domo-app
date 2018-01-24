@@ -7,7 +7,7 @@
               <h3 id="dropdownRoom" ngbDropdownToggle >{{componentTab.label}}</h3>
               <div ngbDropdownMenu aria-labelledby="dropdownRoom">
                 <button *ngFor="let componentTab1 of component.tabs" class="dropdown-item" (click)="selecteTab(componentTab1.id)">
-                  <h5>{{componentTab1.label}}</h5>
+                  <h4>{{componentTab1.label}}</h4>
                  </button>
               </div>
             </div>
@@ -20,7 +20,6 @@
 </div>
 
 <span *ngFor="let component of components">
-
   <ngb-tabset *ngIf="component.type=='tabset' && mode!='room'" (tabChange)="beforeChange($event)" [(activeId)]="selectedTab" >
     <ngb-tab class="nav-tabs" *ngFor="let componentTab of component.tabs;" id="{{componentTab.id}}">
       <ng-template ngbTabTitle>
@@ -41,8 +40,8 @@
     </ngb-tab>
   </ngb-tabset>
   
-  <div *ngIf="component.type=='dropdownMenu' || component.type=='dropdownMenuBig' " 
-      [ngClass]="{'btn btn-default btn-cmd': true, 'btn-cmd-drop': component.type=='dropdownMenu', 'btn-cmd-drop-big': component.type=='dropdownMenuBig'}"
+  <div *ngIf="component.type=='dropdownMenuBig' || component.type=='device' " 
+      [ngClass]="{'btn btn-default btn-cmd': true, 'btn-cmd-drop-big': component.type=='dropdownMenuBig' || component.type=='device' }"
       (click)="clickButton(content, component)">
     <div>
       <i *ngIf="component.glyphicon" [ngClass]="'cmd-glyph fa fa-'+component.glyphicon" aria-hidden="true"></i>
@@ -51,9 +50,14 @@
       {{component.label}}
     </div>
   </div>
+
   
   <div *ngIf="component.type=='componentGroup'">
-    <app-domo-template [components]=domoService.findComponentGroup(component.id).components></app-domo-template>
+    <app-domo-template [components]=domoService.findComponent(component.id).components></app-domo-template>
+  </div>
+
+  <div *ngIf="component.type=='devices'">
+    <app-domo-template [components]=domoService.devicesComponents></app-domo-template>
   </div>
   
   <button *ngIf="component.type=='command' || component.type=='cmdToggle'" type="button" 

@@ -11,15 +11,23 @@ export class DomoService {
   config = {
     "version":"...",
     "configWeb": { 
+      "components": [ {"id":"0", "components": []} ], 
       "componentGroups": [], 
-      "components": [], 
       "bottomMenus":[] 
     }
   };
   
-  apiUrl = 'http://82.66.49.29:8888/api';
-  djsUrl = "http://82.66.49.29:8032/domojs/api/index.php";
+  configCommands = { "devices": [] };
+  
+  devicesComponents = [];
+  
   statuses = [];
+
+  apiUrl = "http://82.66.49.29:8888/api";
+  djsUrl = "http://82.66.49.29:8032/domojs/api/index.php";
+  configUrl = "assets/config.json";
+  configCommandsUrl = this.apiUrl+"/res/configCommands.json";
+  
   
   constructor(
     private messageService: MessageService,
@@ -28,13 +36,40 @@ export class DomoService {
   ) {
     this.getConfig();
     this.updateStatuses();
+    this.getConfigCommands();
   }
 
   getConfig() {
-    this.http.get<any>('assets/config.json')
+    this.http.get<any>(this.configUrl)
       .subscribe(config => {
         console.log(config);
         this.config = config;
+      }
+    );     
+  }
+  
+  fillDevicesComponentsFromConfigCommands() {
+    for(let device of this.configCommands.devices) {
+      let componentDevice = {
+        "type":"dropdownMenuBig",
+        "label": device.label,
+        "glyphicon": device.glyphicon,
+        "components": []
+      };
+      for(let command of device.commands) {
+        componentDevice.components.push(command);
+      }
+      this.devicesComponents.push(componentDevice);
+    }
+  }
+  
+  getConfigCommands() {
+    this.http.get<any>(this.configCommandsUrl)
+      .subscribe(configCommands => {
+        console.log(configCommands);
+        this.configCommands = configCommands;
+        //this.devicesComponents = this.configCommands.devices;
+        this.fillDevicesComponentsFromConfigCommands();
       }
     );     
   }
@@ -81,6 +116,15 @@ export class DomoService {
   
   getEDF(duree) {
     return this.http.get<any[]>(this.djsUrl+"/edf/"+duree);
+  }
+
+  findComponent(id) {
+    for(let component of this.config.configWeb.components) {
+      if (component.id == id) {
+        return component;
+      }
+    }
+    return null;
   }
   
   findComponentGroup(id) {
