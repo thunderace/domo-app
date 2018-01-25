@@ -40,8 +40,16 @@
   height: 100px;
   background-color: #ffffff;
   border-color: #dddddd;
-  font-size: 1.0em;
   padding: 10px;
+  display: inline-block;
+}
+
+.btn-cmd-drop-big-icon {
+  font-size: 1.2em;
+}
+
+.btn-cmd-drop-big-text {
+  font-size: 1.0em;
 }
 
 .btn-cmd-double-container {
@@ -102,3 +110,6 @@
   text-align: center;
 }
 
+.ddCard {
+  width: 100px;
+}

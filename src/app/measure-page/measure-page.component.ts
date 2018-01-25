@@ -88,13 +88,13 @@ export class MeasurePageComponent implements OnInit {
 //    this.innerWidth = window.innerWidth;
     this.innerWidth = event.target.innerWidth;
     this.innerHeight = window.innerHeight;
-    console.log(event.target.innerWidth);
+    //console.log(event.target.innerWidth);
     this.calcGraphView();
   }
       
   calcGraphView() {
     this.innerHeight = window.innerHeight;
-    console.log(window.innerWidth+" "+window.innerHeight);
+    //console.log(window.innerWidth+" "+window.innerHeight);
     let width = Math.round(this.innerWidth*0.9);
     let height = Math.round(this.innerWidth/2.3);
     if (height<400) { height = 400; }
@@ -102,7 +102,7 @@ export class MeasurePageComponent implements OnInit {
   }
   
   setDureeEDF($event) {
-    console.log($event);
+    //console.log($event);
   }
   
   xAxisTickFormatting(value) {
@@ -213,6 +213,6 @@ export class MeasurePageComponent implements OnInit {
   }
   
   onSelect(event) {
-    console.log(event);
+    //console.log(event);
   }  
 }

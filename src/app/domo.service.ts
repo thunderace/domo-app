@@ -117,6 +117,13 @@ export class DomoService {
     return this.http.get<any[]>(this.djsUrl+"/edf/"+duree);
   }
 
+  findComponents(component) {
+    if (component.componentGroupId) {
+      return this.findComponent(component.componentGroupId).components;
+    }
+    return component.components;
+  }
+
   findComponent(id) {
     for(let component of this.config.configWeb.components) {
       if (component.id == id) {
