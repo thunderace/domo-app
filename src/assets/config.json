@@ -1,5 +1,5 @@
 {
-  "version": "configdomo.json 26/01/2018 13:12",
+  "version": "configdomo.json 26/01/2018 16:24",
   "configWeb": {
     "bottomMenus": [
       { 
@@ -39,9 +39,8 @@
             { "type":"separator" }
           ] },
           { "type":"tab", "id": "tabTest", "label": "Test", "components": [
-            { "type":"card", "glyphicon": "tv", "componentGroupId": "cgAmpliVol" },
-            { "type":"separator" },
-            { "type":"componentGroup", "componentGroupId": "cgAmpliVol" },
+            { "type":"card", "label": "Salon", "glyphicon": "tv", "componentGroupId": "cgSalon" },
+            { "type":"card", "label": "Studio", "glyphicon": "tv", "componentGroupId": "cgStudio" },
             { "type":"separator" }
           ] },
           { "type":"tab", "id": "tabMédia", "label": "Média", "components": [

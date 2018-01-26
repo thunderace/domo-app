@@ -29,12 +29,6 @@
   border-radius: 10px;
 }
 
-.btn-cmd-drop {
-  height: 100px;
-  background-color: #8d99ae;
-  color: #eeeeee;
-}
-
 .btn-cmd-drop-big {
   width: 100px;
   height: 100px;
@@ -84,13 +78,10 @@
 }
 
 .domo-title {
-  margin-top: 15px;
+  margin-top: 8px;
 }
 
-/* webcam */
-.webcam {
-}
-
+/* webcam TO BE DELETED */
 .imgWebcam {
   width: 310px;
   height: 220px;
@@ -105,11 +96,4 @@
   height: 190px;
 }
 
-.domo-tab {
-  display: inline-block;
-  text-align: center;
-}
 
-.ddCard {
-  width: 100px;
-}
