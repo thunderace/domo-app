@@ -10,6 +10,7 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppComponent } from './app.component';
+import { AppService } from './app.service';
 import { DomoModalComponent } from './domo-modal/domo-modal.component';
 import { DomoTemplateComponent } from './domo-template/domo-template.component';
 import { DomoService } from './domo.service';
@@ -50,7 +51,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     RoomPageComponent
   ],
   entryComponents: [DomoModalComponent, DomoTemplateComponent],
-  providers: [DomoService, MessageService, MqttService, WebcamService],
+  providers: [AppService, DomoService, MessageService, MqttService, WebcamService],
   bootstrap: [AppComponent]
 })
 

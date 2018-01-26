@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule }   from '@angular/forms';
 
+import { AppService } from '../app.service';
 import { DomoModalComponent } from '../domo-modal/domo-modal.component';
 import { DomoService } from '../domo.service';
 import { MessageService } from '../message.service';
@@ -19,13 +20,14 @@ export class DomoTemplateComponent implements OnInit {
   @Input() mode;
   @Input() components: any[];
   @Input() devices: any[];
-  selectedTab;
+//  selectedTab;
   
   mqttFormMessage = { "id":"", "date":"", "topic": "home/domo/sonoff01/cmd", "payload": "version" };
   formTopics = ["home/domo/nodedomo/cmd", "home/domo/espIR01/cmd", "home/domo/espIR02/cmd", "home/domo/sonoff01/cmd", "home/domo/sonoff02/cmd", "home/domo/espIR01/event"];
   formPayloads = ["version", "toggle", "mute", "irsend marantz C0D", "irsend nec FF000033", "rxIR proto=4 code=811 (12 bits)"];
   
   constructor(
+    private appService: AppService,
     private modalService: NgbModal, 
     private domoService: DomoService,
     private messageService: MessageService,
@@ -35,6 +37,7 @@ export class DomoTemplateComponent implements OnInit {
     }
 
   ngOnInit() {
+/*    
     let selectedComponentTab = localStorage.getItem('selectedComponentTab');
     if (selectedComponentTab == "tabMaison") { 
       selectedComponentTab = "tabPrincipal"; 
@@ -42,6 +45,7 @@ export class DomoTemplateComponent implements OnInit {
     if (selectedComponentTab != undefined) {
       this.selectedTab = selectedComponentTab;
     }
+*/    
     let formTopics = localStorage.getItem('formTopics');
     if (formTopics != undefined) {
       this.formTopics = formTopics.split("§");
@@ -51,16 +55,17 @@ export class DomoTemplateComponent implements OnInit {
       this.formPayloads = formPayloads.split("§");
     }
   }
-  
-  selecteTab(id) {
+/*  
+  selectTab(id) {
     this.selectedTab = id;
     localStorage.setItem('selectedComponentTab', id);
   }
   
   beforeChange($event: NgbTabChangeEvent) {
-    localStorage.setItem('selectedComponentTab', $event.nextId);
+    app.service.selectTab($event.nextId);
+//    localStorage.setItem('selectedComponentTab', $event.nextId);
   }
-  
+*/  
   clickButton(content, component) {
     if (component.type == "dropdownMenuBig" || component.type == "device") {
       const modalRef = this.modalService.open(DomoModalComponent);

@@ -1,42 +1,23 @@
-<div>
-  <h5>
-    <a (click)="toggleMqtt()">Mqtt&nbsp;</a>
-    <a (click)="mqttService.refresh()" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-  </h5>
-</div>
-<div [hidden]="mqttCallapsed">
-  <div class="divTabMqtt">
-    <table class="tabMqtt">
-      <tr *ngFor="let mqttMessage of mqttService.mqttMessages | slice:0:50">
-        <td>
-          <div class="mqttDateTopic">{{mqttMessage.date | date:"dd/MM HH:mm:ss"}} | {{mqttMessage.topic}}</div>
-          <div class="mqttPayload" (click)="mqttService.execMqttMessage(mqttMessage)">{{calcMqttPayload(mqttMessage)}}</div>
-        </td>
-      </tr>
-    </table>
+<div class="card">
+  <div class="card-block">
+    <div class="card-header">  
+      <h5>
+        <a (click)="toggleMqtt()">Mqtt&nbsp;</a >
+        <a (click)="mqttService.refresh()"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+      </h5>
+    </div>
+    <div class="card-text" [hidden]="mqttCallapsed">
+      <div class="divTabMqtt">
+        <table>
+          <tr *ngFor="let mqttMessage of mqttService.mqttMessages | slice:0:50">
+            <td>
+              <div class="mqttDateTopic">{{mqttMessage.date | date:"dd/MM HH:mm:ss"}} | {{mqttMessage.topic}}</div>
+              <div class="mqttPayload" (click)="mqttService.execMqttMessage(mqttMessage)">{{calcMqttPayload(mqttMessage)}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
+</div>  
 
-<!--
-<p>
-  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-    <ngb-panel title="Mqtt">
-      <ng-template ngbPanelContent>
-        <div>
-           <a (click)="mqttService.refresh()" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-        </div>
-        <div class="divTabMqtt">
-          <table class="tabMqtt">
-            <tr *ngFor="let mqttMessage of mqttService.mqttMessages | slice:0:50">
-              <td>
-                <div class="mqttDateTopic">{{mqttMessage.date | date:"dd/MM HH:mm:ss"}} | {{mqttMessage.topic}}</div>
-                <div class="mqttPayload" (click)="mqttService.execMqttMessage(mqttMessage)">{{calcMqttPayload(mqttMessage)}}</div>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </ng-template>
-    </ngb-panel>
-  </ngb-accordion>  
-</p>
--->

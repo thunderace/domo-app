@@ -1,4 +1,4 @@
-<h3>Config</h3>
+<h3 class="pb-3">Config</h3>
 
 <ngb-tabset [(activeId)]="selectedTab" >
 <!--
@@ -17,7 +17,7 @@
     
   <ngb-tab title="Triggers" id="tabTriggers">
     <ng-template ngbTabContent>
-      <div class="container">
+      <div>
         <br/>
     
         <ngb-tabset [(activeId)]="selectedTabFrmTriggers" >
@@ -99,9 +99,12 @@
   
   <ngb-tab title="Options" id="tabOptions">
     <ng-template ngbTabContent>
-      <div class="container"> 
+      <div> 
         <br/>
-        Options
+        <h4>Options</h4>
+        <div>
+          <button type="button" class="btn btn-default" (click)="appService.resetSelectedTab()">Reset</button>
+        </div>
       </div>
     </ng-template>
   </ngb-tab>

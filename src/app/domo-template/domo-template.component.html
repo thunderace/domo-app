@@ -1,35 +1,25 @@
+
 <div *ngIf="mode=='room'">
   <div *ngFor="let component of components">
     <div *ngIf="component.type=='tabset'">
       <div *ngFor="let componentTab of component.components">
-        <div *ngIf="selectedTab==componentTab.id">
-            <div ngbDropdown class="d-inline-block">
-              <h3 id="dropdownRoom" ngbDropdownToggle >{{componentTab.label}}</h3>
-              <div ngbDropdownMenu aria-labelledby="dropdownRoom">
-                <button *ngFor="let componentTab1 of component.components" class="dropdown-item" (click)="selecteTab(componentTab1.id)">
-                  <h4>{{componentTab1.label}}</h4>
-                 </button>
-              </div>
+        <div *ngIf="appService.selectedTab==componentTab.id">
+          <div ngbDropdown class="d-inline-block">
+            <h3 id="dropdownRoom" class="pb-3" ngbDropdownToggle >{{componentTab.label}}</h3>
+            <div ngbDropdownMenu aria-labelledby="dropdownRoom">
+              <button *ngFor="let componentTab1 of component.components" class="dropdown-item" (click)="appService.selectTab(componentTab1.id)">
+                <h4>{{componentTab1.label}}</h4>
+               </button>
             </div>
-            <br/>
-            <app-domo-template [components]=domoService.findComponents(componentTab)></app-domo-template>
+          </div>
+          <br/>
+          <app-domo-template [components]=domoService.findComponents(componentTab)></app-domo-template>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!--
-<div class="card-group">
-  <span *ngFor="let component of components">
-    <div class="card text-center ddCard" *ngIf="component.type=='dropdownMenuBig' || component.type=='device'" (click)="clickButton(content, component)">
-      <div class="card-block">
-        <h4 class="card-title"><i *ngIf="component.glyphicon" [ngClass]="'cmd-glyph fa fa-'+component.glyphicon" aria-hidden="true"></i></h4>
-        <p class="card-text">{{component.label}}</p>
-      </div>
-    </div> 
-  </span>
-</div>
--->
+
 <span *ngFor="let component of components">
 
   <div *ngIf="component.type=='dropdownMenuBig' || component.type=='device' " 
@@ -45,12 +35,14 @@
   
   <div class="card" *ngIf="component.type=='card'">
     <div class="card-block">
-      <div *ngIf="component.label">
+      <div class="card-header" *ngIf="component.label">
         <h5>{{component.label}}</h5>
       </div>
-      <p class="card-text">
+      <div class="card-body">
+      <!-- <p class="card-text"> -->
         <app-domo-template [components]=domoService.findComponents(component)></app-domo-template>
-      </p>
+      <!-- </p> -->
+      </div>
     </div>
   </div>  
   
@@ -95,10 +87,13 @@
  -->  
   <div class="card" *ngIf="component.type=='webcam'">
     <div class="card-block">
-      <!-- <p class="card-text">{{component.label}}</p> -->
-      <h5>{{component.label}}</h5>
+      <div class="card-header" *ngIf="component.label">
+        <h5>{{component.label}}</h5>
+      </div>
+      <div class="card-text">
+        <img class="card-img-bottom" [src]="webcamService.getWebcamUrl(component.webcam)" (click)="webcamService.refreshWebcam(component.webcam)" alt="Card image cap"/>
+      </div>
     </div>
-    <img class="card-img-bottom" [src]="webcamService.getWebcamUrl(component.webcam)" (click)="webcamService.refreshWebcam(component.webcam)" alt="Card image cap"/>
   </div>  
   
   <div *ngIf="component.type=='mqttForm'"><br/>

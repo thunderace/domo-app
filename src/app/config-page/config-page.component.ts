@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 import { DomoService } from '../domo.service';
 import { MqttService } from '../mqtt.service';
 
@@ -15,6 +16,7 @@ export class ConfigPageComponent implements OnInit {
   formPayloads = ["version", "toggle", "irsend marantz C0D", "irsend nec FF000033", "rxIR proto=4 code=811 (12 bits)"];
 
   constructor(
+    private appService: AppService,
     private domoService: DomoService,
     private mqttService: MqttService
   ) { 

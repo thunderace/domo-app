@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MessageService } from './message.service';
 import { MqttService } from './mqtt.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import dataset from './data';
@@ -24,12 +23,14 @@ export class DomoService {
 
   apiUrl = "http://82.66.49.29:8888/api";
   djsUrl = "http://82.66.49.29:8032/domojs/api/index.php";
-  configUrl = "assets/config.json";
+  
+  edfApiUrl = this.djsUrl+"/edf/"; // Quicker than apiUrl (3s vs 13s)
+  configApiUrl = "assets/config.json";
+  statusesApiUrl = this.apiUrl+"/statuses";
   configCommandsUrl = this.apiUrl+"/res/configCommands.json";
   
   
   constructor(
-    private messageService: MessageService,
     private mqttService:MqttService,
     private http: HttpClient
   ) {
@@ -39,7 +40,7 @@ export class DomoService {
   }
 
   getConfig() {
-    this.http.get<any>(this.configUrl)
+    this.http.get<any>(this.configApiUrl)
       .subscribe(config => {
         console.log(config);
         this.config = config;
@@ -75,14 +76,12 @@ export class DomoService {
   
   execComponentCommand(component): void {
     if (component != undefined) {
-      this.messageService.message = "Click component "+component.label;
       this.execCommand(component.command);
     }
   } 
   
   execCommand(command): void {
     if (command != undefined) {
-      this.messageService.message = "Exec command "+command.topic+"|"+command.payload;
       if (command.type == 'cmdMqtt') {
         this.message = "...";
         setTimeout(()=> { this.message = ""; }, 500); 
@@ -93,7 +92,7 @@ export class DomoService {
   }
   
   updateStatuses() {
-    this.http.get<any[]>(this.apiUrl+'/statuses')
+    this.http.get<any[]>(this.statusesApiUrl)
       .subscribe(statuses => {
         this.statuses = statuses;
       }
@@ -114,7 +113,7 @@ export class DomoService {
   }
   
   getEDF(duree) {
-    return this.http.get<any[]>(this.djsUrl+"/edf/"+duree);
+    return this.http.get<any[]>(this.edfApiUrl+duree);
   }
 
   findComponents(component) {
@@ -133,48 +132,5 @@ export class DomoService {
     console.log("ERROR: findComponent "+id+" not found");
     return null;
   }
-  
-/*  
-  findComponentGroup(id) {
-    for(let componentGroup of this.config.configWeb.componentGroups) {
-      if (componentGroup.id == id) {
-        return componentGroup;
-      }
-    }
-    return null;
-  }
-*/
-/*
-  mapStatus = new Map();
-  listStatus = [];
 
-  setStatus(key, value) {
-    let listCpnt = this.mapStatus.get(key);
-    if (listCpnt != undefined) {
-      for(let cpnt of listCpnt) {
-        console.log("cpnt "+key+" state="+value);
-        cpnt.state = value;
-      }
-    }
-  }
-  
-  initCpntStatus(cpnt) {
-    if (cpnt!=null && cpnt!=undefined && cpnt.status!=undefined) {
-      console.log("initCpntStatus "+cpnt.status.key);
-      if (cpnt.status.key != undefined) {
-        if (this.mapStatus.get(cpnt.status.key) == undefined) {
-          this.mapStatus.set(cpnt.status.key, []); 
-        }
-        this.mapStatus.get(cpnt.status.key).push(cpnt);
-       
-        for(let c in this.mapStatus.get(cpnt.status.key)) {
-          console.log(">"+c);
-        }
-      } else {
-        this.listStatus.push(cpnt);
-      }
-      this.updateCpntStatus(cpnt);
-    }
-  }
-*/  
 }

@@ -1,5 +1,5 @@
 {
-  "version": "configdomo.json 25/01/2018 17:50",
+  "version": "configdomo.json 26/01/2018 13:12",
   "configWeb": {
     "bottomMenus": [
       { 
@@ -34,6 +34,7 @@
             { "type":"dropdownMenuBig", "id": "dropVP", "label": "VP", "glyphicon": "tv", "componentGroupId": "cgVP" },
             { "type":"separator" },
             { "type":"componentGroup", "componentGroupId": "cgAmpliVol" },
+            { "type":"separator" },
             { "type":"webcam", "label": "Salon", "webcam": { "source": "http://82.66.49.29:8200/image.jpg?user=admin&password=tetris" } },
             { "type":"separator" }
           ] },
@@ -170,11 +171,11 @@
         "source": "http://images.webcams.travel/original/1251207864-MÃ¯Â¿Â½tÃ¯Â¿Â½o-Plage-de-Pontaillac-Pontaillac.jpg"
       },
       { 
-        "label": "Royan Conche", 
+        "label": "Royan - Conche", 
         "source": "http://images.webcams.travel/original/1365341784-MÃ¯Â¿Â½tÃ¯Â¿Â½o-Plage-de-la-Grande-Conche-Royan.jpg"
       },
       { 
-        "label": "Royan", 
+        "label": "Royan - Foncillon", 
         "source": "http://images.webcams.travel/original/1346943550-MÃ¯Â¿Â½tÃ¯Â¿Â½o-Port-de-Royan-Live-HD-Royan.jpg"
       }
     ]

@@ -15,7 +15,9 @@ export class MqttComponent implements OnInit {
 
   constructor(
     public mqttService: MqttService
-  ) {}
+  ) {
+    
+  }
 
   ngOnInit() {
     let mqttCallapsed = JSON.parse(localStorage.getItem('mqttCallapsed'));
@@ -30,6 +32,7 @@ export class MqttComponent implements OnInit {
   toggleMqtt() {
     this.setMqtt(!this.mqttCallapsed);
   }
+  
   setMqtt(value) {
     this.mqttCallapsed = value;
     localStorage.setItem('mqttCallapsed', JSON.stringify(this.mqttCallapsed));
