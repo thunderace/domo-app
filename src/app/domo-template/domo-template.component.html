@@ -85,10 +85,10 @@
  -->  
   <div class="card" *ngIf="component.type=='webcam'">
     <div class="card-block">
-      <div class="card-header" *ngIf="component.label">
+      <div class="card-header" *ngIf="component.label" (click)="webcamHidden=!webcamHidden">
         <h5>{{component.label}}</h5>
       </div>
-      <div class="card-text">
+      <div class="card-text" [hidden]="webcamHidden">
         <img class="card-img-bottom" [src]="webcamService.getWebcamUrl(component.webcam)" (click)="webcamService.refreshWebcam(component.webcam)" alt="Card image cap"/>
       </div>
     </div>
