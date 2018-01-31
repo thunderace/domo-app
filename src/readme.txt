@@ -18,7 +18,6 @@ ng g service [name] generates a service
 ex: ng g service webcam
 
 ## Notes
-- removed from angular-cli.json :
-"../node_modules/bootstrap/dist/js/bootstrap.min.js"
+
 
 
