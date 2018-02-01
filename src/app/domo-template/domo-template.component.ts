@@ -20,7 +20,6 @@ export class DomoTemplateComponent implements OnInit {
   @Input() mode;
   @Input() components: any[];
   @Input() devices: any[];
-//  selectedTab;
   
   mqttFormMessage = { "id":"", "date":"", "topic": "home/domo/sonoff01/cmd", "payload": "version" };
   formTopics = ["home/domo/nodedomo/cmd", "home/domo/espIR01/cmd", "home/domo/espIR02/cmd", "home/domo/sonoff01/cmd", "home/domo/sonoff02/cmd", "home/domo/espIR01/event"];
@@ -37,15 +36,6 @@ export class DomoTemplateComponent implements OnInit {
     }
 
   ngOnInit() {
-/*    
-    let selectedComponentTab = localStorage.getItem('selectedComponentTab');
-    if (selectedComponentTab == "tabMaison") { 
-      selectedComponentTab = "tabPrincipal"; 
-    }
-    if (selectedComponentTab != undefined) {
-      this.selectedTab = selectedComponentTab;
-    }
-*/    
     let formTopics = localStorage.getItem('formTopics');
     if (formTopics != undefined) {
       this.formTopics = formTopics.split("§");
@@ -55,17 +45,7 @@ export class DomoTemplateComponent implements OnInit {
       this.formPayloads = formPayloads.split("§");
     }
   }
-/*  
-  selectTab(id) {
-    this.selectedTab = id;
-    localStorage.setItem('selectedComponentTab', id);
-  }
   
-  beforeChange($event: NgbTabChangeEvent) {
-    app.service.selectTab($event.nextId);
-//    localStorage.setItem('selectedComponentTab', $event.nextId);
-  }
-*/  
   clickButton(content, component) {
     if (component.type == "dropdownMenuBig" || component.type == "device") {
       const modalRef = this.modalService.open(DomoModalComponent);
@@ -92,6 +72,12 @@ export class DomoTemplateComponent implements OnInit {
       }
     }
     return style;
+  }
+
+  calcClass(component) {
+    let res = "btn btn-default btn-cmd";
+    if (component.class) { res+=" "+component.class; }
+    return res;
   }
 
   // mqtt form

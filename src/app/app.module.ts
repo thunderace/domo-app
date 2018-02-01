@@ -27,6 +27,18 @@ import { RoomPageComponent } from './room-page/room-page.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import 'hammerjs';
+import 'hammer-timejs';
+import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
+
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = {
+    pan: { direction: 6 },
+    pinch: { enable: false },
+    rotate: { enable: false }
+  };  
+}
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -50,9 +62,24 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ConfigPageComponent,
     RoomPageComponent
   ],
-  entryComponents: [DomoModalComponent, DomoTemplateComponent],
-  providers: [AppService, DomoService, MessageService, MqttService, WebcamService],
-  bootstrap: [AppComponent]
+  entryComponents: [
+    DomoModalComponent, 
+    DomoTemplateComponent
+  ],
+  providers: [
+    AppService, 
+    DomoService, 
+    MessageService, 
+    MqttService, 
+    WebcamService, 
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
+    }
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 
 export class AppModule { }

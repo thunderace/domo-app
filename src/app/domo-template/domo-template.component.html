@@ -53,7 +53,7 @@
   </div>
   
   <button *ngIf="component.type=='command' || component.type=='cmdToggle'" type="button" 
-      [ngClass]="{'btn btn-default btn-cmd': true}"
+      [ngClass]="calcClass(component)"
       (click)="clickButton(content, component)">
     <i *ngIf="component.status" [ngClass]="'fa fa-stop btn-cmd-status-icon'" [ngStyle]="calcStyle(component)" aria-hidden="true"></i>
     <i *ngIf="component.glyphicon" [ngClass]="'fa fa-'+component.glyphicon" aria-hidden="true"></i>
