@@ -79,10 +79,6 @@
     </div>
   </div>
 
-<!-- <div *ngIf="component.type=='webcam'" [ngClass]="{'webcam': true}">
-    <img [ngClass]="{'imgWebcam': true, 'imgWebcam-300': true}" [src]="webcamService.getWebcamUrl(component.webcam)" (click)="webcamService.refreshWebcam(component.webcam)"/>
-  </div>
- -->  
   <div class="card" *ngIf="component.type=='webcam'">
     <div class="card-block">
       <div class="card-header" *ngIf="component.label" (click)="webcamHidden=!webcamHidden">
