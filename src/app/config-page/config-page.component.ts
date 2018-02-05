@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { DomoService } from '../domo.service';
-import { MqttService } from '../mqtt.service';
 
 @Component({
   selector: 'app-config-page',
@@ -17,8 +16,7 @@ export class ConfigPageComponent implements OnInit {
 
   constructor(
     private appService: AppService,
-    private domoService: DomoService,
-    private mqttService: MqttService
+    private domoService: DomoService
   ) { 
   }
 

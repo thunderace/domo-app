@@ -7,7 +7,7 @@ import { AppService } from '../app.service';
 import { DomoModalComponent } from '../domo-modal/domo-modal.component';
 import { DomoService } from '../domo.service';
 import { MessageService } from '../message.service';
-import { MqttService } from '../mqtt.service';
+import { MyMqttService } from '../mymqtt.service';
 import { WebcamService } from '../webcam.service';
 
 @Component({
@@ -30,7 +30,7 @@ export class DomoTemplateComponent implements OnInit {
     private modalService: NgbModal, 
     private domoService: DomoService,
     private messageService: MessageService,
-    private mqttService: MqttService,
+    private myMqttService: MyMqttService,
     private webcamService: WebcamService
     ) {
     }
@@ -104,6 +104,6 @@ export class DomoTemplateComponent implements OnInit {
     this.formPayloads.unshift(this.mqttFormMessage.payload);
     localStorage.setItem('formPayloads', this.formPayloads.join("§"));
     
-    this.mqttService.execMqttMessage(this.mqttFormMessage);
+    this.myMqttService.execMqttMessage(this.mqttFormMessage);
   }
 }

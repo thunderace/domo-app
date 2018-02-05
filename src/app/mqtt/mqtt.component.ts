@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { MqttService } from '../mqtt.service';
-import { MqttMessage } from '../mqttMessage';
+import { MyMqttService } from '../mymqtt.service';
+import { MyMqttMessage } from '../mymqttMessage';
 
 @Component({
   selector: 'app-mqtt',
@@ -14,7 +14,7 @@ export class MqttComponent implements OnInit {
   mqttCallapsed = true;
 
   constructor(
-    public mqttService: MqttService
+    public myMqttService: MyMqttService
   ) {
     
   }
@@ -26,7 +26,7 @@ export class MqttComponent implements OnInit {
     } else {
       this.setMqtt(this.mqttCallapsed);
     }
-    this.mqttService.refresh();
+    this.myMqttService.refresh();
   }
   
   toggleMqtt() {

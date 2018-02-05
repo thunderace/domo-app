@@ -15,7 +15,7 @@ import { DomoModalComponent } from './domo-modal/domo-modal.component';
 import { DomoTemplateComponent } from './domo-template/domo-template.component';
 import { DomoService } from './domo.service';
 import { MessageService } from './message.service';
-import { MqttService } from './mqtt.service';
+import { MyMqttService } from './mymqtt.service';
 import { WebcamService } from './webcam.service';
 
 import { MqttComponent } from './mqtt/mqtt.component';
@@ -30,6 +30,22 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import 'hammer-timejs';
 import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
+
+// mqtt
+/*
+import { Observable } from 'rxjs/Observable';
+import { MqttMessage, MqttModule, MqttService } from 'ngx-mqtt';
+
+export const MQTT_SERVICE_OPTIONS = {
+  hostname: '82.66.49.29',
+  port: 9001,
+  path: '/mqtt'
+}
+
+export function mqttServiceFactory() {
+  return new MqttService(MQTT_SERVICE_OPTIONS);
+}
+*/
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
@@ -49,7 +65,11 @@ export class MyHammerConfig extends HammerGestureConfig {
     HttpClientModule,
     NgbCollapseModule,
     NgxChartsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    // MqttModule.forRoot({
+      // provide: MqttService,
+      // useFactory: mqttServiceFactory
+    // })
   ],
   declarations: [
     AppComponent,
@@ -70,7 +90,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     AppService, 
     DomoService, 
     MessageService, 
-    MqttService, 
+    MyMqttService, 
     WebcamService, 
     {
       provide: HAMMER_GESTURE_CONFIG,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MqttService } from './mqtt.service';
+import { MyMqttService } from './mymqtt.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import dataset from './data';
 
@@ -37,7 +37,7 @@ export class DomoService {
   configCommandsUrl = this.apiUrl+"/res/configCommands.json";
   
   constructor(
-    private mqttService:MqttService,
+    private myMqttService: MyMqttService,
     private http: HttpClient
   ) {
     this.getConfig();
@@ -92,7 +92,7 @@ export class DomoService {
       if (command.type == 'cmdMqtt') {
         this.message = "...";
         setTimeout(()=> { this.message = ""; }, 500); 
-        this.mqttService.execMqttMessage(command);
+        this.myMqttService.execMqttMessage(command);
         this.updateStatusesDelayed();
       }
     }

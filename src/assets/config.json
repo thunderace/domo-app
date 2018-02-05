@@ -1,5 +1,5 @@
 {
-  "version": "configdomo.json 01/02/2018 17:36",
+  "version": "configdomo.json 05/02/2018 10:45",
   "configWeb": {
     "bottomMenus": [
       { 
@@ -36,6 +36,13 @@
             { "type":"componentGroup", "componentGroupId": "cgAmpliVol" },
             { "type":"separator" },
             { "type":"webcam", "label": "Salon", "webcam": { "source": "http://82.66.49.29:8200/image.jpg?user=admin&password=tetris" } },
+            { "type":"separator" }
+          ] },
+          { "type":"tab", "id": "tabGénéral", "label": "Général", "components": [
+            { "type":"card", "label": "Maison", "componentGroupId": "cgMaison" },
+            { "type":"card", "label": "Salon", "componentGroupId": "cgSalon" },
+            { "type":"card", "label": "Studio", "componentGroupId": "cgStudio" },
+            { "type":"card", "label": "TV", "componentGroupId": "cgTV" },
             { "type":"separator" }
           ] },
           { "type":"tab", "id": "tabLumières", "label": "Lumières", "components": [

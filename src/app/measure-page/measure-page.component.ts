@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DomoService } from '../domo.service';
 import { MessageService } from '../message.service';
-import { MqttService } from '../mqtt.service';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -61,8 +60,7 @@ export class MeasurePageComponent implements OnInit {
   constructor(
     private modalService: NgbModal, 
     private domoService: DomoService,
-    private messageService: MessageService,
-    private mqttService: MqttService
+    private messageService: MessageService
   ) {
   }
   
