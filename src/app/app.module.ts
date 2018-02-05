@@ -32,7 +32,7 @@ import 'hammer-timejs';
 import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
 
 // mqtt
-/*
+
 import { Observable } from 'rxjs/Observable';
 import { MqttMessage, MqttModule, MqttService } from 'ngx-mqtt';
 
@@ -45,7 +45,7 @@ export const MQTT_SERVICE_OPTIONS = {
 export function mqttServiceFactory() {
   return new MqttService(MQTT_SERVICE_OPTIONS);
 }
-*/
+
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
@@ -66,10 +66,10 @@ export class MyHammerConfig extends HammerGestureConfig {
     NgbCollapseModule,
     NgxChartsModule,
     BrowserAnimationsModule,
-    // MqttModule.forRoot({
-      // provide: MqttService,
-      // useFactory: mqttServiceFactory
-    // })
+    MqttModule.forRoot({
+      provide: MqttService,
+      useFactory: mqttServiceFactory
+    })
   ],
   declarations: [
     AppComponent,

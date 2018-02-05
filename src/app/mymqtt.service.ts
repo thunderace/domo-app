@@ -5,39 +5,39 @@ import { Observable } from 'rxjs/Observable';
 import { OnInit } from '@angular/core';
 import { MyMqttMessage } from './mymqttMessage';
 import 'rxjs/add/operator/map'
-//import { MqttMessage, MqttModule, MqttService } from 'ngx-mqtt';
+import { MqttMessage, MqttModule, MqttService } from 'ngx-mqtt';
 
 @Injectable()
-export class MyMqttService {
+export class MyMqttService implements OnInit {
   mqttUrl: string = 'http://82.66.49.29:1880/mqtt';
   apiUrl = 'http://82.66.49.29:8888/api';
   
   //mqttMessages: Observable<MyMqttMessage[]>;
   mqttMessages: MyMqttMessage[];
   
-  // myMessage;
-  // myOtherMessage: Observable<MqttMessage>;  
+  myMessage;
+  myOtherMessage: Observable<MqttMessage>;  
   
   constructor(
     private messageService: MessageService,
     private http: HttpClient,
-//    private mqttService: MqttService
-  ) { }
+    private mqttService: MqttService
+  ) { 
+    // ngx-mqtt
+    this.mqttService.observe('home/domo/log/espIR01').subscribe((message: MqttMessage) => {
+      console.log(">>MQTT: "+message.payload.toString());
+      this.myMessage = message.payload.toString();
+    });
+    this.myOtherMessage = this.mqttService.observe('home/domo');    
+  }
   
   ngOnInit(){
     this.getMqttMessages();
-    
-    // ngx-mqtt
-    // this.mqttService.observe('home/domo/log/espIR01').subscribe((message: MqttMessage) => {
-      // console.log(">>MQTT: "+message.payload.toString());
-      // this.myMessage = message.payload.toString();
-    // });
-    // this.myOtherMessage = this.mqttService.observe('home/domo');    
   }
   
-  // public unsafePublish(topic: string, message: string): void {
-    // this.mqttService.unsafePublish(topic, message, {qos: 1, retain: true});
-  // }
+  public unsafePublish(topic: string, message: string): void {
+    this.mqttService.unsafePublish(topic, message, {qos: 1, retain: true});
+  }
 
   getMqttMessages(): void {
     const url = this.apiUrl+'/mqtts';

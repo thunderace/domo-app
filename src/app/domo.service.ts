@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MyMqttService } from './mymqtt.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import dataset from './data';
+//import dataset from './data';
 
 export class Component {
   id: string;
