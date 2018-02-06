@@ -1,5 +1,5 @@
 {
-  "version": "configdomo.json 05/02/2018 10:45",
+  "version": "configdomo.json 06/02/2018 09:50",
   "configWeb": {
     "bottomMenus": [
       { 
@@ -41,8 +41,8 @@
           { "type":"tab", "id": "tabGénéral", "label": "Général", "components": [
             { "type":"card", "label": "Maison", "componentGroupId": "cgMaison" },
             { "type":"card", "label": "Salon", "componentGroupId": "cgSalon" },
-            { "type":"card", "label": "Studio", "componentGroupId": "cgStudio" },
             { "type":"card", "label": "TV", "componentGroupId": "cgTV" },
+            { "type":"card", "label": "Studio", "componentGroupId": "cgStudio" },
             { "type":"separator" }
           ] },
           { "type":"tab", "id": "tabLumières", "label": "Lumières", "components": [

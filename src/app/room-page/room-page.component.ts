@@ -24,10 +24,10 @@ export class RoomPageComponent implements OnInit {
   onPanEnd(event: any): void {
     //console.log("onPanEnd "+event.angle+","+Math.abs(Math.abs(event.angle)-180));
     if (event.additionalEvent == "panright" && Math.abs(event.angle)<this.MAX_ANGLE) {
-      this.appService.selectPrevTab();
+      this.domoService.selectPrevTab();
     }
     else if (event.additionalEvent == "panleft" && Math.abs(Math.abs(event.angle)-180)<this.MAX_ANGLE) {
-      this.appService.selectNextTab();
+      this.domoService.selectNextTab();
     }
   }  
 }

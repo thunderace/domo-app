@@ -104,6 +104,6 @@ export class DomoTemplateComponent implements OnInit {
     this.formPayloads.unshift(this.mqttFormMessage.payload);
     localStorage.setItem('formPayloads', this.formPayloads.join("§"));
     
-    this.myMqttService.execMqttMessage(this.mqttFormMessage);
+    this.myMqttService.publishMqttMessage(this.mqttFormMessage);
   }
 }

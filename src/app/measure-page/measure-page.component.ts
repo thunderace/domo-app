@@ -7,7 +7,6 @@ import { NgbRadioGroup } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HostListener } from '@angular/core';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-measure-page',
@@ -33,7 +32,6 @@ export class MeasurePageComponent implements OnInit {
 //   "series": [{"name":"2017-11-22", "value":0},{"name":"2017-11-23", "value":100}]
   }];
   
-//  view: any[] = [700, 400];
   view: any[] = [1400, 600];
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -129,30 +127,21 @@ export class MeasurePageComponent implements OnInit {
         {
           "name": "EDF",
           "series": []
-        }
-        ,
-        {
-          "name": "Par heure",
-          "series": []
-        }
-/*      ,
-        {
-          "name": "Min",
-          "series": []
         },
         {
-          "name": "Max",
+          "name": "Par heure",
           "series": []
         },
         {
           "name": "Moyenne",
           "series": []
-        }*/
+        }        
+
         ];
         let tMin = null, tMax, vMin, vMax;
         let vCumul, nv = 0;
         let timeHour, hour, vHour, nHour = 0;
-//        let vCumul, nv: number = 0;
+        vCumul = 0;
         for(let v of data) {
           let papp:number = parseInt(v.PAPP);
           tMin = v.time;
@@ -178,7 +167,7 @@ export class MeasurePageComponent implements OnInit {
             tmpData[0].series.unshift({"name": v.time, "value": papp});
           }
           nv++;
-          vCumul+=papp;
+          vCumul = vCumul+papp;
         }
         if (nHour>0) {
           // Average per hour
@@ -187,17 +176,10 @@ export class MeasurePageComponent implements OnInit {
         }
         
         let vAverage = 0;
-        //if (nv>0) { vAverage = Math.round(vCumul/nv); }
-        vAverage = (vMin+vMax)/2;
-/*        
-        tmpData[1].series.push({"name": tMin, "value": vMin});
-        tmpData[1].series.push({"name": tMax, "value": vMin});
-        tmpData[2].series.push({"name": tMin, "value": vMax});        
-        tmpData[2].series.push({"name": tMax, "value": vMax});        
+        if (nv>0) { vAverage = Math.round(vCumul/nv); }
+        tmpData[2].series.push({"name": tMin, "value": vAverage});        
+        tmpData[2].series.push({"name": tMax, "value": vAverage});  
         
-        tmpData[3].series.push({"name": tMin, "value": vAverage});        
-        tmpData[3].series.push({"name": tMax, "value": vAverage});  
-*/        
         this.multi = tmpData;
         
         var dt3 = (Date.now()-t1)/1000;

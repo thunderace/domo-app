@@ -19,9 +19,24 @@
     <ng-template ngbTabContent>
       <div> 
         <br/>
-        <div>
-          <button type="button" class="btn btn-default" (click)="appService.resetSelectedTab()">Reset tab</button>
+
+        <div class="row">
+          <div class="col-lg-3">
+            <label for="usr">Réinitialiser les sélections</label>
+          </div>
+          <button type="button" class="btn btn-default" (click)="appService.resetSelectedTab()">Réinitialiser</button>
         </div>
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" value="" [(ngModel)]="appService.lsOptions.synchroMqtt">Synchronisation Mqtt
+              </label>
+            </div>
+          </div>
+        </div>
+
+        
       </div>
     </ng-template>
   </ngb-tab>

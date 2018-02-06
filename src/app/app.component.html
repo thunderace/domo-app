@@ -91,13 +91,13 @@
   </div>
   <br>
   <div class="container-fluid">
-    <div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+    <!-- <div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')"> -->
       <app-room-page [hidden]="selectedPage != 'room-page'"></app-room-page>
       <app-command-page [hidden]="selectedPage != 'command-page'"></app-command-page>
       <app-webcam-page [hidden]="selectedPage != 'webcam-page'"></app-webcam-page>
       <app-measure-page [hidden]="selectedPage != 'measure-page'"></app-measure-page>
       <app-config-page [hidden]="selectedPage != 'config-page'"></app-config-page>
-    </div>
+    <!-- </div> -->
   </div>
 
   <div class="bottom-bar">

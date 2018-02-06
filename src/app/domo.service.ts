@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MyMqttService } from './mymqtt.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-//import dataset from './data';
+import { AppService } from './app.service';
+import { MqttMessage, MqttModule, MqttService } from 'ngx-mqtt';
 
 export class Component {
   id: string;
@@ -31,18 +32,47 @@ export class DomoService {
   apiUrl = "http://82.66.49.29:8888/api";
   djsUrl = "http://82.66.49.29:8032/domojs/api/index.php";
   
-  edfApiUrl = this.djsUrl+"/edf/"; // Quicker than apiUrl (3s vs 13s)
+  edfApiUrl = this.djsUrl+"/edf/"; // Faster than apiUrl (3s vs 13s)
   configApiUrl = "assets/config.json";
   statusesApiUrl = this.apiUrl+"/statuses";
   configCommandsUrl = this.apiUrl+"/res/configCommands.json";
   
   constructor(
     private myMqttService: MyMqttService,
-    private http: HttpClient
+    private mqttService: MqttService,
+    private http: HttpClient,
+    private appService: AppService
   ) {
     this.getConfig();
-    this.updateStatuses();
+    this.getStatuses();
     this.getConfigCommands();
+    
+    console.log(">>MQTT observe('home/domo/ngDomo/cmd')");
+    this.mqttService.observe('home/domo/ngDomo/cmd').subscribe((message: MqttMessage) => {
+      console.log(">>MQTT ngDomo: ["+message.payload.toString()+"]");
+      if (this.appService.lsOptions.synchroMqtt) {
+        let cmd = message.payload.toString();
+        if (cmd == "selectNextTab") {
+          this.selectNextTab();
+        }
+        if (cmd == "selectPrevTab") {
+          this.selectPrevTab();
+        }
+
+        try {
+          let cmdObj = JSON.parse(message.payload.toString());
+          if (cmdObj&& cmdObj.cmd) {
+            if (cmdObj.cmd == "selectTab" && cmdObj.id) {
+              this.appService.selectTab(cmdObj.id);
+            }
+          }
+        } 
+        catch(error) {
+          console.log(error);
+        }
+
+      }
+    });    
   }
 
   getConfig() {
@@ -73,9 +103,7 @@ export class DomoService {
   getConfigCommands() {
     this.http.get<any>(this.configCommandsUrl)
       .subscribe(configCommands => {
-        //console.log(configCommands);
         this.configCommands = configCommands;
-        //this.devicesComponents = this.configCommands.devices;
         this.fillDevicesComponentsFromConfigCommands();
       }
     );     
@@ -92,13 +120,13 @@ export class DomoService {
       if (command.type == 'cmdMqtt') {
         this.message = "...";
         setTimeout(()=> { this.message = ""; }, 500); 
-        this.myMqttService.execMqttMessage(command);
-        this.updateStatusesDelayed();
+        this.myMqttService.publishMqttMessage(command);
+        this.getStatusesDelayed();
       }
     }
   }
   
-  updateStatuses() {
+  getStatuses() {
     this.http.get<any[]>(this.statusesApiUrl)
       .subscribe(statuses => {
         this.statuses = statuses;
@@ -106,8 +134,8 @@ export class DomoService {
     );   
   }
 
-  updateStatusesDelayed() {
-    setTimeout(()=> { this.updateStatuses(); } , 1000);    
+  getStatusesDelayed() {
+    setTimeout(()=> { this.getStatuses(); } , 1000);    
   }
 
   getStatus(key) {
@@ -172,12 +200,11 @@ export class DomoService {
     return selectedTab;
   }
 
-  getNextTab(selectedTab) {
-    return this.getNextPrevTab(selectedTab, true);
-  }
-  
-  getPrevTab(selectedTab) {
-    return this.getNextPrevTab(selectedTab, false);
+  selectNextTab() {
+    this.appService.selectTab(this.getNextPrevTab(this.appService.lsOptions.selectedTab, true));
   }
 
+  selectPrevTab() {
+    this.appService.selectTab(this.getNextPrevTab(this.appService.lsOptions.selectedTab, false));
+  }    
 }

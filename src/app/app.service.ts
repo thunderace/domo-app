@@ -1,35 +1,39 @@
 import { Injectable } from '@angular/core';
-import { DomoService } from './domo.service';
 
 @Injectable()
 export class AppService {
-  selectedTab = "tabPrincipal";
+  LS_APP = "ngDomo";
+  LS_OPTIONS = this.LS_APP+".lsOptions";
   
+  lsOptions = {
+    selectedTab: "tabPrincipal",
+    synchroMqtt: true
+  }
+ 
   constructor(
-    private domoService: DomoService
   ) { 
-    let selectedComponentTab = localStorage.getItem('selectedComponentTab');
-    if (selectedComponentTab == undefined || selectedComponentTab == "tabMaison") { 
-      this.resetSelectedTab(); 
+    this.loadOptions();
+  }
+
+  loadOptions() {
+    let lsOptions = JSON.parse(localStorage.getItem(this.LS_OPTIONS));
+    if (lsOptions == undefined) { 
+      this.saveOptions(); 
     } else {
-      this.selectedTab = selectedComponentTab;
-    }
+      this.lsOptions = lsOptions;
+    }    
+  }
+
+  saveOptions() {
+    localStorage.setItem(this.LS_OPTIONS, JSON.stringify(this.lsOptions));
   }
   
   selectTab(id) {
-    this.selectedTab = id;
-    localStorage.setItem('selectedComponentTab', id);
+    this.lsOptions.selectedTab = id;
+    this.saveOptions();
   } 
 
   resetSelectedTab() {
     this.selectTab("tabPrincipal"); 
   }
-  
-  selectNextTab() {
-    this.selectTab(this.domoService.getNextTab(this.selectedTab));
-  }
-
-  selectPrevTab() {
-    this.selectTab(this.domoService.getPrevTab(this.selectedTab));
-  }  
 }
