@@ -24,15 +24,7 @@
       <span class="badge badge-danger"> Max={{vMaxEDF}}kWh</span>
     </h4>
 
-
-<!--    
-    <div style="diplay: inline; background-color:#eee" (window:resize)="onResizeDiv(this, $event)">
-      [{{innerWidth}},{{innerHeight}}]
-    </div>
--->    
-    <!-- <div style="width:90%;"> -->
     <div>
-        <!--  -->
       <ngx-charts-line-chart (window:resize)="onResizeDiv($event)"
         [scheme]="colorScheme"
         [view]="view"
@@ -53,11 +45,6 @@
         (select)="onSelect($event)"
         >
       </ngx-charts-line-chart>
-      
-        <!-- [yScaleMax]="yScaleMax" -->
     </div>
-    <!-- </p> -->
   </div>
-  <br/>
-  <hr/>
 </div>

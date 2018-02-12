@@ -1,11 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  color: #8d99ae;
+/* color: #8d99ae; */
+  color: #6d798e;
   padding-bottom: 100px;  
 }
 
 a {
-  color: #8d99ae;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -14,9 +15,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .dropdown-item, .dropdown-item:focus, .dropdown-item:hover {
-  color: #8d99ae;
+  color: inherit;
 }
 
 .btn-default {
-  color: #8d99ae;
+  color: inherit;
 }
