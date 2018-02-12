@@ -1,6 +1,6 @@
 .btn-domo {
 	background-color:#8d99ae;
-  color: #ffffff;  
+  color: #fff;  
 }
 
 .content {
@@ -14,7 +14,7 @@
 .btn-combo-mqtt {
   width: 100px;
   background-color: #8d99ae;
-  color: #eeeeee;  
+  color: #eee;  
 }
 
 .btn-cmd {
@@ -22,7 +22,7 @@
   height: 50px;
   margin: 2px -1px 2px 0px;
   padding-left: 6px;
-  background-color: #ddd;
+  background-color: #eee;
   font-weight: bold;
   cursor: pointer;
   border-radius: 10px;
@@ -31,14 +31,22 @@
 .btn-cmd-drop-big {
   width: 100px;
   height: 100px;
-  background-color: #ffffff;
-  border-color: #dddddd;
   padding: 10px;
   display: inline-block;
+  background-color: #fff;
 }
 
 .btn-cmd-drop-big-icon {
-  font-size: 1.2em;
+  font-size: 0.9em;
+  border: solid #6d798e 2px;
+  width: 66px;
+  height: 66px;
+  text-align: center;
+  padding: 17px 13px;
+  margin-left: 9px;
+  margin-bottom: 3px;
+  border-radius: 50%;
+  transition: all 0.5s;
 }
 
 .btn-cmd-drop-big-text {
@@ -47,7 +55,7 @@
 
 .btn-cmd-double-container {
   display: inline-block;
-  background-color: #ddd;
+  background-color: #eee;
   margin: 2px 0px 2px 0px;
   border-radius: 10px;
 }

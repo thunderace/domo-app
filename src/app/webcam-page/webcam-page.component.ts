@@ -15,7 +15,7 @@ export class WebcamPageComponent implements OnInit {
   
   constructor(
     private modalService: NgbModal, 
-    private domoService: DomoService,
+    public domoService: DomoService,
     private messageService: MessageService,
     private webcamService: WebcamService
   ) {}

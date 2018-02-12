@@ -17,7 +17,8 @@ export class DomoService {
     "version":"...",
     "configWeb": { 
       "components": [ {"id":"0", "components": []} ], 
-      "bottomMenus":[] 
+      "webcams": [],
+      "bottomMenus": [] 
     }
   };
   

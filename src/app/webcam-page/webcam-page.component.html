@@ -1,45 +1,22 @@
 <h3 class="pb-3">Webcams</h3>
 
+<!--
 <ngb-tabset [(activeId)]="selectedTab" >
-
   <ngb-tab title="Live" id="live">
     <ng-template ngbTabContent>
-      <div> 
+-->    
+      <div *ngFor="let webcam of domoService.config.configWeb.webcams" class="divWebcam">
+        <div class="card-block">
+          <div class="card-header" *ngIf="webcam.label">
+            <h5>{{webcam.label}}</h5>
+          </div>
+          <div class="card-text">
+            <img class="card-img-bottom" [src]="webcamService.getWebcamUrl(webcam)" (click)="webcamService.refreshWebcam(webcam)" alt="X"/>
+          </div>
+        </div>          
         <br/>
-        <div *ngFor="let webcam of domoService.config.configWeb.webcams" class="divWebcam">
-          <div class="card-block">
-            <div class="card-header" *ngIf="webcam.label">
-              <h5>{{webcam.label}}</h5>
-            </div>
-            <div class="card-text">
-              <img class="card-img-bottom" [src]="webcamService.getWebcamUrl(webcam)" (click)="webcamService.refreshWebcam(webcam)" alt="X"/>
-            </div>
-          </div>          
-          <br/>
-        </div>
-        
-<!--        
-        <div class="btn-group" ngbRadioGroup name="radioBasic" [(ngModel)]="webcamSize">
-          <label ngbButtonLabel class="btn-primary btn-domo">
-            <input ngbButton type="radio" [value]="1"> S
-          </label>
-          <label ngbButtonLabel class="btn-primary btn-domo">
-            <input ngbButton type="radio" [value]="2"> M
-          </label>
-          <label ngbButtonLabel class="btn-primary btn-domo">
-            <input ngbButton type="radio" [value]="3"> L
-          </label>
-          <label ngbButtonLabel class="btn-primary btn-domo">
-            <input ngbButton type="radio" [value]="4"> XL
-          </label>
-        </div>
-        <br/>
-        <div *ngFor="let webcam of domoService.config.configWeb.webcams" class="divWebcam">
-          <img [ngClass]="{'imgWebcam': true, 'imgWebcam-320':webcamSize==1,'imgWebcam-640':webcamSize==2,'imgWebcam-800':webcamSize==3,'imgWebcam-1024':webcamSize==4}" [src]="webcamService.getWebcamUrl(webcam)" (click)="webcamService.refreshWebcam(webcam)"/>
-        </div>
--->        
-        
       </div>
+<!--
     </ng-template>
   </ngb-tab>
   
@@ -48,6 +25,5 @@
       <br/>
     </ng-template>
   </ngb-tab>
-  
 </ngb-tabset>
-
+-->

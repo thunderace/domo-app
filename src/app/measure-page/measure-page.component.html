@@ -1,5 +1,6 @@
 <div class="content">      
   <h3 class="pb-3">{{titleEDF}}</h3>
+<!--  
   <div class="btn-group" ngbRadioGroup name="radioBasic" [(ngModel)]="dureeEDF">
     <label ngbButtonLabel class="btn-primary btn-domo" (click)="refreshEDF(24)">
       <input ngbButton type="radio" [value]="24">24h
@@ -14,15 +15,24 @@
       <input ngbButton type="radio" [value]="720">30j
     </label>
   </div>
+-->  
+
+  <div class="btn-group" ngbRadioGroup name="radioBasic" [(ngModel)]="dureeEDF">
+    <label ngbButtonLabel class="btn-domo" (click)="refreshEDF(24)">24h</label>
+    <label ngbButtonLabel class="btn-domo" (click)="refreshEDF(48)">48h</label>
+    <label ngbButtonLabel class="btn-domo" (click)="refreshEDF(168)">7j</label>
+    <label ngbButtonLabel class="btn-domo" (click)="refreshEDF(720)">30j</label>
+  </div>
+  
   <div>
-    <h5>{{statsEDF}}</h5>
-    <span>{{infoLoadingEDF}}</span>
-    <br/>
+    <!-- <h5>{{statsEDF}}</h5> -->
+    <!-- <br/> -->
     <h4>
-      <span class="badge badge-success">Min={{vMinEDF}}kWh</span>
-      <span class="badge badge-info"> Moy={{vMoyEDF}}kWh</span>
-      <span class="badge badge-danger"> Max={{vMaxEDF}}kWh</span>
+      <span class="badge badge-success">Min {{vMinEDF}} kWh</span>
+      <span class="badge badge-info"> Moy {{vMoyEDF}} kWh</span>
+      <span class="badge badge-danger"> Max {{vMaxEDF}} kWh</span>
     </h4>
+    <!-- <span>{{infoLoadingEDF}}</span> -->
 
     <div>
       <ngx-charts-line-chart (window:resize)="onResizeDiv($event)"
