@@ -13,6 +13,7 @@ import { HostListener } from '@angular/core';
   templateUrl: './measure-page.component.html',
   styleUrls: ['./measure-page.component.css']
 })
+
 export class MeasurePageComponent implements OnInit {
 
   model = 1;

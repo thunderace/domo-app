@@ -23,7 +23,7 @@
 <span *ngFor="let component of components">
 
   <div *ngIf="component.type=='dropdownMenuBig' || component.type=='device' " 
-      [ngClass]="{'btn btn-default btn-cmd': true, 'btn-cmd-drop-big': component.type=='dropdownMenuBig' || component.type=='device' }"
+      [ngClass]="{'btn btn-default ': true, 'btn-cmd-drop-big': component.type=='dropdownMenuBig' || component.type=='device' }"
       (click)="clickButton(content, component)">
     <div class="btn-cmd-drop-big-icon">
       <i *ngIf="component.glyphicon" [ngClass]="'cmd-glyph fa fa-'+component.glyphicon" aria-hidden="true"></i>
