@@ -9,7 +9,6 @@
 .bottom-bar {
   z-index: 10; 
   position: fixed; 
-  left: 0px; 
   bottom: 0px; 
   width: 100%;
   
@@ -20,9 +19,27 @@
   text-align: center;
 }
 
+.bottom-bar-left {
+  float: left;
+  display: inline-block;
+  min-height: 1px;
+  min-width: 50px;  
+}
+.bottom-bar-middle {
+  display: inline-block;
+
+}
+.bottom-bar-right {
+  float: right;
+  display: inline-block;
+  min-height: 1px;
+  min-width: 50px;
+  font-size: 1.2em;
+}
+
 .bottom-bar-menu {
   display: inline-block;
-  padding: 0px 5px 10px 5px;
+  margin: 0px 10px 10px 10px;
 }
 
 .bottom-bar-menu i {

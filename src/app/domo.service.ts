@@ -22,12 +22,10 @@ export class DomoService {
     }
   };
   
+  bottomMenus = [];
   componentTabs = [];
-  
   configCommands = { "devices": [] };
-  
   devicesComponents = [];
-  
   statuses = [];
 
   apiUrl = "http://82.66.49.29:8888/api";
@@ -169,6 +167,53 @@ export class DomoService {
     return null;
   }
 
+  // Pages
+  getPageIndex(id) {
+    if (this.bottomMenus.length == 0) {
+      for(let bottomMenu of this.config.configWeb.bottomMenus) {
+        this.bottomMenus.push(bottomMenu);
+      }
+    }
+    
+    let index = 0;
+    for(let bottomMenu of this.bottomMenus) {
+      if (bottomMenu.page == id) {
+        return index;
+      }
+      index++;
+    }
+    return -1;    
+  }
+  
+  getNextPrevPage(selectedPage, next) {
+    let index = this.getPageIndex(selectedPage);
+    // no swipe on main page (commands)
+    if (index == 0) { 
+      return selectedPage; 
+    }
+    if (next) {
+      index = (index+1) % this.bottomMenus.length;
+    } else {
+      if (--index<0) { index = this.bottomMenus.length-1; }
+    }
+    if (this.bottomMenus.length > 0) {
+      let bottomMenu = this.bottomMenus[index];
+      if (bottomMenu != null) {
+        return bottomMenu.page;
+      }
+    }
+    return selectedPage;
+  }
+  
+  selectNextPage() {
+    this.appService.selectPage(this.getNextPrevPage(this.appService.lsOptions.selectedPage, true));
+  }
+
+  selectPrevPage() {
+    this.appService.selectPage(this.getNextPrevPage(this.appService.lsOptions.selectedPage, false));
+  }
+  
+  // Component tabs
   initComponentTabs() {
     this.componentTabs = [];
     for(let component of this.config.configWeb.components[0].components[0].components) {
@@ -207,5 +252,5 @@ export class DomoService {
 
   selectPrevTab() {
     this.appService.selectTab(this.getNextPrevTab(this.appService.lsOptions.selectedTab, false));
-  }    
+  }
 }

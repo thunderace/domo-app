@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -25,7 +25,6 @@ import { MeasurePageComponent } from './measure-page/measure-page.component';
 import { ConfigPageComponent } from './config-page/config-page.component';
 import { RoomPageComponent } from './room-page/room-page.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import 'hammerjs';
 import 'hammer-timejs';

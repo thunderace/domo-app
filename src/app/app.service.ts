@@ -6,6 +6,7 @@ export class AppService {
   LS_OPTIONS = this.LS_APP+".lsOptions";
   
   lsOptions = {
+    selectedPage: "command-page",
     selectedTab: "tabPrincipal",
     synchroMqtt: true
   }
@@ -27,6 +28,11 @@ export class AppService {
   saveOptions() {
     localStorage.setItem(this.LS_OPTIONS, JSON.stringify(this.lsOptions));
   }
+  
+  selectPage(id) {
+    this.lsOptions.selectedPage = id;
+    this.saveOptions();
+  }    
   
   selectTab(id) {
     this.lsOptions.selectedTab = id;
