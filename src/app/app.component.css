@@ -6,6 +6,10 @@
   text-align: left;
 }
 
+.container-fluid {
+  margin-top: 15px;
+}
+
 .bottom-bar {
   z-index: 10; 
   position: fixed; 

@@ -5,7 +5,7 @@
       <div *ngFor="let componentTab of component.components">
         <div *ngIf="appService.lsOptions.selectedTab==componentTab.id">
           <div ngbDropdown class="d-inline-block">
-            <h3 id="dropdownRoom" class="pb-3" ngbDropdownToggle >{{componentTab.label}}</h3>
+            <h3 id="dropdownRoom" class="pb-1" ngbDropdownToggle >{{componentTab.label}}</h3>
             <div ngbDropdownMenu aria-labelledby="dropdownRoom">
               <button *ngFor="let componentTab1 of component.components" class="dropdown-item" (click)="appService.selectTab(componentTab1.id)">
                 <h4>{{componentTab1.label}}</h4>
