@@ -29,7 +29,7 @@ export class MyMqttService {
       console.log(">>MQTT: "+message.payload.toString());
       this.myMessage = message.payload.toString();
     });
-
+    
     this.myOtherMessage = this.mqttService.observe('home/domo');
     
     this.getMqttMessages();

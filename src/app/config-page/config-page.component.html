@@ -15,6 +15,64 @@
   </ngb-tab>
 -->
 
+  <ngb-tab title="Devices Mqtt" id="tabMqttDevices">
+    <ng-template ngbTabContent>
+      <div> 
+        <br/>
+        <p>
+          <button type="button" class="btn btn-default" (click)="domoService.refreshMqttDevices()">Rafraichir</button>
+        </p>
+        <div class="card-deck">
+          <div *ngFor="let device of domoService.mqttDevices">
+            <div class="card device-card">
+              <div class="card-header" (click)="selectDevice(device[1].id)">
+                {{device[1].id}}
+              </div>
+              <!-- <div *ngIf="selectedDevice==device[1].id"> -->
+              <div>
+                <div class="card-body">
+                  <div>Version : {{device[1].version}}</div>
+                  <div>MqttUrl : {{device[1].mqttUrl}}</div>
+                  <div>Statut : {{device[1].status}}</div>
+                  <p>Commandes :</p>
+                  <div *ngFor="let command of device[1].commands" class="d-inline">
+                    <button type="button" class="btn btn-outline-primary" (click)="domoService.execCommand(command.command)" >{{command.label}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </ng-template>
+  </ngb-tab>
+
+<!--
+  <ngb-tab title="Devices" id="tabDevices">
+    <ng-template ngbTabContent>
+      <div> 
+        <br/>
+        <div *ngFor="let device of domoService.configCommands.devices">
+          <p>
+            <button type="button" class="btn btn-outline-primary" (click)="selectDevice(device.label)">
+              {{device.label}}
+            </button>
+          </p>
+          <div *ngIf="selectedDevice==device.label">
+            <div class="card">
+              <div class="card-body">
+                <div *ngFor="let command of device.commands">
+                  {{command.label}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </ng-template>
+  </ngb-tab>
+-->
+
   <ngb-tab title="Options" id="tabOptions">
     <ng-template ngbTabContent>
       <div> 

@@ -27,14 +27,25 @@ export class DomoService {
   configCommands = { "devices": [] };
   devicesComponents = [];
   statuses = [];
+  mqttDevices = [];
 
   apiUrl = "http://82.66.49.29:8888/api";
   djsUrl = "http://82.66.49.29:8032/domojs/api/index.php";
-  
+
   edfApiUrl = this.djsUrl+"/edf/"; // Faster than apiUrl (3s vs 13s)
   configApiUrl = "assets/config.json";
   statusesApiUrl = this.apiUrl+"/statuses";
   configCommandsUrl = this.apiUrl+"/res/configCommands.json";
+  mqttDevicesApiUrl = this.apiUrl+"/devices";
+  
+
+  MQTT_DOMO_NGDOMO = 'home/domo/ngDomo/cmd';
+  MQTT_DOMO_NGDOMO_LOG = 'home/domo/log/ngDomo';
+  MQTT_NODE_DOMO_INV_CMD = 'home/domo/inventory/cmd'
+  MQTT_NODE_DOMO_INV_RES = 'home/domo/inventory/res'
+  VERSION = "v16022018-1739";
+  mqttId = "domo-app-"+new Date().getTime(); 
+  CMD_INVENTORY = { "type":"cmdMqtt", "topic": "home/domo/nodedomo/cmd", "payload": "inventory" };
   
   constructor(
     private myMqttService: MyMqttService,
@@ -45,9 +56,10 @@ export class DomoService {
     this.getConfig();
     this.getStatuses();
     this.getConfigCommands();
+    this.getMqttDevices();
     
-    console.log(">>MQTT observe('home/domo/ngDomo/cmd')");
-    this.mqttService.observe('home/domo/ngDomo/cmd').subscribe((message: MqttMessage) => {
+    console.log(">>MQTT observe('"+this.MQTT_DOMO_NGDOMO+"')");
+    this.mqttService.observe(this.MQTT_DOMO_NGDOMO).subscribe((message: MqttMessage) => {
       console.log(">>MQTT ngDomo: ["+message.payload.toString()+"]");
       if (this.appService.lsOptions.synchroMqtt) {
         let cmd = message.payload.toString();
@@ -56,6 +68,9 @@ export class DomoService {
         }
         if (cmd == "selectPrevTab") {
           this.selectPrevTab();
+        }
+        if (cmd == "version") {
+          this.myMqttService.unsafePublish(this.MQTT_DOMO_NGDOMO_LOG, this.VERSION);
         }
 
         try {
@@ -71,7 +86,21 @@ export class DomoService {
         }
 
       }
-    });    
+    });  
+
+    this.mqttService.observe(this.MQTT_NODE_DOMO_INV_CMD).subscribe((message: MqttMessage) => {
+      var s = '{';
+      s += '"id": "'+this.mqttId+'", ';
+      s += '"version": "'+this.VERSION+'", ';
+      s += '"mqttUrl": "'+this.MQTT_DOMO_NGDOMO+'", ';
+      s += '"status": "OK", ';
+      s += '"commands": [';
+      s += '{"type":"command", "label": "Version", "command": {"type":"cmdMqtt", "topic": "home/domo/ngDomo/cmd", "payload": "version"}}';
+      s += ']';
+      s += '}';
+      this.mqttService.unsafePublish(this.MQTT_NODE_DOMO_INV_RES, s);      
+    }); 
+    
   }
 
   getConfig() {
@@ -165,6 +194,19 @@ export class DomoService {
     }
     console.log("ERROR: findComponent "+id+" not found");
     return null;
+  }
+  
+  getMqttDevices() {
+    this.http.get<any[]>(this.mqttDevicesApiUrl)
+      .subscribe(mqttDevices => {
+        this.mqttDevices = mqttDevices;
+      }
+    );   
+  }
+  
+  refreshMqttDevices() {
+    this.execCommand(this.CMD_INVENTORY);
+    setTimeout(()=> { this.getMqttDevices();} , 1000);    
   }
 
   // Pages

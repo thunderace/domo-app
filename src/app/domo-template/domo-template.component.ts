@@ -106,4 +106,5 @@ export class DomoTemplateComponent implements OnInit {
     
     this.myMqttService.publishMqttMessage(this.mqttFormMessage);
   }
+
 }

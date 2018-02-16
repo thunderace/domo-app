@@ -30,13 +30,22 @@ export class ConfigPageComponent implements OnInit {
     "rxIR proto=4 code=811 (12 bits)"
   ];
 
+  selectedDevice;
+
   constructor(
-    private appService: AppService,
-    private domoService: DomoService
+    public appService: AppService,
+    public domoService: DomoService
   ) { 
   }
 
   ngOnInit() {
   }
 
+  selectDevice(id) {
+    if (this.selectedDevice == id) {
+      this.selectedDevice = null;
+    } else {
+      this.selectedDevice = id;
+    }
+  }
 }
