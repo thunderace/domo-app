@@ -123,3 +123,7 @@
 .b-green {
   background-color: #b5d99c;
 }
+
+.card-body {
+    padding: 0.75rem;
+}
