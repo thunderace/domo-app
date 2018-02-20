@@ -29,14 +29,16 @@
                 {{device.id}}
               </div>
               <!-- <div *ngIf="selectedDevice==device.id"> -->
-              <div *ngIf="selectedDevice==device.id">
-              <!-- <div> -->
+              <div>
                 <div class="card-body">
-                  <div>Statut : {{device.status}}</div>
-                  <div>Version : {{device.version}}</div>
-                  <div>WIFI : {{device.WIFI}}</div>
-                  <div>IP : {{device.IP}}</div>
-                  <div>MqttUrl : {{device.mqttUrl}}</div>
+                  <table class="table table-sm">
+                    <tbody>
+                      <tr *ngFor="let prop of getDevicesProperties(device)" >
+                        <td>{{prop.name}}</td>
+                        <td>{{prop.value}}</td>
+                      </tr>
+                    </tbody>
+                  </table>                
                   <p>Commandes :</p>
                   <div *ngFor="let command of device.commands" class="d-inline">
                     <button type="button" class="btn btn-outline-primary" (click)="domoService.execCommand(command.command)">{{command.label}}</button>

@@ -13,6 +13,7 @@ export class ConfigPageComponent implements OnInit {
   
   mqttFormMessage = { "topic": "home/domo/sonoff01/cmd", "payload": "version" };
   
+  // TODO in config
   formTopics = [
     "home/domo/nodedomo/cmd", 
     "home/domo/espIR01/cmd", 
@@ -47,5 +48,17 @@ export class ConfigPageComponent implements OnInit {
     } else {
       this.selectedDevice = id;
     }
+  }
+  
+  getDevicesProperties(device) {
+    var propList = [];
+    for(var propName in device) {
+      if (propName != "commands" && propName != "id") {
+        if(typeof(device[propName]) != "undefined") {
+           propList.push({ "name": propName, "value": device[propName] });
+        }
+      }
+    }
+    return propList;
   }
 }

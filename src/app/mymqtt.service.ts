@@ -15,8 +15,8 @@ export class MyMqttService {
   
   mqttMessages: MyMqttMessage[];
   
-  myMessage;
-  myOtherMessage: Observable<MqttMessage>;  
+//  myMessage;
+//  myOtherMessage: Observable<MqttMessage>;  
   
   constructor(
     private appService: AppService,
@@ -24,14 +24,6 @@ export class MyMqttService {
     private http: HttpClient,
     private mqttService: MqttService
   ) { 
-    // ngx-mqtt
-    this.mqttService.observe('home/domo/log/espIR01').subscribe((message: MqttMessage) => {
-      console.log(">>MQTT: "+message.payload.toString());
-      this.myMessage = message.payload.toString();
-    });
-    
-    this.myOtherMessage = this.mqttService.observe('home/domo');
-    
     this.getMqttMessages();
   }
   
@@ -54,14 +46,5 @@ export class MyMqttService {
   publishMqttMessage(mqttMessage: MyMqttMessage) {
     console.log(">> MQTT publish "+mqttMessage.topic+" "+mqttMessage.payload);
     this.unsafePublish(mqttMessage.topic, mqttMessage.payload);
-    
-/*    
-    const url = this.mqttUrl+'?topic='+mqttMessage.topic+'&payload='+mqttMessage.payload;
-    this.messageService.message = "http exec mqtt "+url;
-    this.http.get(url).subscribe(res => {
-      this.messageService.message = res.toString();
-      this.refresh();
-    });
-*/    
   }
 }

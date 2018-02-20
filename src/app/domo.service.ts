@@ -58,11 +58,11 @@ export class DomoService {
     this.getConfigCommands();
     this.getMqttDevices();
     
-    console.log(">>MQTT observe('"+this.MQTT_DOMO_NGDOMO+"')");
     this.mqttService.observe(this.MQTT_DOMO_NGDOMO).subscribe((message: MqttMessage) => {
-      console.log(">>MQTT ngDomo: ["+message.payload.toString()+"]");
+      var payload = message.payload.toString();
+      console.log(">>MQTT ngDomo: ["+payload+"]");
       if (this.appService.lsOptions.synchroMqtt) {
-        let cmd = message.payload.toString();
+        let cmd = payload;
         if (cmd == "selectNextTab") {
           this.selectNextTab();
         }
@@ -74,17 +74,18 @@ export class DomoService {
         }
 
         try {
-          let cmdObj = JSON.parse(message.payload.toString());
-          if (cmdObj&& cmdObj.cmd) {
-            if (cmdObj.cmd == "selectTab" && cmdObj.id) {
-              this.appService.selectTab(cmdObj.id);
+          if (payload.indexOf("[")>-1 || payload.indexOf("{")>-1) {
+            let cmdObj = JSON.parse(payload);
+            if (cmdObj&& cmdObj.cmd) {
+              if (cmdObj.cmd == "selectTab" && cmdObj.id) {
+                this.appService.selectTab(cmdObj.id);
+              }
             }
           }
         } 
         catch(error) {
           console.log(error);
         }
-
       }
     });  
 
@@ -100,7 +101,6 @@ export class DomoService {
       s += '}';
       this.mqttService.unsafePublish(this.MQTT_NODE_DOMO_INV_RES, s);      
     }); 
-    
   }
 
   getConfig() {
