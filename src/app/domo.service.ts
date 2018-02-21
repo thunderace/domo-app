@@ -92,9 +92,9 @@ export class DomoService {
     this.mqttService.observe(this.MQTT_NODE_DOMO_INV_CMD).subscribe((message: MqttMessage) => {
       var s = '{';
       s += '"id": "'+this.mqttId+'", ';
+      s += '"status": "OK", ';
       s += '"version": "'+this.VERSION+'", ';
       s += '"mqttUrl": "'+this.MQTT_DOMO_NGDOMO+'", ';
-      s += '"status": "OK", ';
       s += '"commands": [';
       s += '{"type":"command", "label": "Version", "command": {"type":"cmdMqtt", "topic": "home/domo/ngDomo/cmd", "payload": "version"}}';
       s += ']';

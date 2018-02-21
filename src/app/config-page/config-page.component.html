@@ -31,7 +31,8 @@
               <!-- <div *ngIf="selectedDevice==device.id"> -->
               <div>
                 <div class="card-body">
-                  <table class="table table-sm">
+                  <!-- <table class="table table-sm"> -->
+                  <table class="table-sm">
                     <tbody>
                       <tr *ngFor="let prop of getDevicesProperties(device)" >
                         <td>{{prop.name}}</td>
@@ -39,7 +40,8 @@
                       </tr>
                     </tbody>
                   </table>                
-                  <p>Commandes :</p>
+                  <!-- <p>Commandes :</p> -->
+                  <br>
                   <div *ngFor="let command of device.commands" class="d-inline">
                     <button type="button" class="btn btn-outline-primary" (click)="domoService.execCommand(command.command)">{{command.label}}</button>
                   </div>
