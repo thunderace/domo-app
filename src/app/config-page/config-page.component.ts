@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { DomoService } from '../domo.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { ModalDeviceComponent } from '../modal-device/modal-device.component';
 
 @Component({
   selector: 'app-config-page',
@@ -35,6 +38,7 @@ export class ConfigPageComponent implements OnInit {
 
   constructor(
     public appService: AppService,
+    public modalService: NgbModal, 
     public domoService: DomoService
   ) { 
   }
@@ -61,4 +65,13 @@ export class ConfigPageComponent implements OnInit {
     }
     return propList;
   }
+  
+  clickButton(content, device) {
+    const modalRef = this.modalService.open(ModalDeviceComponent);
+     modalRef.componentInstance.device = device;
+     modalRef.result.then((result) => {
+    }, (reason) => {
+    });
+  }    
+  
 }

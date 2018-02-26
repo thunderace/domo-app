@@ -204,9 +204,22 @@ export class DomoService {
     );   
   }
   
-  refreshMqttDevices() {
-    this.execCommand(this.CMD_INVENTORY);
+  getMqttDevicesDelayed() {
     setTimeout(()=> { this.getMqttDevices();} , 1000);    
+  }
+  
+  reInitMqttDevices() {
+    this.execCommand(this.CMD_INVENTORY);
+    this.getMqttDevicesDelayed();
+  }
+
+  refreshMqttDevices() {
+    this.getMqttDevicesDelayed();
+  }
+  
+  execDeviceCommand(device, command) {
+    this.execCommand(command);
+    this.reInitMqttDevices();
   }
 
   // Pages

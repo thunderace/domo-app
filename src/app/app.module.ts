@@ -34,6 +34,7 @@ import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-br
 
 import { Observable } from 'rxjs/Observable';
 import { MqttMessage, MqttModule, MqttService } from 'ngx-mqtt';
+import { ModalDeviceComponent } from './modal-device/modal-device.component';
 
 export const MQTT_SERVICE_OPTIONS = {
   hostname: '82.66.49.29',
@@ -79,11 +80,13 @@ export class MyHammerConfig extends HammerGestureConfig {
     WebcamPageComponent,
     MeasurePageComponent,
     ConfigPageComponent,
-    RoomPageComponent
+    RoomPageComponent,
+    ModalDeviceComponent
   ],
   entryComponents: [
     DomoModalComponent, 
-    DomoTemplateComponent
+    DomoTemplateComponent,
+    ModalDeviceComponent
   ],
   providers: [
     AppService, 
