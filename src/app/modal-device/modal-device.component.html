@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{device.id}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="content">
+    <!-- <app-domo-template [components]=getComponents()></app-domo-template> -->
+    
+    <table class="table-sm">
+      <tbody>
+        <tr *ngFor="let prop of getDevicesProperties(device)" >
+          <td>{{prop.name}}</td>
+          <td>{{prop.value}}</td>
+        </tr>
+      </tbody>
+    </table>                
+    <br>
+    <div *ngFor="let command of device.commands" class="d-inline">
+      <button type="button" class="btn btn-outline-primary" (click)="domoService.execDeviceCommand(device, command.command)">{{command.label}}</button>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="activeModal.close('Close click')">Close</button>
+</div>

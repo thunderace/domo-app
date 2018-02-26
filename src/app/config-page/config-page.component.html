@@ -20,18 +20,30 @@
       <div> 
         <br/>
         <p>
-          <button type="button" class="btn btn-default" (click)="domoService.refreshMqttDevices()">Rafraichir</button>
+          <!-- <button type="button" class="btn btn-default btn-domo" (click)="domoService.refreshMqttDevices()">Rafraichir</button> -->
+          <!-- <button type="button" class="btn btn-default btn-domo" (click)="domoService.reInitMqttDevices()">Réinitialiser</button> -->
+          <button type="button" class="btn btn-default btn-domo" (click)="domoService.reInitMqttDevices()">Rafraîchir</button>
         </p>
+        <span *ngFor="let device of domoService.mqttDevices">
+          <div class="btn btn-default btn-cmd-drop-big" (click)="clickButton(content, device)">
+            <div class="btn-cmd-drop-big-icon">
+              <i class="cmd-glyph fa fa-server" aria-hidden="true"></i>
+            </div>
+            <div class="btn-cmd-drop-big-text">
+              {{device.id}}
+            </div>
+          </div>
+        </span>
+        
+<!--        
         <div class="card-deck">
           <div *ngFor="let device of domoService.mqttDevices">
             <div class="card device-card">
               <div class="card-header" (click)="selectDevice(device.id)">
                 {{device.id}}
               </div>
-              <!-- <div *ngIf="selectedDevice==device.id"> -->
               <div>
                 <div class="card-body">
-                  <!-- <table class="table table-sm"> -->
                   <table class="table-sm">
                     <tbody>
                       <tr *ngFor="let prop of getDevicesProperties(device)" >
@@ -40,7 +52,6 @@
                       </tr>
                     </tbody>
                   </table>                
-                  <!-- <p>Commandes :</p> -->
                   <br>
                   <div *ngFor="let command of device.commands" class="d-inline">
                     <button type="button" class="btn btn-outline-primary" (click)="domoService.execCommand(command.command)">{{command.label}}</button>
@@ -50,7 +61,13 @@
             </div>
           </div>
         </div>        
+-->        
       </div>
+      
+      <div class="mt-4">
+        <app-mqtt></app-mqtt>
+      </div>
+      
     </ng-template>
   </ngb-tab>
 
