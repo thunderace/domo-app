@@ -11,6 +11,8 @@ export class Component {
 
 @Injectable()
 export class DomoService {
+  VERSION = "23/02/2018-17:39";  
+  
   message = "";
   
   config = {
@@ -43,7 +45,7 @@ export class DomoService {
   MQTT_DOMO_NGDOMO_LOG = 'home/domo/log/ngDomo';
   MQTT_NODE_DOMO_INV_CMD = 'home/domo/inventory/cmd'
   MQTT_NODE_DOMO_INV_RES = 'home/domo/inventory/res'
-  VERSION = "v16022018-1739";
+
   mqttId = "domo-app-"+new Date().getTime(); 
   CMD_INVENTORY = { "type":"cmdMqtt", "topic": "home/domo/nodedomo/cmd", "payload": "inventory" };
   
