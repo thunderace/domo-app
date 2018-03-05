@@ -48,11 +48,13 @@ def deleteAllFiles(ftp):
              
 def connect_ftp(remoteDir):
     host = '82.66.49.29'
-    port = 8132
-    usr = 'root'
+    #port = 8132 # rpi1
+    port = 8136 # rpiz1
+    #usr = 'root'
+    usr = 'pi'
     pwd = 'tetris'
-    localDir = 'dist'    
-    
+    localDir = 'dist'   
+
     ftp = FTP()
     print("connection to server")
     ftp.connect(host, port)

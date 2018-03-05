@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AppService {
+  VERSION = "05/03/2018-14:26";  
+  SERVER_URL = "http://82.66.49.29";
+  
   LS_APP = "ngDomo";
   LS_OPTIONS = this.LS_APP+".lsOptions";
   

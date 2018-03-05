@@ -11,7 +11,7 @@ export class Component {
 
 @Injectable()
 export class DomoService {
-  VERSION = "23/02/2018-17:39";  
+//  VERSION = "23/02/2018-17:39";  
   
   message = "";
   
@@ -33,13 +33,11 @@ export class DomoService {
 
   apiUrl = "http://82.66.49.29:8888/api";
   djsUrl = "http://82.66.49.29:8032/domojs/api/index.php";
-
   edfApiUrl = this.djsUrl+"/edf/"; // Faster than apiUrl (3s vs 13s)
-  configApiUrl = "assets/config.json";
   statusesApiUrl = this.apiUrl+"/statuses";
   configCommandsUrl = this.apiUrl+"/res/configCommands.json";
   mqttDevicesApiUrl = this.apiUrl+"/devices";
-  
+  configApiUrl = "assets/config.json";
 
   MQTT_DOMO_NGDOMO = 'home/domo/ngDomo/cmd';
   MQTT_DOMO_NGDOMO_LOG = 'home/domo/log/ngDomo';
@@ -55,6 +53,13 @@ export class DomoService {
     private http: HttpClient,
     private appService: AppService
   ) {
+    this.apiUrl = this.appService.SERVER_URL + ":8888/api";
+    this.djsUrl = this.appService.SERVER_URL + ":8032/domojs/api/index.php";
+    this.edfApiUrl = this.apiUrl+"/edf/"; // djsUrl faster than apiUrl (3s vs 13s)
+    this.statusesApiUrl = this.apiUrl+"/statuses";
+    this.configCommandsUrl = this.apiUrl+"/res/configCommands.json";
+    this.mqttDevicesApiUrl = this.apiUrl+"/devices";
+  
     this.getConfig();
     this.getStatuses();
     this.getConfigCommands();
@@ -72,7 +77,7 @@ export class DomoService {
           this.selectPrevTab();
         }
         if (cmd == "version") {
-          this.myMqttService.unsafePublish(this.MQTT_DOMO_NGDOMO_LOG, this.VERSION);
+          this.myMqttService.unsafePublish(this.MQTT_DOMO_NGDOMO_LOG, this.appService.VERSION);
         }
 
         try {
@@ -95,7 +100,7 @@ export class DomoService {
       var s = '{';
       s += '"id": "'+this.mqttId+'", ';
       s += '"status": "OK", ';
-      s += '"version": "'+this.VERSION+'", ';
+      s += '"version": "'+this.appService.VERSION+'", ';
       s += '"mqttUrl": "'+this.MQTT_DOMO_NGDOMO+'", ';
       s += '"commands": [';
       s += '{"type":"command", "label": "Version", "command": {"type":"cmdMqtt", "topic": "home/domo/ngDomo/cmd", "payload": "version"}}';
@@ -178,7 +183,7 @@ export class DomoService {
   }
   
   getEDF(duree) {
-    return this.http.get<any[]>(this.edfApiUrl+duree);
+    return this.http.get<any[]>(this.edfApiUrl + duree);
   }
 
   findComponents(component) {

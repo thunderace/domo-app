@@ -21,7 +21,7 @@ export class ModalDeviceComponent implements OnInit {
 
   getDevicesProperties(device) {
     var propList = [];
-    for(var propName in device) {
+    for (var propName in device) {
       if (propName != "commands" && propName != "id") {
         if(typeof(device[propName]) != "undefined") {
            propList.push({ "name": propName, "value": device[propName] });
@@ -30,5 +30,4 @@ export class ModalDeviceComponent implements OnInit {
     }
     return propList;
   }
-
 }

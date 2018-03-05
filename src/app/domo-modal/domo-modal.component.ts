@@ -23,5 +23,4 @@ export class DomoModalComponent implements OnInit {
   getComponents() {
     return this.domoService.findComponents(this.component);
   }
-
 }

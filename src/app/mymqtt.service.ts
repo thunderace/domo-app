@@ -46,5 +46,6 @@ export class MyMqttService {
   publishMqttMessage(mqttMessage: MyMqttMessage) {
     console.log(">> MQTT publish "+mqttMessage.topic+" "+mqttMessage.payload);
     this.unsafePublish(mqttMessage.topic, mqttMessage.payload);
+    this.refresh();
   }
 }

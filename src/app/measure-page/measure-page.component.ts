@@ -120,24 +120,25 @@ export class MeasurePageComponent implements OnInit {
     this.infoLoadingEDF = "Chargement des données...";
     this.domoService.getEDF(this.dureeEDF)
       .subscribe(data => {
+        console.log("edf: data received " + data.length);
+      
         // { time, PAPP }
         var dt2 = (Date.now()-t1)/1000;
         this.infoLoadingEDF = "Données chargées en "+dt2+"s";
         
         let tmpData = [
-        {
-          "name": "EDF",
-          "series": []
-        },
-        {
-          "name": "Par heure",
-          "series": []
-        },
-        {
-          "name": "Moyenne",
-          "series": []
-        }        
-
+          {
+            "name": "EDF",
+            "series": []
+          },
+          {
+            "name": "Par heure",
+            "series": []
+          },
+          {
+            "name": "Moyenne",
+            "series": []
+          }        
         ];
         let tMin = null, tMax, vMin, vMax;
         let vCumul, nv = 0;
@@ -181,7 +182,9 @@ export class MeasurePageComponent implements OnInit {
         tmpData[2].series.push({"name": tMin, "value": vAverage});        
         tmpData[2].series.push({"name": tMax, "value": vAverage});  
         
-        this.multi = tmpData;
+        if (data.length > 0) {
+          this.multi = tmpData;
+        }
         
         var dt3 = (Date.now()-t1)/1000;
         this.infoLoadingEDF = "Données chargées en "+dt3+"s";
