@@ -4,19 +4,28 @@
 from ftplib import FTP
 import os
 
-remoteDir = '/var/www/node-domo/app/domo'    
-
-def copyDirToFtp(ftp, localDir, remoteDir):
+localDir = 'dist'   
+remoteDir = '/var/www/domo-server/app/domo'    
+host = '82.66.49.29'
+#port = 8132 # rpi1
+port = 8136 # rpiz1
+#usr = 'root'
+usr = 'pi'
+pwd = 'tetris'
+    
+excludedDir = { ".git" }    
+    
+def copyDirToFtp(ftp, localDir, remoteDir, excludedDir):
     print("\ncopy files from "+localDir+" to "+remoteDir)
     if os.path.isdir(localDir):
       for f in os.listdir(localDir):
         print(f)
         filePath = os.path.join(localDir, f)
         if os.path.isdir(filePath):
-          if not filePath.endswith(".git"):
+          if not f in excludedDir:
             ftp.cwd(remoteDir)
             ftp.mkd(f);
-            copyDirToFtp(ftp, filePath, remoteDir+"/"+f)
+            copyDirToFtp(ftp, filePath, remoteDir+"/"+f, excludedDir)
         else:
           fh = open(filePath, 'rb')
           ftp.cwd(remoteDir)
@@ -46,15 +55,7 @@ def deleteAllFiles(ftp):
       ftp.rmd(n)
       print('Directory, '+n+' Removed')
              
-def connect_ftp(remoteDir):
-    host = '82.66.49.29'
-    #port = 8132 # rpi1
-    port = 8136 # rpiz1
-    #usr = 'root'
-    usr = 'pi'
-    pwd = 'tetris'
-    localDir = 'dist'   
-
+def connect_ftp(localDir, remoteDir, excludedDir, host, port, usr, pwd):
     ftp = FTP()
     print("connection to server")
     ftp.connect(host, port)
@@ -67,10 +68,10 @@ def connect_ftp(remoteDir):
     ftp.cwd(remoteDir)
     deleteAllFiles(ftp)
     
-    copyDirToFtp(ftp, localDir, remoteDir)
+    copyDirToFtp(ftp, localDir, remoteDir, excludedDir)
         
     ftp.quit()
     ftp.close()
     print("connection closed")
     
-connect_ftp(remoteDir)
+connect_ftp(localDir, remoteDir, excludedDir, host, port, usr, pwd)
