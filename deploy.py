@@ -9,8 +9,8 @@ remoteDir = '/var/www/domo-server/app/domo'
 host = '82.66.49.29'
 #port = 8132 # rpi1
 port = 8136 # rpiz1
-#usr = 'root'
-usr = 'pi'
+#usr = 'pi'
+usr = 'root'
 pwd = 'tetris'
     
 excludedDir = { ".git" }    
