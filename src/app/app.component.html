@@ -14,6 +14,7 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
+    ?
   </div>
   <div class="bottom-bar-middle">
     <div *ngFor="let menu of domoService.config.configWeb.bottomMenus" [ngClass]="{'bottom-bar-menu': true, 'selected': appService.lsOptions.selectedPage==menu.page}" (click)="appService.selectPage(menu.page)">
