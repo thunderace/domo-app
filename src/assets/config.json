@@ -35,7 +35,7 @@
             { "type":"separator" },
             { "type":"componentGroup", "componentGroupId": "cgAmpliVol" },
             { "type":"separator" },
-            { "type":"webcam", "label": "Salon", "webcam": { "source": "http://82.66.49.29:8200/image.jpg?user=admin&password=tetris" } },
+            { "type":"webcam", "label": "Salon", "webcam": { "source": "http://XXXXXX/image.jpg?user=admin&password=XXXXXX" } },
             { "type":"separator" }
           ] },
           { "type":"tab", "id": "tabGeneral", "label": "Général", "components": [
